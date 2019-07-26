@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ("../class/clase_conexion.php");
+include ("../class/conexion.php");
      $conexion = new Conexion();
      $conexion->establecerConexion();
      //$_GET["accion"]=1;

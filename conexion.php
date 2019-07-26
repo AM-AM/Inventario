@@ -12,7 +12,7 @@
 <?php
 echo "paso1";
 
-$serverName = "localhost"; //serverName\instanceName
+$serverName = "127.0.0.1"; //serverName\instanceName
 $connectionInfo = array( "Database"=>"InventarioIS", "UID"=>"usuario", "PWD"=>"contrasena");
 echo "paso 2";
 $conn = sqlsrv_connect( $serverName, $connectionInfo);

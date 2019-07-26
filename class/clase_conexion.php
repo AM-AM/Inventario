@@ -8,7 +8,7 @@
 		private $enlace;
 		public function __construct(){}
 		public function establecerConexion(){
-			$this->enlace = mysqli_connect($this->host, $this->usuario,$this->contrasena, $this->baseDatos, $this->puerto);
+			$this->enlace = mysqli_connection($this->host, $this->usuario,$this->contrasena, $this->baseDatos, $this->puerto);
 			if (!$this->enlace) {
 			    echo "Error: No se pudo conectar a MySQL.<br>";
 			    echo "Codigo Error: " . mysqli_connect_errno() . "<br>";
