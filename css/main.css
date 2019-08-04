@@ -36,14 +36,14 @@ ul li {
     background: #FE980F;
 }
 
-.carousel-inner { text-align: center; }
-.carousel .item > img { display: inline-block; }
-
 .item {
     padding-left: 100px;
 }
 
 
+.lab {
+    margin-left: 0;
+}
 
 
 .item h1 span {
@@ -57,7 +57,6 @@ ul li {
     top: 50%;
     font-size: 60px;
     color: #C2C2C1;
-    padding: 50px;
 }
 
 
@@ -199,7 +198,7 @@ header {
 .content {
     
     width: 70%;
-    background: #fff;
+    background: #0000FF;
     margin: auto;
     padding: 10px;
     

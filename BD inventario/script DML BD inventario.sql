@@ -104,10 +104,12 @@ INSERT INTO `tbl_usuarios` (`id_persona_usuario`,
                             `nombre_usuario`,
                             `clave_usuario`,
                             `fotografia`,
-                            `numero_cuenta`) 
-			VALUES (	  '1', 
+                            `fecha_registro`) 
+			       VALUES (	  '1', 
                     	  '1', 
-                		  'pedroP', 
+                		  'pedro1', 
                     	  '123456',
                     	   NULL,
-                           NULL);
+                        '2019-07-25');
+
+     

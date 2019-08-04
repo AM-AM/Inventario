@@ -1,3 +1,11 @@
+<?php
+include("class/class-conexion.php");
+ session_start();
+ if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
+      session_destroy();
+     header("Location: login.php");
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +28,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" style="overflow-y:visible">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -73,6 +81,14 @@
       </li>
 
       <!-- Nav Item - Categorias Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-list"></i>
+          <span>Inventario</span>
+        </a>
+        
+      </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-list"></i>
@@ -234,7 +250,7 @@
                   Registro de actividad
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="login.php" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Cerrar sesión
                 </a>
@@ -470,7 +486,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.html">Cerrar sesión</a>
+          <a class="btn btn-primary" href="login.php">Cerrar sesión</a>
         </div>
       </div>
     </div>
@@ -495,6 +511,7 @@
 
 
   <script src="js/configuraciones.js"></script>
+
 
 </body>
 
