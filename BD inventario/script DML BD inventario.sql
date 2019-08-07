@@ -112,4 +112,83 @@ INSERT INTO `tbl_usuarios` (`id_persona_usuario`,
                     	   NULL,
                         '2019-07-25');
 
-     
+-- insertando en tbl_categoria_articulos
+INSERT INTO `tbl_categoria_articulos` (`id_categoria_articulos`,     
+                            `nombre_categoria`) 
+             VALUES (   NULL, 
+                        'Computadoras');
+
+INSERT INTO `tbl_categoria_articulos` (`id_categoria_articulos`,     
+                            `nombre_categoria`) 
+             VALUES (   NULL, 
+                        'Proyectores');
+
+INSERT INTO `tbl_categoria_articulos` (`id_categoria_articulos`,     
+                            `nombre_categoria`) 
+             VALUES (   NULL, 
+                        'Cables');
+
+-- insertando en tbl_articulos
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`, 
+                            `nombre_articulo`, `precio_articulo`, 
+                            `cantidad`, `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+            VALUES (NULL, 
+                    '2', 
+                    '1', 
+                    'Computadora de Escritorio', 
+                    NULL, 
+                    '2', 
+                    '2019-08-05', 
+                    NULL, 
+                    'Computadora de escritorio marca DELL para uso exclusivo de laboratorios');
+    
+
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`, 
+                            `nombre_articulo`, `precio_articulo`, 
+                            `cantidad`, `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+            VALUES(NULL, 
+                  '1', 
+                  '1', 
+                  'Proyector', 
+                  NULL, 
+                  '2', 
+                  '2019-08-05', 
+                  NULL, 
+                  'proyector grande con todos sus componentes incluidos'); 
+
+-- insertando en tbl_categorias_x_articulo
+INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, `id_articulos`) VALUES ('1', '1'), 
+
+INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, 
+                                        `id_articulos`) 
+          VALUES('2', '2');
+
+-- insertando en tbl_estado_reporte
+INSERT INTO `tbl_estado_reporte` (`id_estado_reporte`, 
+                                  `estado_reporte`) 
+          VALUES (NULL, 'En revision');
+
+INSERT INTO `tbl_estado_reporte` (`id_estado_reporte`, 
+                                  `estado_reporte`) 
+          VALUES(NULL, 'Aceptado');
+
+INSERT INTO `tbl_estado_reporte` (`id_estado_reporte`, 
+                                  `estado_reporte`) 
+          VALUES (NULL, 'Rechazado');
+
+--insertando en tbl_tipo_reportes
+INSERT INTO `tbl_tipo_reportes` (`id_tipo_reporte`, `tipo_reporte`) 
+          VALUES (NULL, 'Estado de Equipos');
+
+INSERT INTO `tbl_tipo_reportes` (`id_tipo_reporte`, 
+                                `tipo_reporte`) 
+          VALUES (NULL, 'Solicitudes de Equipo');
+

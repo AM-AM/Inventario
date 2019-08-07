@@ -23,6 +23,11 @@ $(document).ready(function(){
     $("#proyectores").click(function(event){
         $("#contenido").load('tablas/categorias/proyectores.php');
     });
+
+    //acceso inventario
+    $("#equiposDisponibles").click(function(event){
+        $("#contenido").load('inv.php');
+    });
 });
 
 

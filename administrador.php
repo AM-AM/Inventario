@@ -73,22 +73,31 @@ include("class/class-conexion.php");
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
             <a class="collapse-item" id="administradores">Administradores</a>
             <a class="collapse-item" id="estudiantes">Estudiantes</a>
-            <a class="collapse-item" id="maestros">Maestros</a>
-            <a class="collapse-item" id="registro"><i class="fas fa-plus"></i>  Nuevo usuario</a>
+            <a class="collapse-item" id="instructores">Instructores</a>
+            <a class="collapse-item" id="registro"><i class="fas fa-plus"></i>Nuevo usuario</a>
             
           </div>
         </div>
       </li>
 
-      <!-- Nav Item - Categorias Collapse Menu -->
+      <!-- Nav Item - Inventario Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInv" aria-expanded="true" aria-controls="collapseInv">
           <i class="fas fa-fw fa-list"></i>
           <span>Inventario</span>
         </a>
-        
+        <div id="collapseInv" class="collapse" aria-labelledby="headingInv" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Artículos:</h6>
+            
+            <a class="collapse-item" id="equiposDisponibles" >Equipos Disponibles</a>
+            <a class="collapse-item" id="añadirEquipos" ><i class="fas fa-plus"></i> Añadir Equipos</a>           
+          </div>
+        </div>        
       </li>
 
+
+      <!-- Nav Item - Categorias Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-list"></i>
@@ -98,7 +107,7 @@ include("class/class-conexion.php");
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Artículos:</h6>
             
-            <a class="collapse-item"  id="computadoras" >Computadoras</a>
+            <a class="collapse-item" id="computadoras" >Computadoras</a>
             <a class="collapse-item" id="proyectores" >Proyectores</a>
             <a class="collapse-item" id="cables">Cables</a>
             
@@ -288,6 +297,7 @@ include("class/class-conexion.php");
                     </div>
                   </div>
                 </div>
+
               </div>
             </div>
 
@@ -439,8 +449,8 @@ include("class/class-conexion.php");
                   <h6 class="m-0 font-weight-bold text-primary">Información</h6>
                 </div>
                 <div class="card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta diam vitae quam vulputate facilisis. Maecenas sit amet auctor risus. Proin orci nisl, imperdiet in neque quis, posuere pretium justo. In faucibus placerat nibh, non euismod augue laoreet ut. Curabitur dapibus magna ut nunc bibendum, sed mollis leo suscipit. Etiam ullamcorper enim ut iaculis malesuada. Etiam laoreet, lorem et sollicitudin accumsan, leo massa posuere orci, vel venenatis nisi lorem ut nibh. Quisque at condimentum ante.</p>
-                  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta diam vitae quam vulputate facilisis. Maecenas sit amet auctor risus.</p>
+                  <p>En esta sección podras encontrar toda la informacion sobre los equipos con los que cuenta la carrera de ingenieria en sitemas; como administrador podras gestionar el ingreso o salida de los articulos aqui inventariados.</p>
+                  <p class="mb-0">Tu decides quienes pueden gestionar acciones en este portal asi como definir privilegios para cada cuenta creada.</p>
                 </div>
               </div>
 
@@ -479,7 +489,7 @@ include("class/class-conexion.php");
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Seguro que quieres salir?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar su sesion?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>

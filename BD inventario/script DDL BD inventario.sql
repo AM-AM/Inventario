@@ -294,6 +294,7 @@ CREATE TABLE IF NOT EXISTS `inventario`.`tbl_reportes` (
   `id_tipo_reporte` INT NOT NULL,
   `id_estado_reporte` INT NOT NULL,
   `fecha_reporte` DATE NULL,
+  `contenido_reporte` VARCHAR(4000) NULL,
   PRIMARY KEY (`id_reportes`),
   INDEX `fk_tbl_reportes_tbl_usuarios1_idx` (`id_persona_usuario` ASC),
   INDEX `fk_tbl_reportes_tbl_tipo_reportes1_idx` (`id_tipo_reporte` ASC),

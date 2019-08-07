@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>InventarioIS</title>
+    <title>InventarioIS-Login</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/log.css">
@@ -12,7 +12,7 @@
     <h1>Inventario Laboratorios IS</h1>
 
   <div class="login-page" >
-    <div class="form" style="background-color:#6495ED;">
+    <div class="form" style="background-color:#6495ED;" >
       <div class="login-form">
         <input type="text" class="form-control" placeholder="Usuario" id="txt-Usuario" />
         <input type="password" class="form-control" placeholder="Contraseña" id="txt-Password" />
