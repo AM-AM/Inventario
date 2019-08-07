@@ -112,6 +112,9 @@ INSERT INTO `tbl_usuarios` (`id_persona_usuario`,
                     	   NULL,
                         '2019-07-25');
 
+-- ----------------------------------------------------------------------------------------------------------
+-- ACTUALIZACION 1 DE SCRIPT DML
+
 -- insertando en tbl_categoria_articulos
 INSERT INTO `tbl_categoria_articulos` (`id_categoria_articulos`,     
                             `nombre_categoria`) 
@@ -191,4 +194,55 @@ INSERT INTO `tbl_tipo_reportes` (`id_tipo_reporte`, `tipo_reporte`)
 INSERT INTO `tbl_tipo_reportes` (`id_tipo_reporte`, 
                                 `tipo_reporte`) 
           VALUES (NULL, 'Solicitudes de Equipo');
+
+-- ---------------------------------------------------------------------------------------------------------
+-- ACTUALIZACION 2 DE SCRIPT DML
+--insertando en tbl_articulos
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`, 
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, 
+                            `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+          VALUES (NULL, 
+                  '1', 
+                  '1', 
+                  'Pantalla para proyectar', 
+                  '2000.00', 
+                  '2', 
+                  '2019-08-02', 
+                  NULL, 
+                  'pantalla para proyeccion con todos sus accesorios, 
+                  disponible para el prestamo')
+
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`, 
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, 
+                            `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`)
+          VALUES(NULL, 
+                '2', 
+                '1', 
+                'Computadora Portátil', 
+                NULL, 
+                '1', 
+                '2019-08-03',
+                 NULL, 
+                 'laptop marca hp para uso de instructores');
+
+-- insertando en tbl_categorias_x_articulo
+INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, 
+                                        `id_articulos`) 
+          VALUES ('2', '3');
+
+INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, 
+                                        `id_articulos`) 
+          VALUES('1', '4');
 

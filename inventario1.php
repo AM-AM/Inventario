@@ -1,3 +1,35 @@
+<?php
+include("class/class-conexion.php");
+ session_start();
+ if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
+      session_destroy();
+     header("Location: login.php");
+ }
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>LaboratoriosIS-Inventario</title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/barra-menu.css">
+		<link rel="stylesheet" type="text/css" href="css/pestañas.css">
+		<link rel="stylesheet" type="text/css" href="css/styleBarra.css">
+		<link rel="stylesheet" type="text/css" href="css/inventario.css">
+
+		<!--Extension-->
+		<link rel="stylesheet" type="text/css" href="extensiones/datatables.min.css">
+	</head>
+	<body onload="init()">
+
+		<!--Contenedor-->
+		<div class="container-fluid">
+			<div class="row">
+				<!--Aqui Esta Contenida La Barra De Menu-->
+				<div id="barraNav" class="col-lg-2 col-sm-2 lista" style="width: 20%">
+				</div>
+				<!--Aqui Esta Finaliza La La Barra De Menu-->
 
 				<!--Contenido Del Inventario-->
 				<div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 well" style="border: black 1px solid;width: 80%">
@@ -219,3 +251,22 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<!--Fin Del Contenedor-->
+
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/carousel.js"></script>
+	<script src="js/pestañas.js"></script>
+	<script src="js/menu.js"></script>
+	
+	<!--Extensiones-->
+	<script src="extensiones/datatables.min.js"></script>
+
+	<!--Controladores-->
+	<script src="js/controladores/validaciones.js"></script>
+	<script src="js/controladores/popup.js"></script>
+	<script src="js/controladores/inventario.js"></script>
+</html>
