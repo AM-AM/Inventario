@@ -2,50 +2,50 @@
 
   class Persona{
     private $idPersona;
-    private $genero;
-    private $nombre;
-    private $apellido;
-    private $edad;
+    private $PrimerNombre;
+    private $SegundoNombre;
+    private $PrimerApellido;
+    private $SegundoApellido;
     private $telefono;
     private $email;
     private $fechaNacimiento;
-    private $direccion;
+    private $NumeroCuenta;
     private $numeroIdentidad;
 
     public function __construct(
       $idPersona = null,
-      $genero = null,
-      $nombre = null,
-      $apellido = null,
-      $edad = null,
+      $PrimerNombre = null,
+      $SegundoNombre = null,
+      $PrimerApellido = null,
+      $SegundoApellido = null,
       $telefono = null,
       $email = null,
       $fechaNacimiento = null,
-      $direccion = null,
+      $NumeroCuenta = null,
       $numeroIdentidad = null
     ){
       $this->idPersona = $idPersona;
-      $this->genero = $genero;
-      $this->nombre = $nombre;
-      $this->apellido = $apellido;
-      $this->edad = $edad;
+      $this->PrimerNombre = $PrimerNombre;
+      $this->SegundoNombre = $SegundoNombre;;
+      $this->PrimerApellido = $PrimerApellido;
+      $this->SegundoApellido = $SegundoApellido;
       $this->telefono = $telefono;
       $this->email = $email;
       $this->fechaNacimiento = $fechaNacimiento;
-      $this->direccion = $direccion;
+      $this->NumeroCuenta = $NumeroCuenta;
       $this->numeroIdentidad = $numeroIdentidad;
     }
     public function __toString(){
       $var = "Persona{"
       ."idPersona: ".$this->idPersona." , "
-      ."genero: ".$this->genero." , "
-      ."nombre: ".$this->nombre." , "
-      ."apellido: ".$this->apellido." , "
-      ."edad: ".$this->edad." , "
+      ."PrimerNombre: ".$this->PrimerNombre." , "
+      ."SegundoNombre: ".$this->SegundoNombre." , "
+      ."PrimerApellido: ".$this->PrimerApellido." , "
+      ."SegundoApellido: ".$this->SegundoApellido." , "
       ."telefono: ".$this->telefono." , "
       ."email: ".$this->email." , "
       ."fechaNacimiento: ".$this->fechaNacimiento." , "
-      ."direccion: ".$this->direccion." , "
+      ."NumeroCuenta: ".$this->NumeroCuenta." , "
       ."numeroIdentidad: ".$this->numeroIdentidad;
       return $var."}";
     }
@@ -55,41 +55,42 @@
     public function setIdPersona($idPersona){
       $this->idPersona = $idPersona;
     }
-    public function getNombre(){
-      return $this->nombre;
+    public function getPrimerNombre(){
+      return $this->PrimerNombre;
     }
-    public function setNombre($nombre){
-      $this->nombre = $nombre;
+    public function setPrimerNombre($PrimerNombre){
+      $this->PrimerNombre = $PrimerNombre;
     }
-    public function getApellido(){
-      return $this->apellido;
+    public function getSegundoNombre(){
+      return $this->SegundoNombre;
     }
-    public function setApellido($apellido){
-      $this->apellido = $apellido;
+    public function setSegundoNombre($SegundoNombre){
+      $this->SegundoNombre = $SegundoNombre;
     }
-    public function getGenero(){
-      return $this->genero;
+    public function getPrimerApellido(){
+      return $this->PrimerApellido;
     }
-    public function setGenero($genero){
-      $this->genero = $genero;
+    public function setPrimerApellido($PrimerApellido){
+      $this->PrimerApellido = $PrimerApellido;
     }
-    public function getEdad(){
-      return $this->edad;
+    public function getSegundoApellido(){
+      return $this->SegundoApellido;
     }
-    public function setEdad($edad){
-      $this->edad = $edad;
+    public function setSegundoApellido($SegundoApellido){
+      $this->SegundoApellido = $SegundoApellido;
     }
+    
     public function getTelefono(){
       return $this->telefono;
     }
     public function setTelefono($telefono){
       $this->telefono = $telefono;
     }
-    public function getDireccion(){
-      return $this->direccion;
+    public function getNumeroCuenta(){
+      return $this->NumeroCuenta;
     }
-    public function setDireccion($direccion){
-      $this->direccion = $direccion;
+    public function setNumeroCuenta($NumeroCuenta){
+      $this->NumeroCuenta = $NumeroCuenta;
     }
     public function getEmail(){
       return $this->email;
@@ -110,6 +111,7 @@
       $this->fechaNacimiento = $fechaNacimiento;
     }
     public function crear($conexion){
+
     }
     public function borrar($conexion){
     }
@@ -117,12 +119,5 @@
     }
     public function actualizar($conexion){
     }
-    public function buscarPorIdentidad($conexion){
-    }
-    public function buscarPorNombre($conexion){
-    }
-    public function buscarPorApellido($conexion){
-    }
-  }
-
+   
 ?>

@@ -1,33 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="col-lg-8">
+    <div class="p-5">
+      <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Crear cuenta</h1>
+      </div>
+      <form class="user">
 
-          <div class="col-lg-7">
-            <div class="p-5">
-              <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Crear cuenta</h1>
-              </div>
-              <form class="user">
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Nombre">
-                  </div>
-                  <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Apellido">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Correo electrónico">
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña">
-                  </div>
-                  <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repetir contraseña">
-                  </div>
-                </div>
-                <a href="" class="btn btn-primary btn-user btn-block">
-                  Crear cuenta
-                </a>
-                <hr>
-              </form>
+          
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <input type="text" class="form-control form-control-user" id="FirstName" placeholder="Primer Nombre">
             </div>
+            <div class="col-sm-6">
+              <input type="text" class="form-control form-control-user" id="SecondName" placeholder="Segundo Nombre">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="FirstSurname" placeholder="Primer Apellido">
+            </div>
+            <div class="col-sm-6">
+              <input type="text" class="form-control form-control-user" id="SecondSurname" placeholder="Segundo Apellido">
+            </div>
+
+        </div>
+        
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" id="Identity" placeholder="Numero de Identidad">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control form-control-user" id="NumberAcount" placeholder="Numero de Cuenta">
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control form-control-user" id="Email" placeholder="Correo electrónico">
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm-4 mb-2 mb-sm-0">
+              <input type="number" class="form-control form-control-user" id="Telephone" placeholder="Numero de Telefono">
+            </div>
+            <div class="col-sm-4">
+              <input type="date" class="form-control form-control-user" id="BornDate" >
+            </div>
+            <div class="col-sm-4">
+              <select name="gender" class="form-control form-control-user" size="1" >
+                
+                <option value="" selected>Tipo de Usuario</option>
+                <option value="2">Instructor</option>
+                <option value="3" >Estudiante</option>
+              </select>
           </div>
+        </div>
+
+        
+        <div class="form-group row">
+            <div class="col-sm-4 mb-3 mb-sm-0">
+                <select name="LugarNac" class="form-control form-control-user" size="1">
+                    <option value="" selected>Lugar de Nacimiento</option>
+                    <option value="Tegucigalpa">Tegucigalpa</option>
+                    <option value="Choluteca" >Choluteca</option>
+                    <option value="Colon">Colon</option>
+                    <option value="Comayagua" >Comayagua</option>
+                    <option value="Copan">Copán</option>
+                    <option value="Cortes" >Cortes</option>
+                    <option value="Paraiso">El Paraíso</option>
+                    <option value="atlantida" >Atlántida</option>
+                  </select>
+            </div>
+             
+            
+            <div class="col-sm-4">
+                <select name="LugarRes" class="form-control form-control-user" size="1">
+                    <option value="" selected>Lugar de Residencia</option>
+                    <option value="Tegucigalpa">Tegucigalpa</option>
+                    <option value="Choluteca" >Choluteca</option>
+                    <option value="Colon">Colon</option>
+                    <option value="Comayagua" >Comayagua</option>
+                    <option value="Copan">Copán</option>
+                    <option value="Cortes" >Cortes</option>
+                    <option value="Paraiso">El Paraíso</option>
+                    <option value="atlantida" >Atlántida</option>
+                  </select>
+            </div>
+            <div class="col-sm-4">
+                <select name="gender" class="form-control form-control-user" size="0">
+                  <option value="" selected>Genero</option>
+                  <option value="F">Femenino</option>
+                  <option value="M" >Masculino</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input type="password" class="form-control form-control-user" id="Password" placeholder="Contraseña">
+          </div>
+          <div class="col-sm-6">
+            <input type="password" class="form-control form-control-user" id="RepeatPassword" placeholder="Repetir contraseña">
+          </div>
+        </div>
+        <a id="guardar-usuario" class="btn btn-primary btn-user btn-block">
+          Crear cuenta
+        </a>
+        <hr>
+      </form>
+    </div>
+
+  </div>  
+</body> 
+
+</html>
+         

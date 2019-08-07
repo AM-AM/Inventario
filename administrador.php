@@ -37,7 +37,7 @@ include("class/class-conexion.php");
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="administrador.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="administrador.php">
         <div class="sidebar-brand-icon ">
           <img src="img/logo-is.png" width="100" height="100">
         </div>
@@ -49,7 +49,7 @@ include("class/class-conexion.php");
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="administrador.html">
+        <a class="nav-link" href="administrador.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Reportes</span></a>
       </li>

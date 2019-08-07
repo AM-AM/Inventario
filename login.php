@@ -19,12 +19,11 @@
         <button class="btn btn-primary" id="btn-iniciar-sesion" onclick="iniciarSesion();">Iniciar Sesion</button>
         <div id="status"></div>
         <br><br>
-        <a href="login.php" style="color: #F0F8FF;">Olvidé mi contraseña</a>
+        <a href="forgot-password.html" style="color: #F0F8FF;">Olvidé mi contraseña</a>
         <br>
-      </div>
+       
     </div>
   </div>
-
 
   </body>
   <script src="js/jquery-3.2.1.min.js"></script>

@@ -422,22 +422,8 @@ function verEmpleado(idEmpleado){
 }
 
 /* Funcion para guardar empleado nuevo */
-$('#guardar-empleado').click(function(){
-  parametros = {
-                "nombre": 'nombre-fAgregar',
-                "apellido": 'apellido-fAgregar',
-                "genero": 'slc-genero-fAgregar',
-                "direccion": 'direccion-fAgregar',
-                "edad": 'edad-fAgregar',
-                "email": 'email-fAgregar',
-                "identidad": 'numero-identidad-fAgregar',
-                "telefono": 'telefono-fAgregar',
-                "fecha_nacimiento": 'fecha-nacimiento-fAgregar',
-                "fecha_ingreso": 'fecha-ingreso-fAgregar'
-              };
-
-  validacion = validarEmpleado(parametros);
-  if(validacion){
+$('#guardar-usuario').click(function(){
+ 
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -450,7 +436,7 @@ $('#guardar-empleado').click(function(){
       "data": {
         "accion": "insertar-empleado",
   
-        "nombre": $('#nombre-fAgregar').val(),
+        "nombre": $('#PrimerNomobre').val(),
         "apellido": $('#apellido-fAgregar').val(),
         "genero": $('#slc-genero-fAgregar').val(),
         "direccion": $('#direccion-fAgregar').val(),
@@ -477,12 +463,7 @@ $('#guardar-empleado').click(function(){
         $('#table-bitacora').DataTable().ajax.reload();
       }
     });
-  }else{
-    popUp.setTextoAlerta("Formato incorrecto en un dato, verifique e intente nuevamente");
-    popUp.incorrecto();
-    popUp.mostrarAlerta();
-  }
-
+  
 });
 
 $("#atras").on("click", function(){
