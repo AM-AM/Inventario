@@ -169,7 +169,8 @@
             
           }
           else {
-            $sql ="INSERT INTO 'tbl_personas' VALUES (null,$this->$idLugarNacimiento,$this->$idLugarResidencia,$this->$idGenero,$this->$PrimerNombre,$this->$SegundoNombre,$this->$PrimerApellido,$this->$SegundoApellido,$this->$numeroIdentidad,$this->$telefono,$this->$email,$this->$fechaNacimiento,$this->$NumeroCuenta)";
+            $sql ="INSERT INTO 'tbl_personas'
+             VALUES (null,'$this->$idLugarNacimiento','$this->$idLugarResidencia','$this->$idGenero','$this->$PrimerNombre','$this->$SegundoNombre','$this->$PrimerApellido','$this->$SegundoApellido','$this->$numeroIdentidad','$this->$telefono','$this->$email','$this->$fechaNacimiento','$this->$NumeroCuenta')";
             
             $resultado=$conexion->ejecutarConsulta($sql);
             $respuesta["mensaje"]="Ingresado Correctamente";

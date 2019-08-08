@@ -17,27 +17,27 @@
           
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
-              <input type="text" class="form-control form-control-user" id="FirstName" placeholder="Primer Nombre">
+              <input type="text" class="form-control form-control-user" id="PrimerNombre" placeholder="Primer Nombre">
             </div>
             <div class="col-sm-6">
-              <input type="text" class="form-control form-control-user" id="SecondName" placeholder="Segundo Nombre">
+              <input type="text" class="form-control form-control-user" id="SegundoNombre" placeholder="Segundo Nombre">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="FirstSurname" placeholder="Primer Apellido">
+                <input type="text" class="form-control form-control-user" id="PrimerApellido" placeholder="Primer Apellido">
             </div>
             <div class="col-sm-6">
-              <input type="text" class="form-control form-control-user" id="SecondSurname" placeholder="Segundo Apellido">
+              <input type="text" class="form-control form-control-user" id="SegundoApellido" placeholder="Segundo Apellido">
             </div>
 
         </div>
         
         <div class="form-group">
-            <input type="text" class="form-control form-control-user" id="Identity" placeholder="Numero de Identidad">
+            <input type="text" class="form-control form-control-user" id="NumeroIdentidad" placeholder="Numero de Identidad">
         </div>
         <div class="form-group">
-            <input type="number" class="form-control form-control-user" id="NumberAcount" placeholder="Numero de Cuenta">
+            <input type="number" class="form-control form-control-user" id="NumeroCuenta" placeholder="Numero de Cuenta">
         </div>
         <div class="form-group">
             <input type="email" class="form-control form-control-user" id="Email" placeholder="Correo electrónico">
@@ -45,10 +45,10 @@
         
         <div class="form-group row">
             <div class="col-sm-4 mb-2 mb-sm-0">
-              <input type="number" class="form-control form-control-user" id="Telephone" placeholder="Numero de Telefono">
+              <input type="number" class="form-control form-control-user" id="Telefono" placeholder="Numero de Telefono">
             </div>
             <div class="col-sm-4">
-              <input type="date" class="form-control form-control-user" id="BornDate" >
+              <input type="date" class="form-control form-control-user" id="FechaNacimiento" >
             </div>
             <div class="col-sm-4">
               <select name="TipoUsuario" id="TipoUsuario" class="form-control form-control-user" size="1" >
@@ -63,7 +63,7 @@
         
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
-                <select name="LugarNac" class="form-control form-control-user" size="1">
+                <select name="LugarNacimiento" id="LugarNacimiento" class="form-control form-control-user" size="1">
                     <option value="" selected>Lugar de Nacimiento</option>
                     <option value="Tegucigalpa">Tegucigalpa</option>
                     <option value="Choluteca" >Choluteca</option>
@@ -78,7 +78,7 @@
              
             
             <div class="col-sm-4">
-                <select name="LugarRes" class="form-control form-control-user" size="1">
+                <select name="LugarResidencia" id="LugarResidencia"class="form-control form-control-user" size="1">
                     <option value="" selected>Lugar de Residencia</option>
                     <option value="Tegucigalpa">Tegucigalpa</option>
                     <option value="Choluteca" >Choluteca</option>
@@ -91,7 +91,7 @@
                   </select>
             </div>
             <div class="col-sm-4">
-                <select name="gender" class="form-control form-control-user" size="0">
+                <select name="Genero" id ="Genero" class="form-control form-control-user" size="0">
                   <option value="" selected>Genero</option>
                   <option value="F">Femenino</option>
                   <option value="M" >Masculino</option>
@@ -101,14 +101,14 @@
 
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
-            <input type="password" class="form-control form-control-user" id="Password" placeholder="Contraseña">
+            <input type="password" class="form-control form-control-user" id="Contrasenia" placeholder="Contraseña">
           </div>
           <div class="col-sm-6">
-            <input type="password" class="form-control form-control-user" id="RepeatPassword" placeholder="Repetir contraseña">
+            <input type="password" class="form-control form-control-user" id="Contrasenia2" placeholder="Repetir contraseña">
           </div>
         </div>
         <div class="form-group row">
-          <button class="btn btn-primary" id="insertarUsuario" >Crear Cuenta</button>
+          <button class="btn btn-primary" id="CrearUsuario" onclick="CrearUsuario();">Crear Cuenta</button>
         </div>
         
         <hr>
