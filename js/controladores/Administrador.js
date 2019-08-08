@@ -1,32 +1,38 @@
-$('#guardar-usuario').click(function(){
+
+
+$('#insertarUsuario').click(function(){
  
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "ajax/acciones-administracion.php",
+      "url": "ajax/acciones-administrador.php",
       "method": "POST",
       "dataType": "json",
       "headers": {
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "accion": "insertar-empleado",
-  
-        "nombre": $('#PrimerNomobre').val(),
-        "apellido": $('#apellido-fAgregar').val(),
-        "genero": $('#slc-genero-fAgregar').val(),
-        "direccion": $('#direccion-fAgregar').val(),
-        "edad": $('#edad-fAgregar').val(),
-        "email": $('#email-fAgregar').val(),
-        "identidad": $('#numero-identidad-fAgregar').val(),
-        "telefono": $('#telefono-fAgregar').val(),
-        "fecha_nacimiento": $('#fecha-nacimiento-fAgregar').val(),
-        "fecha_ingreso": $('#fecha-ingreso-fAgregar').val()
+        "accion": "insertar-usuario",
+        "primerNombre":$("#PrimerNombre").val(),
+        "segundoNombre":$("#SegundoNombre").val(),
+        "primerApellido":$("#PrimerApellido").val(),
+        "segundoApellido":$("#SegundoApellido").val(),
+        "telefono":$("#Telefono").val(),
+        "email":$("#Corre").val(),
+        "fechaNacimiento":$("#FechaNacimiento").val(),
+        "NumeroCuenta":$("#NumeroCuenta").val(),
+        "numeroIdentidad":$("#NumerIdentidad").val(),
+        "idGenero":$_POST['Genero'],
+        "idLugarResidencia":$_POST['LugarResidencia'],
+        "idLugarNacimiento":$_POST['LugarNacimiento'],
+        "tipoUsuario":$_POST['TipoUsuario'],
+        "usuario": $("#PrimerNombre").val()+"."+$("#PrimerApellido").val(),
+        "contrasenia": $("#txt-Password").val(),
+        "fechaRegistro ": getDate()
       }
     }
-  
     $.ajax(settings).done(function (response) {
-     
+     console.log(response);
     });
   
 });

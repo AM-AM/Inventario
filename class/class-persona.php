@@ -11,6 +11,9 @@
     private $fechaNacimiento;
     private $NumeroCuenta;
     private $numeroIdentidad;
+    private $id_lugar_nacimiento;
+    private $id_lugar_residencia;
+    private $id_genero;
 
     public function __construct(
       $idPersona = null,
@@ -22,7 +25,10 @@
       $email = null,
       $fechaNacimiento = null,
       $NumeroCuenta = null,
-      $numeroIdentidad = null
+      $numeroIdentidad = null,
+      $id_lugar_nacimiento= null,
+      $id_lugar_residencia= null,
+      $id_genero= null
     ){
       $this->idPersona = $idPersona;
       $this->PrimerNombre = $PrimerNombre;
@@ -34,7 +40,10 @@
       $this->fechaNacimiento = $fechaNacimiento;
       $this->NumeroCuenta = $NumeroCuenta;
       $this->numeroIdentidad = $numeroIdentidad;
-    }
+      $this->$id_lugar_nacimiento= $id_lugar_nacimiento;
+      $this->$id_lugar_residencia= $id_lugar_residencia;
+      $this->$id_genero= $id_genero;   
+   }
     public function __toString(){
       $var = "Persona{"
       ."idPersona: ".$this->idPersona." , "
@@ -46,9 +55,35 @@
       ."email: ".$this->email." , "
       ."fechaNacimiento: ".$this->fechaNacimiento." , "
       ."NumeroCuenta: ".$this->NumeroCuenta." , "
-      ."numeroIdentidad: ".$this->numeroIdentidad;
+      ."numeroIdentidad: ".$this->numeroIdentidad." , "
+      ."id_lugar_nacimiento: ".$this->$id_lugar_nacimiento." , "
+      ."id_lugar_residencia: ".$this->$id_lugar_residencia." , "
+      ."id_genero: ".$this->$id_genero;
+
       return $var."}";
     }
+    public function getIdLugarNacimiento(){
+      return $this->id_lugar_nacimiento;
+    }
+    public function setIdLugarNacimiento($id_lugar_nacimiento){
+      $this->id_lugar_nacimiento= $id_lugar_nacimiento;
+    }
+
+    public function getIdLugarResidencia(){
+      return $this->id_lugar_Residencia;
+    }
+    public function setIdLugarResidencia($id_lugar_Residencia){
+      $this->id_lugar_Residencia = $id_lugar_Residencia;
+    }
+    public function getIdGenero(){
+      return $this->id_genero;
+    }
+    public function setIdGenero($id_genero){
+      $this->id_genero= $id_genero;
+    }
+
+
+
     public function getIdPersona(){
       return $this->idPersona;
     }
@@ -110,9 +145,39 @@
     public function setFechaNacimiento($fechaNacimiento){
       $this->fechaNacimiento = $fechaNacimiento;
     }
-    public function crear($conexion){
 
-    }
+    #Crear cuentas de usuario
+    public function crearUsuario($conexion){
+			#consulta
+
+			$sql="SELECT A.ID_PERSONA_USUARIO,A.ID_TIPO_USUARIO,A.N,
+						CONCAT(B.PRIMER_NOMBRE,' ',B.PRIMER_APELLIDO) AS NOMBRE
+						FROM TBL_USUARIOS A
+						INNER JOIN TBL_PERSONAS B
+						ON A.ID_PERSONA_USUARIO=B.ID_PERSONA
+						WHERE B.NUMERO_CUENTA='='$this->$NumeroCuenta'";
+			
+
+
+			#resultado de la consulta				
+			$resultado=$conexion->ejecutarConsulta($sql);
+			$cantidadRegistros=$conexion->cantidadRegistros($resultado);
+			
+          if ($cantidadRegistros!=0)  {
+          
+            $respuesta["mensaje"]="El usuario ya Existe";
+            
+          }
+          else {
+            $sql ="INSERT INTO 'tbl_personas' VALUES (null,$this->$idLugarNacimiento,$this->$idLugarResidencia,$this->$idGenero,$this->$PrimerNombre,$this->$SegundoNombre,$this->$PrimerApellido,$this->$SegundoApellido,$this->$numeroIdentidad,$this->$telefono,$this->$email,$this->$fechaNacimiento,$this->$NumeroCuenta)";
+            
+            $resultado=$conexion->ejecutarConsulta($sql);
+            $respuesta["mensaje"]="Ingresado Correctamente";
+            }	  
+			echo json_encode($respuesta);
+     }
+     
+
     public function borrar($conexion){
     }
     public static function leer($conexion){

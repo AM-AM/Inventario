@@ -56,6 +56,21 @@
 				" Clave_usuario: " . $this->clave_usuario . 
 				" Fecha_registro: " . $this->fecha_registro;
 		}
+
+		public static function obtenerID($conexion){
+
+
+			$rs = "SELECT MAX(id_persona)+1  AS id FROM tbl_personas";
+			$resultado=$conexion->ejecutarConsulta($rs);
+			$row=$conexion->obtenerFila($resultado);
+
+
+			
+			$respuesta["mensaje"]=$row[0];
+			echo json_encode($respuesta);
+		}
+
+
 		public static function verificarUsuario($conexion,$nombre_usuario,$password){
 			#consulta
 
@@ -66,7 +81,7 @@
 						ON A.ID_PERSONA_USUARIO=B.ID_PERSONA
 						WHERE NOMBRE_USUARIO='$nombre_usuario' && CLAVE_USUARIO='$password'";
 			
-
+		
 
 			#resultado de la consulta				
 			$resultado=$conexion->ejecutarConsulta($sql);
@@ -91,6 +106,36 @@
 				$_SESSION['status']=false;
 				$respuesta['loggedin'] = 0;
 				$respuesta["mensaje"]="Correo o Contraseña invalidos";
+				}	  
+			echo json_encode($respuesta);
+		 }
+
+
+
+		 public static function crear($conexion,$numero_cuenta){
+			#consulta
+
+			$sql="SELECT A.ID_PERSONA_USUARIO,A.ID_TIPO_USUARIO,A.N,
+						CONCAT(B.PRIMER_NOMBRE,' ',B.PRIMER_APELLIDO) AS NOMBRE
+						FROM TBL_USUARIOS A
+						INNER JOIN TBL_PERSONAS B
+						ON A.ID_PERSONA_USUARIO=B.ID_PERSONA
+						WHERE B.NUMERO_CUENTA='='$numero_cuenta'";
+			
+
+
+			#resultado de la consulta				
+			$resultado=$conexion->ejecutarConsulta($sql);
+			$cantidadRegistros=$conexion->cantidadRegistros($resultado);
+			
+			if ($cantidadRegistros!=0)  {
+				
+				$respuesta["mensaje"]="El usuario ya Existe";
+				
+			}
+			else {
+				
+				$respuesta["mensaje"]="";
 				}	  
 			echo json_encode($respuesta);
 		 }

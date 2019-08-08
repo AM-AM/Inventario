@@ -51,7 +51,7 @@
               <input type="date" class="form-control form-control-user" id="BornDate" >
             </div>
             <div class="col-sm-4">
-              <select name="gender" class="form-control form-control-user" size="1" >
+              <select name="TipoUsuario" id="TipoUsuario" class="form-control form-control-user" size="1" >
                 
                 <option value="" selected>Tipo de Usuario</option>
                 <option value="2">Instructor</option>
@@ -107,15 +107,17 @@
             <input type="password" class="form-control form-control-user" id="RepeatPassword" placeholder="Repetir contraseña">
           </div>
         </div>
-        <a id="guardar-usuario" class="btn btn-primary btn-user btn-block">
-          Crear cuenta
-        </a>
+        <div class="form-group row">
+          <button class="btn btn-primary" id="insertarUsuario" >Crear Cuenta</button>
+        </div>
+        
         <hr>
       </form>
     </div>
 
   </div>  
 </body> 
-
+  <script src="js/jquery-3.2.1.min.js"></script>
+ <script src="js/controladores/Administrador.js"></script>
 </html>
          
