@@ -16,7 +16,6 @@ include("class/class-conexion.php");
   <meta name="description" content="">
   <meta name="author" content="">
 
-  
   <title>Sistema de inventario</title>
 
   <!-- Custom fonts for this template-->
