@@ -1,11 +1,14 @@
 <?php
 include("class/class-conexion.php");
+
  session_start();
+
  if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
       session_destroy();
      header("Location: login.php");
  }
-?>
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,11 +54,10 @@ include("class/class-conexion.php");
       <li class="nav-item active">
         <a class="nav-link" href="admin.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Crear Reportes</span></a>
+          <span>Crear Reporte</span></a>
       </li>
-	
 
-	 <?php   
+      <?php   
       if ($_SESSION['tipo_usuario'] == 1){
         echo '<li class="nav-item active">
         <a class="nav-link" href="adminReporte.php">
@@ -64,7 +66,6 @@ include("class/class-conexion.php");
       </li>';
       }
       ?>
-
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -376,93 +377,61 @@ include("class/class-conexion.php");
 
           <!-- Content Row -->
 
-          <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Gráfica de prestamos</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Opciones:</div>
-                      <a class="dropdown-item" href="#">Acción1</a>
-                      <a class="dropdown-item" href="#">Opcion2</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Otra</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Disponibilidad de artículos</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Opciones:</div>
-                      <a class="dropdown-item" href="#">Acción1</a>
-                      <a class="dropdown-item" href="#">Opcion2</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Otra</a>
-                    </div>
-                  </div>
-                </div>
+            
                 <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Prestados
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Disponibles
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> No disponibles
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
           <!-- Content Row -->
           <div class="row">
 
     
 
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-10 mb-4">
 
              
 
               <!-- Approach -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Información</h6>
+                  <h2 class="m-0 font-weight-bold text-primary">Reportes</h2>
                 </div>
                 <div class="card-body">
-                  <p>En esta sección podras encontrar toda la informacion sobre los equipos con los que cuenta la carrera de ingenieria en sitemas; como administrador podras gestionar el ingreso o salida de los articulos aqui inventariados.</p>
-                  <p class="mb-0">Tu decides quienes pueden gestionar acciones en este portal asi como definir privilegios para cada cuenta creada.</p>
+
+                  <form class="form" action="agregarReporte.php" method="post">
+                      <div class="form-group">
+                            <label for="titulo">Titulo</label>
+                            <input type="text" class="form-control" placeholder="Asunto" id="titulo" name="titulo">
+                       </div>
+                        
+                       <div class="form-group">
+                        <select class="form-control" name="tipo">
+                             <option value="" disabled="disabled"> Seleccione el tipo Reporte</option>
+                             <option value="1">Estado de Equipos</option>
+                             <option value="2">Solicitudes de Equipo</option>
+                             
+                         </select>
+                       </div>
+
+                       <div class="form-group">
+                            <label for="reporte">Escribir Reporte</label>
+                            <textarea class="form-control" id="reporte" rows="3" name="reporte"></textarea>
+                       </div>
+                        
+                       <label for='fecha'>fecha actual</label>
+                       <input type="text" id='fecha' name="fecha" value=" <?php 
+                             echo date('Y').'-'.date('m').'-'.date('d'); ?>" readonly>
+                    
+                    <div class="form-group">
+                        <br>
+                            <input type="submit" class="btn btn-primary mb-2" value="submit">
+                       </div>
+                       
+                        
+
+
+                    </form>
                 </div>
               </div>
 
