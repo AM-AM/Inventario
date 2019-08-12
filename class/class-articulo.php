@@ -10,7 +10,7 @@
     private $cantidad;
     private $fechaRegistro;
     private $fechaSalida;
-    private $idCategoriaArticulo;    
+       
     public function __construct(
       $idArticulos = null,
       $idEstadoArticulo = null,
@@ -20,8 +20,8 @@
       $precioArticulo = null,
       $cantidad = null,
       $fechaRegistroArt = null,
-      $fechaSalidaArt = null,
-      $idCategoriaArticulo=null;       
+      $fechaSalidaArt = null
+         
       ){
         $this->idArticulos = $idArticulos;
         $this->idEstadoArticulo = $idEstadoArticulo;
@@ -32,7 +32,7 @@
         $this->cantidad = $cantidad;
         $this->fechaRegistroArt = $fechaRegistroArt;
         $this->fechaSalidaArt = $fechaSalidaArt;
-        $this->idCategoriaArticulo=$idCategoriaArticulo; 
+        
       
     }
     public function __toString(){
@@ -45,9 +45,7 @@
       ."precioArticulo: ".$this->precioArticulo." , "
       ."cantidad: ".$this->cantidad." , "
       ."fechaRegistroArt: ".$this->fechaRegistroArt." , "
-      ."fechaSalidaArt: ".$this->fechaSalidaArt." , "
-      ."idCategoriaArticulo:".$this->idCategoriaArticulo." , "
-      
+      ."fechaSalidaArt: ".$this->fechaSalidaArt;         
       return $var."}";
     }
     public function getIdArticulos(){
@@ -105,13 +103,7 @@
       $this->descripcion = $descripcion;
     }
 
-    public function getIdCategoriaArticulo(){
-      return $this->idCategoriaArticulo;
-    }
-
-    public function setIdCategoriaArticulo(){
-      $this->idCategoriaArticulo=$idCategoriaArticulo;
-    }
+  
 
     public static function leer($conexion){
       $sql = 
