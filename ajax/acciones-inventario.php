@@ -21,7 +21,7 @@
       case 'leer-articulos-id':
         $idArticulos = ValidarPost::unsigned('id_articulos');
         $articulo= new Articulo();
-        $articulo->setIdArticulo($idArticulos);
+        $articulo->setIdArticulos($idArticulos);
         $res['data'] = $articulo->leerPorId($conexion);
         echo json_encode($res);
       break;
@@ -30,11 +30,11 @@
         echo json_encode($res);
       break;
       case 'leer-persona-registra':
-        $res['data'] = Articulo::leerPersonaUsuario($conexion);
+        $res['data'] = Articulo::leerPersonaUsuarioRegistra($conexion);
         echo json_encode($res);
       break;
       case 'insertar-articulo':
-        $nombreArticulo = ValidarPost::varchar('nombre_articulo');
+        $nombre = ValidarPost::varchar('nombre');
         $idEstadoArticulo = ValidarPost::int('id_estado_articulo');
         $idPersonaUsuarioRegistra = ValidarPost::int('id_persona_usuario_registra');
         $cantidad = ValidarPost::int('cantidad');
@@ -46,7 +46,7 @@
         $articulo = new Articulo();
         $articulo->setIdEstadoArticulo($idEstadoArticulo);
         $articulo->setIdPersonaUsuarioRegistra($idPersonaUsuarioRegistra);
-        $articulo->setNombreArticulo($nombreArticulo);
+        $articulo->setNombreArticulo($nombre);
         $articulo->setDescripcion($descripcion);
         $articulo->setPrecioArticulo($precioArticulo);
         $articulo->setCantidad($cantidad);
@@ -66,11 +66,11 @@
       break;
       case 'actualizar-articulos':
         $idArticulos = ValidarPost::unsigned('id_articulos');
-        $nombreArticulo = ValidarPost::varchar('nombre_articulo');
+        $nombre = ValidarPost::varchar('nombre');
         $idEstadoArticulo = ValidarPost::int('id_estado_articulo');
         $idPersonaUsuarioRegistra = ValidarPost::int('id_persona_usuario_registra');
         $cantidad = ValidarPost::int('cantidad');
-        $precio = ValidarPost::float('precio');
+        $precio = ValidarPost::float('precio_articulo');
         $descripcion = ValidarPost::varchar('descripcion');
         $fechaRegistroArt = ValidarPost::date('fecha_registro_art');
         $fechaSalidaArt = ValidarPost::date('fecha_salida_art');
@@ -79,7 +79,7 @@
         $articulo->setIdArticulos($idArticulos);
         $articulo->setIdEstadoArticulo($idEstadoArticulo);
         $articulo->setIdPersonaUsuarioRegistra($idPersonaUsuarioRegistra);
-        $articulo->setNombreArticulo($nombreArticulo);
+        $articulo->setNombreArticulo($nombre);
         $articulo->setDescripcion($descripcion);
         $articulo->setPrecioArticulo($precioArticulo);
         $articulo->setCantidad($cantidad);

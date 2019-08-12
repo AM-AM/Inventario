@@ -8,7 +8,7 @@ include("class/class-conexion.php");
 ?>
 <body onload="init()">
 				<!--Contenido Del Inventario-->
-				<div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 well" style="border: black 1px solid;width: 80%" onload="init()">
+				<div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 well" style="border: black 1px solid;width: 80%">
 					<nav>
 						<!--Pestañas-->
 						<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -42,7 +42,7 @@ include("class/class-conexion.php");
 							</div>
 							<hr>
 
-							<!--Equipos sin problemas-->
+							<!--Equipos Totales-->
 							<div class="row">
 								<div class="col-lg-12 col-sm-12">
 									<table class="table table-striped table-bordered" id="table-articulos" style="width: 100%;">
@@ -52,49 +52,52 @@ include("class/class-conexion.php");
 							</div>
 
 							<!-- Modal Ver/Actualizar Equipo -->
-							<div class="modal fade" id="modalVerInsumo" tabindex="-1" role="dialog" aria-labelledby="modalVerInsumoLabel" aria-hidden="true">
+							<div class="modal fade" id="modalVerArticulo" tabindex="-1" role="dialog" aria-labelledby="modalVerArticuloLabel" aria-hidden="true">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h3 class="modal-title" id="modalVerInsumoLabel" style="text-align: center;font-weight: bold;">DATOS DEL EQUIPO</h3>
+											<h3 class="modal-title" id="modalVerArticuloLabel" style="text-align: center;font-weight: bold;">DATOS DEL EQUIPO</h3>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
 										</div>
 										<div class="row modal-body">
 											<!-- Formulario Actualizar-->
-											<div class="hide" id="datos-insumodatos-insumo">
+											<div class="hide" id="formulario-actualizar-articulo">
 												<div class="row modal-body" style="padding:0;">
 													<div class="row">	
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="nombre-articulo-actualizar">Nombre del Articulo</label>
-															<input type="text" id="nombre-articulo-actualizar" class="form-control" placeholder="Ingrese un nombre para el insumo">
+															<input type="text" id="nombre-articulo-actualizar" class="form-control" placeholder="Ingrese un nombre para el articulo">
 														</div>
 
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="slc-estado-articulo-actualizar">Categoria de articulo</label>
 															<select id="slc-estado-articulo-actualizar" class="form-control" data-style="btn-primary" style="margin-left: 4%;margin-top: 10px;">
 																<option>--Seleccione una categoria--</option>
+																<option>1</option>
+																<option>2</option>
+																<option>3</option>
 															</select>
 														</div>
 													</div>
 
 													<div class="row">
 														<div class="form-group col-12 col-sm-6 col-md-6">
-															<label class="palido" for="cantidad-insumo-actualizar">Cantidad</label>
-															<input type="text" id="cantidad-insumo-actualizar" class="form-control" placeholder="Ingrese una cantidad">	
+															<label class="palido" for="cantidad-articulo-actualizar">Cantidad</label>
+															<input type="text" id="cantidad-articulo-actualizar" class="form-control" placeholder="Ingrese una cantidad">	
 														</div>
 
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="precio-costo">Precio</label>
-															<input type="text" id="precio-costo" class="form-control" placeholder="Ingrese un precio en el formato 999.99">
+															<input type="text" id="precio" class="form-control" placeholder="Ingrese un precio en el formato 999.99">
 														</div>
 													</div>
 
 													<div class="row">
 														<div class="form-group col-12 col-sm-6 col-md-6">	
-															<label class="palido" for="descripcion-insumo-actualizar">Descripcion</label>
-															<input type="text" id="descripcion-insumo-actualizar" class="form-control" placeholder="Ingrese una descripcion">
+															<label class="palido" for="descripcion-articulo-actualizar">Descripcion</label>
+															<input type="text" id="descripcion-articulo-actualizar" class="form-control" placeholder="Ingrese una descripcion">
 														</div>
 
 														
@@ -117,7 +120,7 @@ include("class/class-conexion.php");
 														<span id="spn-nombre-articulo"></span>
 													</div>
 													<div class="form-group col-sm-12 col-md-6">
-														<h4 class="palido">Tipo de articulo</h4>
+														<h4 class="palido">Estado de articulo</h4>
 														<span id="spn-slc-estado-articulo"></span>
 													</div>												
 												</div>
@@ -170,12 +173,12 @@ include("class/class-conexion.php");
 
 													<div class="form-group col-sm-12 col-md-6">
 														<h4 class="palido">Nueva Cantidad</h4>
-														<span id="spn-nueva-cantidad-insumo"></span>
+														<span id="spn-nueva-cantidad-articulo"></span>
 													</div>
 												</div>
 
 												<div class="row">
-													<button class="btn btn-primary" onclick="disminuirInsumo();">Disminuir</button>
+													<button class="btn btn-primary" onclick="disminuirArticulo();">Disminuir</button>
 												</div>
 												
 											</div>
@@ -183,8 +186,8 @@ include("class/class-conexion.php");
 
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary hide" id="atras">Atrás</button>
-											<button type="button" class="btn btn-primary" id="editar-articulo">Editar Insumo</button>
-											<button type="button" class="btn btn-primary" id="disminuir-articulo">Disminuir Insumo</button>
+											<button type="button" class="btn btn-primary" id="editar-articulo">Editar Articulo</button>
+											<button type="button" class="btn btn-primary" id="disminuir-articulo">Disminuir Articulo</button>
 											<button type="button" class="btn btn-success hide" id="actualizar-articulo">Actualizar Articulo</button>
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 										</div>
@@ -195,7 +198,7 @@ include("class/class-conexion.php");
 
 						<!--Formulario agregar Equipo-->
 						<div class="tab-pane fade show active" id="nav-inv-add" role="tabpanel" aria-labelledby="nav-inv-add-tab">
-							<!--Insumos en menor cantidad-->
+							<!--Articulos en menor cantidad-->
 							<label for="formulario-agregar-articulo"><h2>Agregar equipo</h2></label>
 							<div id="fomulario-agregar-articulo" class="row" style="padding: 20px;">
 								<label for="nombre-articulo">Nombre del Articulo</label>
@@ -204,6 +207,7 @@ include("class/class-conexion.php");
 								<label for="slc-categoria-articulo">Categoria del Articulo</label>
 								<select id="slc-categoria-articulo" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
 									<option>--Seleccione una Categoria--</option>
+									<option>1</option>
 								</select>
 
 								<label for="cantidad-articulo">Cantidad de articulos</label>
@@ -221,11 +225,15 @@ include("class/class-conexion.php");
 								<label for="slc-estado-articulo">Estado del Articulo</label>
 								<select id="slc-estado-articulo" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
 									<option>--Seleccione un Estado--</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
 								</select>	
 
 								<label for="slc-persona-registra">Persona que registra</label>
 								<select id="slc-persona-registra" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
 									<option>--Seleccione--</option>
+									<option>1</option>
 								</select>					
 								
 							</div>
@@ -240,7 +248,7 @@ include("class/class-conexion.php");
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/carousel.js"></script>
 	<script src="js/pestañas.js"></script>
-	<script src="js/menu.js"></script>
+	
 
 	<script src="extensiones/datatables.min.js"></script>
 

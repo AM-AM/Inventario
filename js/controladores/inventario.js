@@ -34,7 +34,7 @@ $(document).ready(function() {
       }
     },
     columns: [
-      {data: "ID_ARTICULOS", title: "Código Articulo", 
+      {data: "ID_ARTICULOS", title: "Código", 
       render: function ( data, type, row, meta ) {
         return `<b>${data}</b>`;
       }},
@@ -45,7 +45,7 @@ $(document).ready(function() {
       {data: "PERSONA_USUARIO_REGISTRA", title: "Usuario que Registro"},
       {data: null, title: "Acciones",
       render: function (data, type, row, meta) {
-        return `<button class="form-control" data-toggle="modal" data-target="#modalVerInsumo" onclick="verInsumo(${row.ID_INSUMO});">Ver más</button>`;
+        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver más</button>`;
       }}
     ]
   });
@@ -74,10 +74,10 @@ $(document).ready(function() {
       {data: "ESTADO_ARTICULO", title: "Estado Articulo"},
       {data: "CANTIDAD", title: "Cantidad"},
       {data: "PRECIO_ARTICULO", title: "Precio"},
-      {data: "PERSONA_USUARIO_REGISTRA", title: "Persona que Registro"},
+      {data: "PERSONA_USUARIO_REGISTRA", title: "Usuario que Registro"},
       {data: null, title: "Acciones",
       render: function (data, type, row, meta) {
-        return `<button class="form-control" data-toggle="modal" data-target="#modalVerInsumo" onclick="verInsumo(${row.ID_INSUMO});">Ver más</button>`;
+        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver más</button>`;
       }}
     ]
   });
@@ -146,8 +146,8 @@ function cargarFormulario() {
     else{
       for(var i in response.data){
         var option = document.createElement("option");
-        option.value = response.data[i].ID_PROVEEDOR;
-        option.innerText = response.data[i].PROVEEDOR;
+        option.value = response.data[i].ID_PERSONA_USUARIO_REGISTRA;
+        option.innerText = response.data[i].PERSONA_USUARIO_REGISTRA;
         $('#slc-persona-registra').append(option);
         $('#slc-persona-registra-actualizar').append(option);
       }
@@ -158,10 +158,10 @@ function cargarFormulario() {
 function validarArticulo(parametros) {
   var control = true
   var regexInsumo = {
-                "nombreArticulo": /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*/,
+                "nombre_articulo": /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*/,
                 "id_estado_articulo": /^[1-9][0-9]*$/,
                 "cantidad": /[0-9]+$/,
-                "precio": /^([0-9]+)\.[0-9]+$/,
+                "precio_articulo": /^([0-9]+)\.[0-9]+$/,
                 "descripcion": /((^[A-Za-záéíóúñ0-9]+)((\s)(^[A-Z]+[A-Za-záéíóúñ0-9]+)))*$/,
                 "id_persona_usuario_registra": /^[1-9][0-9]*$/,
                 "fecha_registro_art": /^(19[6-9][0-9]|20[0-1][0-9])\-(0[0-9]|1[0-2])\-([0-2][0-9]|3[0-1])$/,
@@ -178,7 +178,7 @@ function validarArticulo(parametros) {
 
 var idArticuloVisible;
 /* Funcion para ver los datos de un articulo */
-function verArticulo(idArticulo) {
+function verArticulo(idArticulos) {
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -191,40 +191,40 @@ function verArticulo(idArticulo) {
     "data": {
       "accion": "leer-articulos-id",
 
-      "id_articulos": parseInt(idArticulo)
+      "id_articulos": parseInt(idArticulos)
     }
   }
 
   $.ajax(settings).done(function (response) {
     datosArticulo = response.data;
-    $(`#spn-nombre-articulo`).text(datosInsumo.INSUMO);
-    $(`#spn-slc-estado-articulo`).text(datosInsumo.TIPO_INSUMO);
-    $(`#spn-cantidad-articulo`).text(datosInsumo.CANTIDAD);
-    $(`#spn-precio`).text(datosInsumo.PRECIO_COSTO);
-    $(`#spn-descripcion-articulo`).text(datosInsumo.DESCRIPCION);
-    $(`#spn-slc-persona-usuario`).text(datosInsumo.PROVEEDOR);
-    $(`#spn-fecha-registro-art`).text(datosInsumo.FECHA_INGRESO);
-    $(`#spn-fecha-salida-art`).text(datosInsumo.FECHA_VENC);
+    $(`#spn-nombre-articulo`).text(datosArticulo.NOMBRE_ARTICULO);
+    $(`#spn-slc-estado-articulo`).text(datosArticulo.ESTADO_ARTICULO);
+    $(`#spn-cantidad-articulo`).text(datosArticulo.CANTIDAD);
+    $(`#spn-precio`).text(datosArticulo.PRECIO_ARTICULO);
+    $(`#spn-descripcion-articulo`).text(datosArticulo.DESCRIPCION);
+    $(`#spn-slc-persona-usuario`).text(datosArticulo.PERSONA_USUARIO_REGISTRA);
+    $(`#spn-fecha-registro-art`).text(datosArticulo.FECHA_REGISTRO_ART);
+    $(`#spn-fecha-salida-art`).text(datosArticulo.FECHA_SALIDA_ART);
     
-    $(`#nombre-articulo-actualizar`).val(datosInsumo.INSUMO);
-    $(`#slc-estado-articulo-actualizar option[value="${datosInsumo.ID_TIPO_INSUMO}"]`).attr("selected",true);
-    $(`#cantidad-articulo-actualizar`).val(datosInsumo.CANTIDAD);
-    $(`#precio`).val(datosInsumo.PRECIO_COSTO);
-    $(`#descripcion-articulo-actualizar`).val(datosInsumo.DESCRIPCION);
-    $(`#slc-persona-registra-actualizar option[value="${datosInsumo.ID_PROVEEDOR}"]`).attr("selected",true);
-    $(`#spn-fecha-registro-art-actualizar`).val(datosInsumo.FECHA_SALIDA_ART);
-    $(`#spn-fecha-salida-art-actualizar`).val(datosInsumo.FECHA_SALIDA_ART);
+    $(`#nombre-articulo-actualizar`).val(datosArticulo.NOMBRE_ARTICULO);
+    $(`#slc-estado-articulo-actualizar option[value="${datosArticulo.ID_ESTADO_ARTICULO}"]`).attr("selected",true);
+    $(`#cantidad-articulo-actualizar`).val(datosArticulo.CANTIDAD);
+    $(`#precio`).val(datosArticulo.PRECIO_ARTICULO);
+    $(`#descripcion-articulo-actualizar`).val(datosArticulo.DESCRIPCION);
+    $(`#slc-persona-registra-actualizar option[value="${datosArticulo.ID_PERSONA_USUARIO_REGISTRA}"]`).attr("selected",true);
+    $(`#spn-fecha-registro-art-actualizar`).val(datosArticulo.FECHA_REGISTRO_ART);
+    $(`#spn-fecha-salida-art-actualizar`).val(datosArticulo.FECHA_SALIDA_ART);
 
-    $("#spn-nombre-articulo-disminuir").text(datosInsumo.NOMBRE_ARTICULO);
-    $("#spn-cantidad-articulo-disminuir").text(datosInsumo.CANTIDAD);
+    $("#spn-nombre-articulo-disminuir").text(datosArticulo.NOMBRE_ARTICULO);
+    $("#spn-cantidad-articulo-disminuir").text(datosArticulo.CANTIDAD);
     
-    idArticuloVisible = idArticulo;
+    idArticuloVisible = idArticulos;
   });
 }
 
 $("#guardar-articulo").on("click", function(){
   parametros = {
-                "nombre_articulo": 'nombre-articulo',
+                "nombre": 'nombre-articulo',
                 "id_estado_articulo": 'slc-estado-articulo',
                 "cantidad": 'cantidad-articulo',
                 "precio": 'precio',
@@ -290,7 +290,7 @@ $("#atras").on("click", function(){
   $("#disminuir-articulo").removeClass("hide");
 });
 
-/* Editar Insumo */
+/* Editar articulo */
 $("#editar-articulo").click(function(){
   $("#formulario-actualizar-articulo").removeClass("hide");
   $("#datos-articulo").addClass("hide");
@@ -300,7 +300,7 @@ $("#editar-articulo").click(function(){
   $("#disminuir-articulo").addClass("hide");
 });
 
-/* Habilitar Formulario Disminuir Insumo */
+/* Habilitar Formulario Disminuir Articulo */
 $("#disminuir-articulo").click(function(){
   $("#formulario-disminuir-articulo").removeClass("hide");
   $("#datos-articulo").addClass("hide");
@@ -315,14 +315,14 @@ $("#actualizar-articulo").click(function(){
                 "nombre": 'nombre-articulo-actualizar',
                 "id_estado_articulo": 'slc-tipo-articulo-actualizar',
                 "cantidad": 'cantidad-articulo-actualizar',
-                "precio": 'precio-costo',
+                "precio": 'precio',
                 "descripcion": 'descripcion-articulo-actualizar',
-                "id_persona_usuario_registra": 'slc-proveedor-articulo-actualizar',
-                "fecha_registro_art": 'fecha-ingreso-articulo-actualizar',
-                "fecha_salida_art": 'fecha-vencimiento-articulo-actualizar'
+                "id_persona_usuario_registra": 'slc-persona-articulo-actualizar',
+                "fecha_registro_art": 'fecha-registro-art-actualizar',
+                "fecha_salida_art": 'fecha-salida-art-actualizar'
               };
 
-  validacion = validarInsumo(parametros);
+  validacion = validarArticulo(parametros);
   if(validacion){
     var settings = {
       "async": true,
@@ -336,11 +336,11 @@ $("#actualizar-articulo").click(function(){
       "data": {
         "accion": "actualizar-articulo",
 
-        "id_articulos": idInsumoVisible,
+        "id_articulos": idArticuloVisible,
         "nombre": $('#nombre-articulo-actualizar').val(),
         "id_estado_articulo": $('#slc-tipo-articulo-actualizar').val(),
         "cantidad": $('#cantidad-articulo-actualizar').val(),
-        "precio": $('#precio-costo').val(),
+        "precio": $('#precio').val(),
         "descripcion": $('#descripcion-articulo-actualizar').val(),
         "id_persona_usuario_registra": $('#slc-persona-registra-articulo-actualizar').val(),
         "fecha_registro_art": $('#fecha-ingreso-art-actualizar').val(),
@@ -391,7 +391,7 @@ $("#cantidad-disminuir").on("change", function(){
   }
 });
 
-function disminuirInsumo() {
+function disminuirArticulo() {
   if(validarCampoVacio("cantidad-disminuir", /^[0-9]+$/)){
     var cantidadVieja = parseInt($("#spn-cantidad-articulo-disminuir").text());
     var cantidadDisminuir = $("#cantidad-disminuir").val(); 
@@ -445,7 +445,7 @@ function disminuirInsumo() {
             $('#table-articulos').DataTable().ajax.reload();
             $('#table-articulos-proximos').DataTable().ajax.reload();
 
-            verInsumo(idInsumoVisible);
+            verArticulo(idArticuloVisible);
             $("#decision-no").off();
             $("#decision-si").off();
           }
