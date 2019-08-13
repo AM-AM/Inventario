@@ -18,9 +18,8 @@
                   <form>
                       
                     <tr>
-                      <td>Hora de devolución</td>
-                      <td><input type="datetime-local" class="form-control" name="fecha-inicio" min="6:00"
-                                 max="21:00" step="3600"> </td>
+                      <td>Solicitante</td>
+                      <td><input type="text" class="form-control" placeholder="Ingrese numero de cuenta" name="descripcion"> </td>
                     </tr>
                     <tr>
                       <td>Artículo</td>
@@ -32,17 +31,18 @@
                         <option>Artículo 4</option>
                         <option>Artículo 5</option>
                       </select>
-                   
-                      </td>
                     </tr>
                     <tr>
-                      <td>Solicitante</td>
-                      <td><input type="text" class="form-control" placeholder="Ingrese numero de cuenta" name="descripcion"> </td>
+                      <td>Hora de devolución</td>
+                      <td><input type="datetime-local" class="form-control" name="fecha-inicio" min="6:00"
+                                 max="21:00" step="3600"> </td>
                     </tr>
                     <tr>
                       <td>Descripción</td>
                       <td><textarea class="form-control"></textarea> </td>
                     </tr>
+                   
+                      </td>
                     <tr>
                       <td>
                       <div class="alert alert-success" role="alert">
