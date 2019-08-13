@@ -139,6 +139,7 @@ include("class/class-conexion.php");
             
             <a class="collapse-item" id="prestar">Prestar artículo</a>
             <a class="collapse-item" id="devolver">Devolver artículo</a>
+            <a class="collapse-item" id="reservar">Reservar laboratorio</a>
             
           </div>
         </div>

@@ -2,13 +2,13 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Devolución de artículos</h1>
+          <h1 class="h3 mb-2 text-gray-800">Reserva de Laboratorio</h1>
           
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Seleccione el artículo a devolver.</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Seleccione el articulo a reservar.</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -18,19 +18,22 @@
                   <form>
                       
                     <tr>
-                      <td>Hora de devolución</td>
-                      <td><input type="datetime-local" class="form-control" name="fecha-inicio" min="6:00"
-                                 max="21:00" step="3600"> </td>
+                      <td>Hora inicio</td>
+                      <td><input type="time" class="form-control" name="fecha-inicio"> </td>
                     </tr>
                     <tr>
-                      <td>Artículo</td>
+                      <td>Hora final</td>
+                      <td><input type="timr" class="form-control" name="fecha-fin"> </td>
+                    </tr>
+                    <tr>
+                      <td>Laboratorio</td>
                       <td>
                         <select class="form-control" id="exampleFormControlSelect1">
-                        <option>Artículo 1</option>
-                        <option>Artículo 2</option>
-                        <option>Artículo 3</option>
-                        <option>Artículo 4</option>
-                        <option>Artículo 5</option>
+                        <option>lab1</option>
+                        <option>lab2</option>
+                        <option>lab3</option>
+                        <option>lab4</option>
+                        <option>lab5</option>
                       </select>
                    
                       </td>
