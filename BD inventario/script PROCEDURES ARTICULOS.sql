@@ -1,5 +1,9 @@
 USE INVENTARIO;
+<<<<<<< HEAD
 -- Procedimiento para Insertar ARTICULO
+=======
+#Procedimiento para Insertar Insumo
+>>>>>>> 0855d236848eecd74520508de6c285d59574f5ed
 DROP PROCEDURE IF EXISTS `SP_INSERTAR_ARTICULO`;
 CREATE PROCEDURE `SP_INSERTAR_ARTICULO`(
   IN P_ID_ESTADO_ARTICULO INT(11),
@@ -34,7 +38,7 @@ SP:BEGIN
     SET mensaje=CONCAT(mensaje, 'Identificador del usuario vacío, ');
   ELSE
     SELECT COUNT(*) INTO contador FROM TBL_USUARIOS
-    WHERE P_ID_PERSONA_USUARIO_REGISTRA = TBL_USUARIOS.P_ID_PERSONA_USUARIO;
+    WHERE P_ID_PERSONA_USUARIO_REGISTRA = TBL_USUARIOS.ID_PERSONA_USUARIO;
 
     IF contador=0 THEN
       SET mensaje = CONCAT(mensaje, 'El USUARIO no existe, ');
@@ -78,8 +82,12 @@ SP:BEGIN
   END IF;
 
   INSERT INTO TBL_ARTICULOS (ID_ESTADO_ARTICULO, 
+<<<<<<< HEAD
                            ID_PERSONA_USUARIO,
                            ID_CATEGORIA_ARTICULOS, 
+=======
+                           ID_PERSONA_USUARIO, 
+>>>>>>> 0855d236848eecd74520508de6c285d59574f5ed
                            NOMBRE_ARTICULO, 
                            DESCRIPCION,
                            PRECIO_ARTICULO,

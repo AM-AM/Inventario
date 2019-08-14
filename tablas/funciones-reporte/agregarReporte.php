@@ -20,21 +20,7 @@ include ('../../class/class-conexion.php');
       //Convertivos el $tipo a Integer
       $tipo = (int)$tipo;
 
-      echo   
-      $titulo . '<br>'.
-      $idpersona . '<br>'.
-      $tipo . '<br>'.
-      $estado . '<br>'.
-      $reporte . '<br>'.
-      $fecha . '<br>';
-
-      echo gettype($titulo) . '<br>'; 
-      echo gettype($idpersona) . '<br>'; 
-      echo gettype($tipo) . '<br>'; 
-      echo gettype($estado) . '<br>'; 
-      echo gettype($reporte) . '<br>'; 
-      echo gettype($fecha) . '<br>'; 
-
+      
       
       $conec = new Conexion();
       
