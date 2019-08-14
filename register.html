@@ -12,43 +12,52 @@
       <div class="text-center">
         <h1 class="h4 text-gray-900 mb-4">Crear cuenta</h1>
       </div>
-      <form class="user">
+      <form class="user" action="ajax/acciones-administrador.php" method="POST">
 
           
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
-              <input type="text" class="form-control form-control-user" id="PrimerNombre" placeholder="Primer Nombre">
+              <input type="text" class="form-control form-control-user" id="PrimerNombre" name="PrimerNombre" placeholder="Primer Nombre">
             </div>
             <div class="col-sm-6">
-              <input type="text" class="form-control form-control-user" id="SegundoNombre" placeholder="Segundo Nombre">
+              <input type="text" class="form-control form-control-user" id="SegundoNombre" name="SegundoNombre" placeholder="Segundo Nombre">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="PrimerApellido" placeholder="Primer Apellido">
+                <input type="text" class="form-control form-control-user" id="PrimerApellido" name="PrimerApellido" placeholder="Primer Apellido">
             </div>
             <div class="col-sm-6">
-              <input type="text" class="form-control form-control-user" id="SegundoApellido" placeholder="Segundo Apellido">
+              <input type="text" class="form-control form-control-user" id="SegundoApellido" name="SegundoApellido" placeholder="Segundo Apellido">
             </div>
 
         </div>
+        <div class="form-group row">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <input type="text" class="form-control form-control-user" id="NombreUsuario" name="NombreUsuario" placeholder="Nombre de Usuario">
+        
+        </div>
+          <div class="col-sm-6">
+              <input type="text" class="form-control form-control-user" id="NumeroIdentidad"name="NumeroIdentidad" placeholder="Numero de Identidad">
+
+          </div>
+
+      </div>
+        
         
         <div class="form-group">
-            <input type="text" class="form-control form-control-user" id="NumeroIdentidad" placeholder="Numero de Identidad">
+            <input type="number" class="form-control form-control-user" id="NumeroCuenta" name="NumeroCuenta" placeholder="Numero de Cuenta">
         </div>
         <div class="form-group">
-            <input type="number" class="form-control form-control-user" id="NumeroCuenta" placeholder="Numero de Cuenta">
-        </div>
-        <div class="form-group">
-            <input type="email" class="form-control form-control-user" id="Email" placeholder="Correo electrónico">
+            <input type="email" class="form-control form-control-user" id="Email" name="Email" placeholder="Correo electrónico">
         </div>
         
         <div class="form-group row">
             <div class="col-sm-4 mb-2 mb-sm-0">
-              <input type="number" class="form-control form-control-user" id="Telefono" placeholder="Numero de Telefono">
+              <input type="number" class="form-control form-control-user" id="Telefono" name="Telefono" placeholder="Numero de Telefono">
             </div>
             <div class="col-sm-4">
-              <input type="date" class="form-control form-control-user" id="FechaNacimiento" >
+              <input type="date" class="form-control form-control-user" id="FechaNacimiento" name="FechaNacimiento">
             </div>
             <div class="col-sm-4">
               <select name="TipoUsuario" id="TipoUsuario" class="form-control form-control-user" size="1" >
@@ -63,52 +72,55 @@
         
         <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
-                <select name="LugarNacimiento" id="LugarNacimiento" class="form-control form-control-user" size="1">
+                <select name="LugarNacimiento" id="LugarNacimiento"  class="form-control form-control-user" size="1">
                     <option value="" selected>Lugar de Nacimiento</option>
-                    <option value="Tegucigalpa">Tegucigalpa</option>
-                    <option value="Choluteca" >Choluteca</option>
-                    <option value="Colon">Colon</option>
-                    <option value="Comayagua" >Comayagua</option>
-                    <option value="Copan">Copán</option>
-                    <option value="Cortes" >Cortes</option>
-                    <option value="Paraiso">El Paraíso</option>
-                    <option value="atlantida" >Atlántida</option>
+                    <option value="1">Tegucigalpa</option>
+                    <option value="2" >Choluteca</option>
+                    <option value="3">Colon</option>
+                    <option value="4" >Comayagua</option>
+                    <option value="5">Copán</option>
+                    <option value="6" >Cortes</option>
+                    <option value="7">El Paraíso</option>
+                    <option value="8" >Atlántida</option>
+                  </select>
                   </select>
             </div>
              
             
             <div class="col-sm-4">
-                <select name="LugarResidencia" id="LugarResidencia"class="form-control form-control-user" size="1">
+                <select name="LugarResidencia" id="LugarResidencia" class="form-control form-control-user" size="1">
                     <option value="" selected>Lugar de Residencia</option>
-                    <option value="Tegucigalpa">Tegucigalpa</option>
-                    <option value="Choluteca" >Choluteca</option>
-                    <option value="Colon">Colon</option>
-                    <option value="Comayagua" >Comayagua</option>
-                    <option value="Copan">Copán</option>
-                    <option value="Cortes" >Cortes</option>
-                    <option value="Paraiso">El Paraíso</option>
-                    <option value="atlantida" >Atlántida</option>
+                    <option value="1">Tegucigalpa</option>
+                    <option value="2" >Choluteca</option>
+                    <option value="3">Colon</option>
+                    <option value="4" >Comayagua</option>
+                    <option value="5">Copán</option>
+                    <option value="6" >Cortes</option>
+                    <option value="7">El Paraíso</option>
+                    <option value="8" >Atlántida</option>
+                  </select>
                   </select>
             </div>
             <div class="col-sm-4">
-                <select name="Genero" id ="Genero" class="form-control form-control-user" size="0">
+                <select name="Genero" id="Genero" class="form-control form-control-user" size="0">
                   <option value="" selected>Genero</option>
-                  <option value="F">Femenino</option>
-                  <option value="M" >Masculino</option>
+                  <option value="1" >Masculino</option>
+                  <option value="2">Femenino</option>
+                  
                 </select>
             </div>
         </div>
 
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
-            <input type="password" class="form-control form-control-user" id="Contrasenia" placeholder="Contraseña">
+            <input type="password" class="form-control form-control-user" id="Contrasenia" name="Contrasenia" placeholder="Contraseña">
           </div>
           <div class="col-sm-6">
-            <input type="password" class="form-control form-control-user" id="Contrasenia2" placeholder="Repetir contraseña">
+            <input type="password" class="form-control form-control-user" id="Contrasenia2"name="Contrasenia2" placeholder="Repetir contraseña">
           </div>
         </div>
         <div class="form-group row">
-          <button class="btn btn-primary" id="CrearUsuario" onclick="CrearUsuario();">Crear Cuenta</button>
+          <input type="submit"  value="Guardar Usuario">
         </div>
         
         <hr>
@@ -118,6 +130,5 @@
   </div>  
 </body> 
   <script src="js/jquery-3.2.1.min.js"></script>
- <script src="js/controladores/Administrador.js"></script>
 </html>
          

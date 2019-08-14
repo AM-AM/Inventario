@@ -13,10 +13,7 @@ $(document).ready(function(){
 	});
 	$("#devolver").click(function(event){
     	$("#contenido").load('tablas/devolver.php');
-    });
-    $("#reservar").click(function(event){
-        $("#contenido").load('tablas/reservar_lab.php');	
-    });
+	});
     $("#computadoras").click(function(event){
         $("#contenido").load('tablas/categorias/computadoras.php');
     });

@@ -407,7 +407,7 @@ include("class/class-conexion.php");
                         
                        <div class="form-group">
                         <select class="form-control" name="tipo">
-                             <option value="" disabled="disabled"> Seleccione el tipo Reporte</option>
+                             <option value="" disabled="disabled" selected> Seleccione el tipo Reporte</option>
                              <option value="1">Estado de Equipos</option>
                              <option value="2">Solicitudes de Equipo</option>
                              
@@ -425,7 +425,7 @@ include("class/class-conexion.php");
                     
                     <div class="form-group">
                         <br>
-                            <input type="submit" class="btn btn-primary mb-2" value="submit">
+                            <input type="submit" class="btn btn-primary mb-2" value="Ingresar">
                        </div>
                        
                         
