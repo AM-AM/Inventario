@@ -53,27 +53,37 @@ include("function.php");
       </a>
 
       <!-- Divider -->
+      <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="admin.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Crear Reporte</span></a>
-      </li>
 
-      <?php   
-      if ($_SESSION['tipo_usuario'] == 1){
-        echo '<li class="nav-item active">
-        <a class="nav-link" href="adminReporte.php">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrwo" aria-expanded="true" aria-controls="collapseTrwo">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Reportes</span></a>
-      </li>';
+          <span>Reportes</span>
+        </a>
+        <div id="collapseTrwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            <a class="collapse-item" id="crear_reporte">Crear Reportes</a>
+            
+     
+
+<?php   
+      if ($_SESSION['tipo_usuario'] == 1){
+        echo '
+       
+        <a class="collapse-item" href="adminReporte.php">Ver Reportes</a>';
       }
       ?>
-      
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+           
+            
+          </div>
+        </div>
+      </li>
+
+       <!-- Divider -->
+       <hr class="sidebar-divider my-0">
 
       <!-- Heading -->
       <div class="sidebar-heading">
@@ -81,6 +91,12 @@ include("function.php");
       </div>
 
       <!-- Nav Item - Usuarios Collapse Menu -->
+      <?php   
+      if ($_SESSION['tipo_usuario'] == 1){
+        echo '
+       
+       
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-users"></i>
@@ -90,13 +106,16 @@ include("function.php");
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
             <a class="collapse-item" id="administradores">Administradores</a>
-            <a class="collapse-item" id="estudiantes">Estudiantes</a>
-            <a class="collapse-item" id="instructores">Instructores</a>
+            
+            <a class="collapse-item" id="estudiantes">Instructores</a>
             <a class="collapse-item" id="registro"><i class="fas fa-plus"></i>Nuevo usuario</a>
             
           </div>
         </div>
       </li>
+
+      ';
+    } ?>
 
       <!-- Nav Item - Inventario Collapse Menu -->
       <li class="nav-item">
@@ -258,7 +277,7 @@ include("function.php");
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nombre Apellido</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombre_usuario']; ?></span>
                 <i class="fas fa-user fa-sm fa-fw mr-2 fa-1x text-gray-500"></i>
                 
               </a>

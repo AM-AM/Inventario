@@ -6,9 +6,9 @@ include("class/class-conexion.php");
      header("Location: login.php");
  }
 ?>
-<body onload="init()">
+
 				<!--Contenido Del Inventario-->
-				<div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 well" style="border: black 1px solid;width: 80%">
+				<div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 well" style="border: black 1px solid;width: 90%">
 					<nav>
 						<!--Pestañas-->
 						<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -46,7 +46,7 @@ include("class/class-conexion.php");
 							<div class="row">
 								<div class="col-lg-12 col-sm-12">
 									<table class="table table-striped table-bordered" id="table-articulos" style="width: 100%;">
-										<h3>Uso en Laboratorios</h3>
+										<h3>Todos los equipos</h3>
 									</table>
 								</div>
 							</div>
@@ -73,7 +73,7 @@ include("class/class-conexion.php");
 
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="slc-estado-articulo-actualizar">Categoria de articulo</label>
-															<select id="slc-estado-articulo-actualizar" class="form-control" data-style="btn-primary" style="margin-left: 4%;margin-top: 10px;">
+															<select id="slc-categoria-articulo-actualizar" class="form-control" data-style="btn-primary" style="margin-left: 4%;margin-top: 10px;">
 																<option>--Seleccione una categoria--</option>
 																<option>1</option>
 																<option>2</option>
@@ -101,6 +101,23 @@ include("class/class-conexion.php");
 														</div>
 
 														
+													</div>
+
+													<div class="row">
+														<label for="slc-estado-articulo">Estado del Articulo</label>
+														<select id="slc-estado-articulo-actualizar" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
+														<option>--Seleccione un Estado--</option>
+															<option>1 Diponible</option>
+															<option>2 No disponible</option>
+															
+														</select>	
+
+														<label for="slc-persona-registra">Persona que registra</label>
+														<select id="slc-persona-registra-articulo-actualizar" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
+															<option>--Seleccione--</option>
+															<option>1</option>
+														</select>
+
 													</div>
 
 													<div class="row">
@@ -242,7 +259,7 @@ include("class/class-conexion.php");
 					</div>
 				</div>
 
-</body>
+
 
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

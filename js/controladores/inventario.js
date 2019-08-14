@@ -3,7 +3,7 @@ let popUp = new Popup();
 
 $(document).ready(function() {
 
-  //Carga los EQUIPOS con menor cantidad disponible
+  //Carga los EQUIPOS que estan disponibles para prestamo
   $("#table-articulos-proximos").DataTable({
     pageLength: 10,
     ordering: true,
@@ -42,10 +42,10 @@ $(document).ready(function() {
       {data: "ESTADO_ARTICULO", title: "Estado Articulo"},
       {data: "CANTIDAD", title: "Cantidad"},
       {data: "PRECIO_ARTICULO", title: "Precio "},
-      {data: "PERSONA_USUARIO_REGISTRA", title: "Usuario que Registro"},
-      {data: null, title: "Acciones",
+      {data: "NOMBRE_USUARIO", title: "Usuario que Registro"},
+      {data: null, title: "Opciones",
       render: function (data, type, row, meta) {
-        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver más</button>`;
+        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver</button>`;
       }}
     ]
   });
@@ -66,18 +66,18 @@ $(document).ready(function() {
       }
     },
     columns: [
-      {data: "ID_ARTICULOS", title: "Código Articulo", 
+      {data: "ID_ARTICULOS", title: "Código", 
       render: function ( data, type, row, meta ) {
         return `<b>${data}</b>`;
       }},
-      {data: "NOMBRE_ARTICULO", title: "Nombre Articulo"},
+      {data: "NOMBRE_ARTICULO", title: "Articulo"},
       {data: "ESTADO_ARTICULO", title: "Estado Articulo"},
       {data: "CANTIDAD", title: "Cantidad"},
       {data: "PRECIO_ARTICULO", title: "Precio"},
-      {data: "PERSONA_USUARIO_REGISTRA", title: "Usuario que Registro"},
-      {data: null, title: "Acciones",
+      {data: "NOMBRE_USUARIO", title: "Usuario que Registro"},
+      {data: null, title: "Opciones",
       render: function (data, type, row, meta) {
-        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver más</button>`;
+        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver</button>`;
       }}
     ]
   });
@@ -118,7 +118,7 @@ function cargarFormulario() {
         option.value = response.data[i].ID_ESTADO_ARTICULO;
         option.innerText = response.data[i].ESTADO_ARTICULO;
         $('#slc-estado-articulo').append(option);
-        $('#slc-tipo-articulo-actualizar').append(option);
+        $('#slc-estado-articulo-actualizar').append(option);
       }
     }
   });
@@ -133,7 +133,7 @@ function cargarFormulario() {
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "leer-persona-registra"
+      "accion": "leer-persona-usuario-registra"
     }
   }
 
@@ -160,12 +160,13 @@ function validarArticulo(parametros) {
   var regexInsumo = {
                 "nombre_articulo": /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*/,
                 "id_estado_articulo": /^[1-9][0-9]*$/,
+                "id_categoria_articulo":/^[1-9][0-9]*$/,
                 "cantidad": /[0-9]+$/,
                 "precio_articulo": /^([0-9]+)\.[0-9]+$/,
                 "descripcion": /((^[A-Za-záéíóúñ0-9]+)((\s)(^[A-Z]+[A-Za-záéíóúñ0-9]+)))*$/,
                 "id_persona_usuario_registra": /^[1-9][0-9]*$/,
-                "fecha_registro_art": /^(19[6-9][0-9]|20[0-1][0-9])\-(0[0-9]|1[0-2])\-([0-2][0-9]|3[0-1])$/,
-                "fecha_salida_art": /^([0-9]{4})\-(0[0-9]|1[0-2])\-([0-2][0-9]|3[0-1])$/
+                "fecha_registro_art": /^(19[6-9][0-9]|20[0-1][0-9])\-(0[0-9]|1[0-2])\-([0-2][0-9]|3[0-1])$/
+                //"fecha_salida_art": /^([0-9]{4})\-(0[0-9]|1[0-2])\-([0-2][0-9]|3[0-1])$/
               };
   
   for(let i in parametros){
@@ -204,7 +205,7 @@ function verArticulo(idArticulos) {
     $(`#spn-descripcion-articulo`).text(datosArticulo.DESCRIPCION);
     $(`#spn-slc-persona-usuario`).text(datosArticulo.PERSONA_USUARIO_REGISTRA);
     $(`#spn-fecha-registro-art`).text(datosArticulo.FECHA_REGISTRO_ART);
-    $(`#spn-fecha-salida-art`).text(datosArticulo.FECHA_SALIDA_ART);
+    //$(`#spn-fecha-salida-art`).text(datosArticulo.FECHA_SALIDA_ART);
     
     $(`#nombre-articulo-actualizar`).val(datosArticulo.NOMBRE_ARTICULO);
     $(`#slc-estado-articulo-actualizar option[value="${datosArticulo.ID_ESTADO_ARTICULO}"]`).attr("selected",true);
@@ -213,7 +214,7 @@ function verArticulo(idArticulos) {
     $(`#descripcion-articulo-actualizar`).val(datosArticulo.DESCRIPCION);
     $(`#slc-persona-registra-actualizar option[value="${datosArticulo.ID_PERSONA_USUARIO_REGISTRA}"]`).attr("selected",true);
     $(`#spn-fecha-registro-art-actualizar`).val(datosArticulo.FECHA_REGISTRO_ART);
-    $(`#spn-fecha-salida-art-actualizar`).val(datosArticulo.FECHA_SALIDA_ART);
+    //$(`#spn-fecha-salida-art-actualizar`).val(datosArticulo.FECHA_SALIDA_ART);
 
     $("#spn-nombre-articulo-disminuir").text(datosArticulo.NOMBRE_ARTICULO);
     $("#spn-cantidad-articulo-disminuir").text(datosArticulo.CANTIDAD);
@@ -226,12 +227,13 @@ $("#guardar-articulo").on("click", function(){
   parametros = {
                 "nombre": 'nombre-articulo',
                 "id_estado_articulo": 'slc-estado-articulo',
+                "id_categoria_articulo": 'slc-categoria-articulo',
                 "cantidad": 'cantidad-articulo',
                 "precio": 'precio',
                 "descripcion": 'descripcion-articulo',
                 "id_persona_usuario_registra": 'slc-persona-registra',
-                "fecha_registro_art": 'fecha-registro-art',
-                "fecha_salida_art": 'fecha-salida-art'
+                "fecha_registro_art": 'fecha-registro-art'
+                //"fecha_salida_art": 'fecha-salida-art'
               };
 
   validacion = validarArticulo(parametros);
@@ -251,11 +253,12 @@ $("#guardar-articulo").on("click", function(){
         "nombre": $('#nombre-articulo').val(),
         "id_estado_articulo": $('#slc-estado-articulo').val(),
         "id_persona_usuario_registra": $('#slc-persona-registra').val(),
+        "id_categoria_articulo":$('#slc-categoria-articulo'),
         "cantidad": $('#cantidad-articulo').val(),
         "precio": $('#precio-articulo').val(),
         "descripcion": $('#descripcion-articulo').val(),
-        "fecha_registro_art": $('#fecha-registro-art').val(),
-        "fecha_salida_art": $('#fecha-salida-art').val()
+        "fecha_registro_art": $('#fecha-registro-art').val()
+        //"fecha_salida_art": $('#fecha-salida-art').val()
       }
     }
   
@@ -314,12 +317,13 @@ $("#actualizar-articulo").click(function(){
   parametros = {
                 "nombre": 'nombre-articulo-actualizar',
                 "id_estado_articulo": 'slc-tipo-articulo-actualizar',
+                "id_categoria_articulo": 'slc-estado-articulo-actualizar',
                 "cantidad": 'cantidad-articulo-actualizar',
                 "precio": 'precio',
                 "descripcion": 'descripcion-articulo-actualizar',
                 "id_persona_usuario_registra": 'slc-persona-articulo-actualizar',
-                "fecha_registro_art": 'fecha-registro-art-actualizar',
-                "fecha_salida_art": 'fecha-salida-art-actualizar'
+                "fecha_registro_art": 'fecha-registro-art-actualizar'
+                //"fecha_salida_art": 'fecha-salida-art-actualizar'
               };
 
   validacion = validarArticulo(parametros);
@@ -338,13 +342,14 @@ $("#actualizar-articulo").click(function(){
 
         "id_articulos": idArticuloVisible,
         "nombre": $('#nombre-articulo-actualizar').val(),
-        "id_estado_articulo": $('#slc-tipo-articulo-actualizar').val(),
+        "id_categoria_articulo": $('#slc-categoria-articulo-actualizar').val(),
+        "id_estado_articulo":$('#slc-estado-articulo-actualizar').val(),
         "cantidad": $('#cantidad-articulo-actualizar').val(),
         "precio": $('#precio').val(),
         "descripcion": $('#descripcion-articulo-actualizar').val(),
         "id_persona_usuario_registra": $('#slc-persona-registra-articulo-actualizar').val(),
-        "fecha_registro_art": $('#fecha-ingreso-art-actualizar').val(),
-        "fecha_salida_art": $('#fecha-salida-art-actualizar').val()
+        "fecha_registro_art": $('#fecha-ingreso-art-actualizar').val()
+       // "fecha_salida_art": $('#fecha-salida-art-actualizar').val()
       }
     }
 

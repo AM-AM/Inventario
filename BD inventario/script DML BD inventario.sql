@@ -135,13 +135,16 @@ INSERT INTO `tbl_categoria_articulos` (`id_categoria_articulos`,
 INSERT INTO `tbl_articulos` (`id_articulos`, 
                             `id_estado_articulo`, 
                             `id_persona_usuario_registra`, 
-                            `nombre_articulo`, `precio_articulo`, 
+                            `id_categoria_articulos`,
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
                             `cantidad`, `fecha_registro_art`, 
                             `fecha_salida_art`, 
                             `descripcion_articulo`) 
             VALUES (NULL, 
                     '2', 
                     '1', 
+                    '1',
                     'Computadora de Escritorio', 
                     NULL, 
                     '2', 
@@ -152,14 +155,18 @@ INSERT INTO `tbl_articulos` (`id_articulos`,
 
 INSERT INTO `tbl_articulos` (`id_articulos`, 
                             `id_estado_articulo`, 
-                            `id_persona_usuario_registra`, 
-                            `nombre_articulo`, `precio_articulo`, 
-                            `cantidad`, `fecha_registro_art`, 
+                            `id_persona_usuario_registra`,
+                            `id_categoria_articulos`, 
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, 
+                            `fecha_registro_art`, 
                             `fecha_salida_art`, 
                             `descripcion_articulo`) 
             VALUES(NULL, 
                   '1', 
-                  '1', 
+                  '1',
+                  '2', 
                   'Proyector', 
                   NULL, 
                   '2', 
@@ -167,12 +174,6 @@ INSERT INTO `tbl_articulos` (`id_articulos`,
                   NULL, 
                   'proyector grande con todos sus componentes incluidos'); 
 
--- insertando en tbl_categorias_x_articulo
-INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, `id_articulos`) VALUES ('1', '1'), 
-
-INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, 
-                                        `id_articulos`) 
-          VALUES('2', '2');
 
 -- insertando en tbl_estado_reporte
 INSERT INTO `tbl_estado_reporte` (`id_estado_reporte`, 
@@ -197,52 +198,50 @@ INSERT INTO `tbl_tipo_reportes` (`id_tipo_reporte`,
 
 -- ---------------------------------------------------------------------------------------------------------
 -- ACTUALIZACION 2 DE SCRIPT DML
---insertando en tbl_articulos
-INSERT INTO `tbl_articulos` (`id_articulos`, 
+-- insertando en tbl_articulos
+
+
+
+
+        INSERT INTO `tbl_articulos` (`id_articulos`, 
                             `id_estado_articulo`, 
-                            `id_persona_usuario_registra`, 
+                            `id_persona_usuario_registra`,
+                            `id_categoria_articulos`, 
                             `nombre_articulo`, 
                             `precio_articulo`, 
                             `cantidad`, 
                             `fecha_registro_art`, 
                             `fecha_salida_art`, 
                             `descripcion_articulo`) 
-          VALUES (NULL, 
-                  '1', 
-                  '1', 
-                  'Pantalla para proyectar', 
-                  '2000.00', 
+            VALUES(NULL, 
                   '2', 
-                  '2019-08-02', 
+                  '1',
+                  '1', 
+                  'computadora portatil', 
                   NULL, 
-                  'pantalla para proyeccion con todos sus accesorios, 
-                  disponible para el prestamo')
+                  '2', 
+                  '2019-08-05', 
+                  NULL, 
+                  'laptop marca hp para uso de los instructores');
 
-INSERT INTO `tbl_articulos` (`id_articulos`, 
+
+           INSERT INTO `tbl_articulos` (`id_articulos`, 
                             `id_estado_articulo`, 
-                            `id_persona_usuario_registra`, 
+                            `id_persona_usuario_registra`,
+                            `id_categoria_articulos`, 
                             `nombre_articulo`, 
                             `precio_articulo`, 
                             `cantidad`, 
                             `fecha_registro_art`, 
                             `fecha_salida_art`, 
-                            `descripcion_articulo`)
-          VALUES(NULL, 
-                '2', 
-                '1', 
-                'Computadora Portátil', 
-                NULL, 
-                '1', 
-                '2019-08-03',
-                 NULL, 
-                 'laptop marca hp para uso de instructores');
-
--- insertando en tbl_categorias_x_articulo
-INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, 
-                                        `id_articulos`) 
-          VALUES ('2', '3');
-
-INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, 
-                                        `id_articulos`) 
-          VALUES('1', '4');
-
+                            `descripcion_articulo`) 
+            VALUES(NULL, 
+                  '1', 
+                  '1',
+                  '2', 
+                  'pantalla para proyectar', 
+                  NULL, 
+                  '2', 
+                  '2019-08-05', 
+                  NULL, 
+                  'pantalla para proyeccion con todos sus accesorios, disponible para el prestamo');

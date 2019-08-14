@@ -5,6 +5,10 @@ $(document).ready(function(){
     $("#estudiantes").click(function(){
     	$("#contenido").load('tablas/estudiantes.php');
     });
+    $("#crear_reporte").click(function(){
+    	$("#contenido").load('tablas/crear_reporte.php');
+    });
+  
     $("#registro").click(function(event){
     	$("#contenido").load('register.html');
 	});

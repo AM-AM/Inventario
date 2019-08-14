@@ -88,6 +88,14 @@
 		public function cantidadRegistros($resultado){
 			return mysqli_num_rows($resultado);
 		}
+
+		public function getLink(){
+			return $this->link;
+		}
+
+		public function setLink($link){
+			$this->link+$Link;
+		}
 		public function cerrar(){
 			mysqli_close($this->link);
 		}

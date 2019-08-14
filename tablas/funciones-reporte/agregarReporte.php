@@ -1,10 +1,10 @@
 <?php
-include ('class/class-conexion.php');
+include ('../../class/class-conexion.php');
 
  session_start();
  if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
       session_destroy();
-     header("Location: login.php");
+     header("Location: ../../login.php");
  }
 
  
@@ -63,7 +63,12 @@ include ('class/class-conexion.php');
 //     echo $titulo;
 // }
 
+
+
+
+
 header("Status: 301 Moved Permanently");
-header("Location: admin.php");
+header("Location: ../../administrador.php");
 
 ?>
+
