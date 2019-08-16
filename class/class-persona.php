@@ -150,7 +150,7 @@
     public static function obtenerID($conexion){
 
 
-			$rs = "SELECT MAX(id_persona) AS id FROM tbl_personas";
+			$rs = "SELECT MAX(id_persona)+1 AS id FROM tbl_personas";
 			$resultado=$conexion->ejecutarConsulta($rs);
 			$row=$conexion->obtenerFila($resultado);
 
@@ -174,24 +174,19 @@
       $cantidadRegistros=$conexion->cantidadRegistros($res);
       
       if ($cantidadRegistros!=0)  {
+        
         echo '<script language="javascript">alert("El usuario ya existe");</script>'; 
+        header('location: ../administrador.php');
+
       }else{
+        
+        $sql ="INSERT INTO TBL_PERSONAS 
+        VALUES (null,'$this->id_lugar_nacimiento','$this->id_lugar_residencia','$this->id_genero','$this->PrimerNombre','$this->SegundoNombre','$this->PrimerApellido','$this->SegundoApellido','$this->numeroIdentidad','$this->telefono','$this->email','$this->fechaNacimiento','$this->NumeroCuenta')";
+        
 
-    //  echo "$this->id_lugar_nacimiento+$this->id_lugar_residencia+$this->id_genero+$this->PrimerNombre+$this->SegundoNombre+$this->PrimerApellido+$this->SegundoApellido+$this->numeroIdentidad+$this->telefono+$this->email+$this->fechaNacimiento+$this->NumeroCuenta";
-            
-              $sql ="INSERT INTO TBL_PERSONAS 
-              VALUES (null,'$this->id_lugar_nacimiento','$this->id_lugar_residencia','$this->id_genero','$this->PrimerNombre','$this->SegundoNombre','$this->PrimerApellido','$this->SegundoApellido','$this->numeroIdentidad','$this->telefono','$this->email','$this->fechaNacimiento','$this->NumeroCuenta')";
-              
-
-              $r=$conexion->ejecutarConsulta($sql);
-              
-              if($r){
-                echo '<script language="javascript">alert("Insertado Correctamente");</script>'; 
-                
-              }else{
-                echo '<script language="javascript">alert("Error");</script>'; 
-              }
-              
+        $r=$conexion->ejecutarConsulta($sql);
+        
+        return $r;
         }
       
         

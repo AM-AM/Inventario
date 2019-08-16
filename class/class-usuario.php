@@ -106,8 +106,8 @@
 			$sql = "INSERT INTO TBL_USUARIOS 
 			VALUES ('$this->id_persona_usuario','$this->id_tipo_usuario','$this->nombre_usuario','$this->clave_usuario',null,'$this->fecha_registro')";
 			
-		$r2 = $conexion->ejecutarConsulta($sql);
-		
+			$r2 = $conexion->ejecutarConsulta($sql);
+		  return $r2;
 			
 		 }
 	}

@@ -7,7 +7,9 @@
 
   // Clase persona
 
-  $conexion = new Conexion();
+
+
+         $conexion = new Conexion();
 
         $PrimerNombre = $_POST["PrimerNombre"];
         $SegundoNombre =  $_POST["SegundoNombre"];
@@ -56,12 +58,18 @@
         $usuario->setFecha_registro($fechaRegistro);
 
         
-        $persona->crearUsuario($conexion);
-        $usuario->crear($conexion);
-        
-  
+        $mensaje = $persona->crearUsuario($conexion);
 
-        
+        if($mensaje){
+          $mensaje2 = $usuario->crear($conexion);
+          if($mensaje2){
+            echo '<script language="javascript">alert("Insertado Correctamente");</script>'; 
+            header('location: ../administrador.php');
+          }else{
+            echo "Error2";
+          }
+        }
+   
     
 
   

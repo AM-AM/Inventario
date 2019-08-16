@@ -2,8 +2,8 @@ $(document).ready(function(){
     $("#administradores").click(function(){
         $("#contenido").load('tablas/administradores.php');
     });
-    $("#estudiantes").click(function(){
-    	$("#contenido").load('tablas/estudiantes.php');
+    $("#Instructores").click(function(){
+    	$("#contenido").load('tablas/Instructores.php');
     });
     $("#crear_reporte").click(function(){
     	$("#contenido").load('tablas/crear_reporte.php');

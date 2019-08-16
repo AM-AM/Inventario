@@ -50,6 +50,18 @@ include("class/class-conexion.php");
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
+ <!-- Divider -->
+ <hr class="sidebar-divider">
+
+<!-- Heading -->
+<div class="sidebar-heading">
+  Interfaz
+</div>
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
+
+<!-- Nav Item - Dashboard -->
+
 
 
       <li class="nav-item">
@@ -60,38 +72,27 @@ include("class/class-conexion.php");
         <div id="collapseTrwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            <a class="collapse-item" id="crear_reporte">Crear Reportes</a>
+            <?php   
+                if ($_SESSION['tipo_usuario'] == 1){
+                  echo '
+                
+                  <a class="collapse-item" href="adminReporte.php" >Ver Reportes</a>';
+                }
+            ?>
+            <a class="collapse-item" id="crear_reporte" ><i class="fas fa-plus"></i>Crear Reportes</a>
             
      
 
-<?php   
-      if ($_SESSION['tipo_usuario'] == 1){
-        echo '
-       
-        <a class="collapse-item" href="adminReporte.php">Ver Reportes</a>';
-      }
-      ?>
+     
            
             
           </div>
         </div>
       </li>
 
-       <!-- Divider -->
-       <hr class="sidebar-divider my-0">
+       
 
-      <!-- Nav Item - Dashboard -->
      
-    
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interfaz
-      </div>
-
       <!-- Nav Item - Usuarios Collapse Menu -->
       
 <?php   
@@ -107,10 +108,9 @@ include("class/class-conexion.php");
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            <h6 class="collapse-header">Usuarios:</h6>
             <a class="collapse-item" id="administradores">Administradores</a>
-            
-            <a class="collapse-item" id="estudiantes">Instructores</a>
+            <a class="collapse-item" id="Instructores"></a>
             <a class="collapse-item" id="registro"><i class="fas fa-plus"></i>Nuevo usuario</a>
             
           </div>
@@ -127,7 +127,7 @@ include("class/class-conexion.php");
         </a>
         <div id="collapseInv" class="collapse" aria-labelledby="headingInv" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Artículos:</h6>
+            <h6 class="collapse-header">Equipos:</h6>
             
             <a class="collapse-item" id="equiposDisponibles" >Equipos Disponibles</a>
             <a class="collapse-item" id="añadirEquipos" ><i class="fas fa-plus"></i> Añadir Equipos</a>           
@@ -232,7 +232,9 @@ include("class/class-conexion.php");
                 </form>
               </div>
             </li>
-
+<?php   
+      if ($_SESSION['tipo_usuario'] == 1){
+        echo '
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -240,6 +242,7 @@ include("class/class-conexion.php");
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">2</span>
               </a>
+
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
@@ -253,7 +256,7 @@ include("class/class-conexion.php");
                   </div>
                   <div>
                     <div class="small text-gray-500">Diciembre 12, 2019</div>
-                    <span class="font-weight-bold">aaa</span>
+                    <span class="font-weight-bold" >aaa</span>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -268,18 +271,20 @@ include("class/class-conexion.php");
                   </div>
                 </a>
                 
-                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas las notificaciones</a>
+                <a class="dropdown-item text-center small text-gray-500" href="adminReporte.php">Mostrar todas las notificaciones</a>
               </div>
             </li>
 
-            
-
             <div class="topbar-divider d-none d-sm-block"></div>
+            ';
+            }
+?>
+            
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombre_usuario']; ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombre']; ?></span>
                 <i class="fas fa-user fa-sm fa-fw mr-2 fa-1x text-gray-500"></i>
                 
               </a>

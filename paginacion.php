@@ -1,6 +1,7 @@
-<?php $numero_pagina= numero_pagina($post_por_pagina,$conec);?>
+<?php 
+$numero_pagina= numero_pagina($post_por_pagina,$conec);?>
 <nav aria-label="Page navigation example">
-  <ul class="pagination">
+<ul class="pagination">
 
   <?php if(pagina_actual() === 1){ ?>
     <li class="page-item disabled"><a class="page-link " href="#">Previous</a></li>
@@ -16,5 +17,5 @@
     <li class="page-item"><a class="page-link" href="#">2</a></li>
     <li class="page-item"><a class="page-link" href="#">3</a></li>
     <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
-  </ul>
+  </ul> 
 </nav>

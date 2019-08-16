@@ -16,8 +16,6 @@
 
             $resultado = $conec->ejecutarConsulta($sql);
 
-            
-
             echo  '
         
             <table class="table table-dark">
