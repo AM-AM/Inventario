@@ -6,9 +6,9 @@ include("class/class-conexion.php");
      header("Location: login.php");
  }
 ?>
-<body onload="init()">
+
 				<!--Contenido Del Inventario-->
-				<div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 well" style="border: black 1px solid;width: 80%">
+				<div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 well" style="border: black 1px solid;width: 90%">
 					<nav>
 						<!--Pestañas-->
 						<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -30,7 +30,7 @@ include("class/class-conexion.php");
 
 						<!--Seccion Equipos-->
 						<div class="tab-pane fade show active" id="nav-inv-main" role="tabpanel" aria-labelledby="nav-inv-main-tab">
-							<!--Equipos en menor cantidad-->
+							<!--Equipos disponibles para prestarse-->
 							<div class="row">
 								<div class="col-lg-12 col-sm-12">
 									<table class="table table-striped table-bordered" id="table-articulos-proximos" style="width: 100%;">
@@ -46,7 +46,7 @@ include("class/class-conexion.php");
 							<div class="row">
 								<div class="col-lg-12 col-sm-12">
 									<table class="table table-striped table-bordered" id="table-articulos" style="width: 100%;">
-										<h3>Uso en Laboratorios</h3>
+										<h3>Todos los equipos</h3>
 									</table>
 								</div>
 							</div>
@@ -73,11 +73,11 @@ include("class/class-conexion.php");
 
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="slc-estado-articulo-actualizar">Categoria de articulo</label>
-															<select id="slc-estado-articulo-actualizar" class="form-control" data-style="btn-primary" style="margin-left: 4%;margin-top: 10px;">
-																<option>--Seleccione una categoria--</option>
-																<option>1</option>
-																<option>2</option>
-																<option>3</option>
+															<select id="slc-categoria-articulo-actualizar" class="form-control" data-style="btn-primary" style="margin-left: 4%;margin-top: 10px;">
+																<option value="">--Seleccione una categoria--</option>
+																<option value="1">Computadoras</option>
+																<option value="2">Proyectores</option>
+																<option value="3">Cables</option>
 															</select>
 														</div>
 													</div>
@@ -104,9 +104,33 @@ include("class/class-conexion.php");
 													</div>
 
 													<div class="row">
+														<label for="slc-estado-articulo">Estado del Articulo</label>
+														<select id="slc-estado-articulo-actualizar" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
+														<option>--Seleccione un Estado--</option>
+															<option value="1">Diponible</option>
+															<option value="2">No disponible</option>
+															
+														</select>	
+
+														<label for="slc-persona-registra">Persona que Actualiza</label>
+														<input type="text" id="persona-actualiza" class="form-control" placeholder="" disabled="disabled">
+
+														<label for="slc-ubicacion-articulo">Ubicación articulo</label>
+														<select id="slc-ubicacion-articulo-actualizar" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
+															<option value="">--Seleccione una ubicación--</option>
+															<option value="1">Laboratorio 1</option>
+															<option value="2">Laboratorio 2</option>
+															<option value="3">Laboratorio 3</option>
+															<option value="4">Laboratorio 4</option>
+															<option value="5">Laboratorio de Investigación</option>
+														</select>
+
+													</div>
+
+													<div class="row">
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="spn-fecha-registro-art-actualizar">Fecha de Ingreso</label>
-															<input type="date" id="spn-fecha-registro-art-actualizar" class="form-control" style="padding-top: 0;">	
+															<input type="date" id="spn-fecha-registro-art-actualizar" class="form-control" style="padding-top: 0;" disabled="disabled">	
 														</div>
 
 													</div>
@@ -206,9 +230,12 @@ include("class/class-conexion.php");
 
 								<label for="slc-categoria-articulo">Categoria del Articulo</label>
 								<select id="slc-categoria-articulo" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
-									<option>--Seleccione una Categoria--</option>
-									<option>1</option>
+									<option value="">--Seleccione una Categoria--</option>
+									<option value="1">Computadoras</option>
+									<option value="2">Proyectores</option>
+									<option value="3">Cables</option>
 								</select>
+
 
 								<label for="cantidad-articulo">Cantidad de articulos</label>
 								<input type="text" id="cantidad-articulo" class="form-control" placeholder="Ingrese una cantidad">
@@ -220,20 +247,27 @@ include("class/class-conexion.php");
 								<input type="text" id="descripcion-articulo" class="form-control" placeholder="Ingrese una descripcion">								
 								
 								<label for="spn-fecha-registro-art">Fecha de Ingreso del articulo</label>
-								<input type="date" id="spn-fecha-registro-art" class="form-control" style="padding-top: 0;">	
+                       			<input type="text" id='spn-fecha-registro-art' name="fecha" value=" <?php 
+                             	echo date('Y-m-d'); ?>" readonly class="form-control">
 
 								<label for="slc-estado-articulo">Estado del Articulo</label>
 								<select id="slc-estado-articulo" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
-									<option>--Seleccione un Estado--</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
+									<option value="">--Seleccione un Estado--</option>
+									<option value="1">Disponible</option>
+									<option value="2">No Disponible</option>	
 								</select>	
 
 								<label for="slc-persona-registra">Persona que registra</label>
-								<select id="slc-persona-registra" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
-									<option>--Seleccione--</option>
-									<option>1</option>
+								<input type="text" id="persona-registra" class="form-control"  value="<?php echo $_SESSION['id_persona_usuario']?>" disabled="disabled">
+
+								<label for="slc-ubicacion-articulo">Ubicación Articulo</label>
+								<select id="slc-ubicacion-articulo" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
+									<option value="">--Seleccione una ubicación--</option>
+									<option value="1">Laboratorio 1</option>
+									<option value="2">Laboratorio 2</option>
+									<option value="3">Laboratorio 3</option>
+									<option value="4">Laboratorio 4</option>
+									<option value="5">Laboratorio de Investigación</option>
 								</select>					
 								
 							</div>
@@ -242,7 +276,7 @@ include("class/class-conexion.php");
 					</div>
 				</div>
 
-</body>
+
 
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

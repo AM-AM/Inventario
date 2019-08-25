@@ -58,7 +58,7 @@ include("class/class-conexion.php");
 	 <?php   
       if ($_SESSION['tipo_usuario'] == 1){
         echo '<li class="nav-item active">
-        <a class="nav-link" href="adminReporte.php">
+        <a class="nav-link" href="admin.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Reportes</span></a>
       </li>';
@@ -271,7 +271,7 @@ include("class/class-conexion.php");
                   Registro de actividad
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="login.php" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Cerrar sesión
                 </a>

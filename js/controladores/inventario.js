@@ -3,7 +3,7 @@ let popUp = new Popup();
 
 $(document).ready(function() {
 
-  //Carga los EQUIPOS con menor cantidad disponible
+  //Carga los EQUIPOS que estan disponibles para prestamo
   $("#table-articulos-proximos").DataTable({
     pageLength: 10,
     ordering: true,
@@ -42,10 +42,10 @@ $(document).ready(function() {
       {data: "ESTADO_ARTICULO", title: "Estado Articulo"},
       {data: "CANTIDAD", title: "Cantidad"},
       {data: "PRECIO_ARTICULO", title: "Precio "},
-      {data: "PERSONA_USUARIO_REGISTRA", title: "Usuario que Registro"},
-      {data: null, title: "Acciones",
+      {data: "NOMBRE_USUARIO", title: "Usuario que Registro"},
+      {data: null, title: "Opciones",
       render: function (data, type, row, meta) {
-        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver más</button>`;
+        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver</button>`;
       }}
     ]
   });
@@ -66,18 +66,18 @@ $(document).ready(function() {
       }
     },
     columns: [
-      {data: "ID_ARTICULOS", title: "Código Articulo", 
+      {data: "ID_ARTICULOS", title: "Código", 
       render: function ( data, type, row, meta ) {
         return `<b>${data}</b>`;
       }},
-      {data: "NOMBRE_ARTICULO", title: "Nombre Articulo"},
+      {data: "NOMBRE_ARTICULO", title: "Articulo"},
       {data: "ESTADO_ARTICULO", title: "Estado Articulo"},
       {data: "CANTIDAD", title: "Cantidad"},
       {data: "PRECIO_ARTICULO", title: "Precio"},
-      {data: "PERSONA_USUARIO_REGISTRA", title: "Usuario que Registro"},
-      {data: null, title: "Acciones",
+      {data: "NOMBRE_USUARIO", title: "Usuario que Registro"},
+      {data: null, title: "Opciones",
       render: function (data, type, row, meta) {
-        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver más</button>`;
+        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver</button>`;
       }}
     ]
   });
@@ -118,7 +118,7 @@ function cargarFormulario() {
         option.value = response.data[i].ID_ESTADO_ARTICULO;
         option.innerText = response.data[i].ESTADO_ARTICULO;
         $('#slc-estado-articulo').append(option);
-        $('#slc-tipo-articulo-actualizar').append(option);
+        $('#slc-estado-articulo-actualizar').append(option);
       }
     }
   });
@@ -133,7 +133,7 @@ function cargarFormulario() {
       "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-      "accion": "leer-persona-registra"
+      "accion": "leer-persona-usuario-registra"
     }
   }
 
@@ -160,6 +160,8 @@ function validarArticulo(parametros) {
   var regexInsumo = {
                 "nombre_articulo": /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*/,
                 "id_estado_articulo": /^[1-9][0-9]*$/,
+                "id_categoria_articulo":/^[1-9][0-9]*$/,
+                "id_ubicacion_articulo":/^[1-9][0-9]*$/,
                 "cantidad": /[0-9]+$/,
                 "precio_articulo": /^([0-9]+)\.[0-9]+$/,
                 "descripcion": /((^[A-Za-záéíóúñ0-9]+)((\s)(^[A-Z]+[A-Za-záéíóúñ0-9]+)))*$/,
@@ -223,15 +225,16 @@ function verArticulo(idArticulos) {
 }
 
 $("#guardar-articulo").on("click", function(){
-  parametros = {
-                "nombre": 'nombre-articulo',
+  parametros = {                
                 "id_estado_articulo": 'slc-estado-articulo',
+                "id_categoria_articulo": 'slc-categoria-articulo',
+                "id_ubicacion_articulo": 'slc-ubicacion-articulo',
+                "nombre": 'nombre-articulo',
                 "cantidad": 'cantidad-articulo',
-                "precio": 'precio',
-                "descripcion": 'descripcion-articulo',
-                "id_persona_usuario_registra": 'slc-persona-registra',
+                "precio": 'precio-articulo',
+                "id_persona_usuario_registra": 'persona-registra',
                 "fecha_registro_art": 'fecha-registro-art',
-                "fecha_salida_art": 'fecha-salida-art'
+                "descripcion": 'descripcion-articulo'
               };
 
   validacion = validarArticulo(parametros);
@@ -246,16 +249,16 @@ $("#guardar-articulo").on("click", function(){
         "content-type": "application/x-www-form-urlencoded"
       },
       "data": {
-        "accion": "insertar-articulo",
-  
-        "nombre": $('#nombre-articulo').val(),
+        "accion": "insertar-articulo",       
         "id_estado_articulo": $('#slc-estado-articulo').val(),
         "id_persona_usuario_registra": $('#slc-persona-registra').val(),
+        "id_categoria_articulo":$('#slc-categoria-articulo'),
+        "id_ubicacion_articulo":$('#slc-ubicacion-articulo'),
+        "nombre": $('#nombre-articulo').val(),
         "cantidad": $('#cantidad-articulo').val(),
-        "precio": $('#precio-articulo').val(),
-        "descripcion": $('#descripcion-articulo').val(),
+        "precio": $('#precio-articulo').val(),       
         "fecha_registro_art": $('#fecha-registro-art').val(),
-        "fecha_salida_art": $('#fecha-salida-art').val()
+        "descripcion": $('#descripcion-articulo').val()
       }
     }
   
@@ -280,7 +283,7 @@ $("#guardar-articulo").on("click", function(){
 });
 
 $("#atras").on("click", function(){
-  verInsumo(idInsumoVisible);
+  verArticulo(idArticuloVisible);
   $("#formulario-actualizar-articulo").addClass("hide");
   $("#formulario-disminuir-articulo").addClass("hide");
   $("#datos-articulo").removeClass("hide");
@@ -314,6 +317,7 @@ $("#actualizar-articulo").click(function(){
   parametros = {
                 "nombre": 'nombre-articulo-actualizar',
                 "id_estado_articulo": 'slc-tipo-articulo-actualizar',
+                "id_categoria_articulo": 'slc-estado-articulo-actualizar',
                 "cantidad": 'cantidad-articulo-actualizar',
                 "precio": 'precio',
                 "descripcion": 'descripcion-articulo-actualizar',
@@ -338,7 +342,8 @@ $("#actualizar-articulo").click(function(){
 
         "id_articulos": idArticuloVisible,
         "nombre": $('#nombre-articulo-actualizar').val(),
-        "id_estado_articulo": $('#slc-tipo-articulo-actualizar').val(),
+        "id_categoria_articulo": $('#slc-categoria-articulo-actualizar').val(),
+        "id_estado_articulo":$('#slc-estado-articulo-actualizar').val(),
         "cantidad": $('#cantidad-articulo-actualizar').val(),
         "precio": $('#precio').val(),
         "descripcion": $('#descripcion-articulo-actualizar').val(),

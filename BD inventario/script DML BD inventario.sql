@@ -131,49 +131,6 @@ INSERT INTO `tbl_categoria_articulos` (`id_categoria_articulos`,
              VALUES (   NULL, 
                         'Cables');
 
--- insertando en tbl_articulos
-INSERT INTO `tbl_articulos` (`id_articulos`, 
-                            `id_estado_articulo`, 
-                            `id_persona_usuario_registra`, 
-                            `nombre_articulo`, `precio_articulo`, 
-                            `cantidad`, `fecha_registro_art`, 
-                            `fecha_salida_art`, 
-                            `descripcion_articulo`) 
-            VALUES (NULL, 
-                    '2', 
-                    '1', 
-                    'Computadora de Escritorio', 
-                    NULL, 
-                    '2', 
-                    '2019-08-05', 
-                    NULL, 
-                    'Computadora de escritorio marca DELL para uso exclusivo de laboratorios');
-    
-
-INSERT INTO `tbl_articulos` (`id_articulos`, 
-                            `id_estado_articulo`, 
-                            `id_persona_usuario_registra`, 
-                            `nombre_articulo`, `precio_articulo`, 
-                            `cantidad`, `fecha_registro_art`, 
-                            `fecha_salida_art`, 
-                            `descripcion_articulo`) 
-            VALUES(NULL, 
-                  '1', 
-                  '1', 
-                  'Proyector', 
-                  NULL, 
-                  '2', 
-                  '2019-08-05', 
-                  NULL, 
-                  'proyector grande con todos sus componentes incluidos'); 
-
--- insertando en tbl_categorias_x_articulo
-INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, `id_articulos`) VALUES ('1', '1'), 
-
-INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, 
-                                        `id_articulos`) 
-          VALUES('2', '2');
-
 -- insertando en tbl_estado_reporte
 INSERT INTO `tbl_estado_reporte` (`id_estado_reporte`, 
                                   `estado_reporte`) 
@@ -187,20 +144,85 @@ INSERT INTO `tbl_estado_reporte` (`id_estado_reporte`,
                                   `estado_reporte`) 
           VALUES (NULL, 'Rechazado');
 
---insertando en tbl_tipo_reportes
-INSERT INTO `tbl_tipo_reportes` (`id_tipo_reporte`, `tipo_reporte`) 
+-- insertando en tbl_tipo_reportes
+INSERT INTO `tbl_tipo_reportes` (`id_tipo_reporte`,
+                                 `tipo_reporte`) 
           VALUES (NULL, 'Estado de Equipos');
 
 INSERT INTO `tbl_tipo_reportes` (`id_tipo_reporte`, 
-                                `tipo_reporte`) 
+                                  `tipo_reporte`) 
           VALUES (NULL, 'Solicitudes de Equipo');
 
 -- ---------------------------------------------------------------------------------------------------------
--- ACTUALIZACION 2 DE SCRIPT DML
---insertando en tbl_articulos
+-- ACTUALIZACION SCRIPT DML
+-- insertando en tbl_ubicacion_articulos
+INSERT INTO `tbl_ubicacion_articulos` (`id_ubicacion_articulo`, `ubicacion_articulo`, `Abreviatura`) 
+          VALUES (NULL, 'Laboratorio1', 'Lab-1');
+
+INSERT INTO `tbl_ubicacion_articulos` (`id_ubicacion_articulo`, `ubicacion_articulo`, `Abreviatura`)          
+          VALUES(NULL, 'Laboratorio2', 'Lab-2');
+
+INSERT INTO `tbl_ubicacion_articulos` (`id_ubicacion_articulo`, `ubicacion_articulo`, `Abreviatura`)          
+          VALUES(NULL, 'Laboratorio3', 'Lab-3');
+
+INSERT INTO `tbl_ubicacion_articulos` (`id_ubicacion_articulo`, `ubicacion_articulo`, `Abreviatura`)          
+          VALUES(NULL, 'Laboratorio4', 'Lab-4');
+
+INSERT INTO `tbl_ubicacion_articulos` (`id_ubicacion_articulo`, `ubicacion_articulo`, `Abreviatura`)          
+          VALUES(NULL, 'Laboratorio de Investigación', 'Lab-Investigación');
+
+-- insertando en tbl_articulos
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`,
+                            `id_categoria_articulos`, 
+                            `id_ubicacion_articulo`, 
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, 
+                            `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+          VALUES(NULL, 
+                  '2', 
+                  '1', 
+                  '1', 
+                  '1', 
+                  'Computadora de Escritorio DELL ', 
+                  '8500.00', 
+                  '1', 
+                  '2019-08-07', 
+                  NULL, 
+                  'computadoras ubicadas en el laboratorio1 para impartir clases, marca DELL core i7');
+
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`,
+                            `id_categoria_articulos`, 
+                            `id_ubicacion_articulo`, 
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, 
+                            `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+          VALUES(NULL, 
+                  '2', 
+                  '1', 
+                  '1', 
+                  '5', 
+                  'Computadora portatil marca DELL', 
+                  '12500.00', 
+                  '1', 
+                  '2019-08-08', 
+                  NULL, 
+                  'Laptop Dell core i7, para uso exclusivo de los instructores de laboratorio');
+
 INSERT INTO `tbl_articulos` (`id_articulos`, 
                             `id_estado_articulo`, 
                             `id_persona_usuario_registra`, 
+                            `id_categoria_articulos`, 
+                            `id_ubicacion_articulo`, 
                             `nombre_articulo`, 
                             `precio_articulo`, 
                             `cantidad`, 
@@ -210,39 +232,126 @@ INSERT INTO `tbl_articulos` (`id_articulos`,
           VALUES (NULL, 
                   '1', 
                   '1', 
-                  'Pantalla para proyectar', 
-                  '2000.00', 
                   '2', 
-                  '2019-08-02', 
+                  '5', 
+                  'Proyector Grande', 
+                  '6550.00', 
+                  '1', 
+                  '2019-08-15', 
                   NULL, 
-                  'pantalla para proyeccion con todos sus accesorios, 
-                  disponible para el prestamo')
+                  'proyector disponible para prestamo');
 
 INSERT INTO `tbl_articulos` (`id_articulos`, 
                             `id_estado_articulo`, 
                             `id_persona_usuario_registra`, 
+                            `id_categoria_articulos`, 
+                            `id_ubicacion_articulo`, 
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, 
+                            `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+          VALUES (NULL, 
+                  '1', 
+                  '1', 
+                  '2', 
+                  '5', 
+                  'Pantalla para proyectar', 
+                  '2500.00', 
+                  '1', 
+                  '2019-08-08', 
+                  NULL, 
+                  'pantalla para proyectar, disponible para prestamo');
+
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`, 
+                            `id_categoria_articulos`, 
+                            `id_ubicacion_articulo`, 
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, 
+                            `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+        VALUES (NULL, 
+                '2', 
+                '1', 
+                '3', 
+                '5', 
+                'Cables USB', 
+                '50.00', 
+                '1', 
+                '2019-08-09', 
+                NULL, 
+                'Cables usb varios tamaños de extension');
+
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`, 
+                            `id_categoria_articulos`, 
+                            `id_ubicacion_articulo`, 
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, 
+                            `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+        VALUES (NULL, 
+                '2', 
+                '1', 
+                '3', 
+                '5', 
+                'Mouses con conector USB', 
+                '200.00', 
+                '1', 
+                '2019-08-07', 
+                NULL, 
+                'Mouses con conector con cable usb');
+
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`, 
+                            `id_categoria_articulos`, 
+                            `id_ubicacion_articulo`, 
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, 
+                            `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+        VALUES (NULL, 
+                '1', 
+                '1', 
+                '3', 
+                '5', 
+                'Mouses Inalambricos', 
+                '300.00', 
+                '1', 
+                '2019-08-07', 
+                NULL, 
+                'mouses inalambricos disponibles para prestamos');
+
+ INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`, 
+                            `id_categoria_articulos`, 
+                            `id_ubicacion_articulo`, 
                             `nombre_articulo`, 
                             `precio_articulo`, 
                             `cantidad`, 
                             `fecha_registro_art`, 
                             `fecha_salida_art`, 
                             `descripcion_articulo`)
-          VALUES(NULL, 
-                '2', 
+        VALUES (NULL, 
                 '1', 
-                'Computadora Portátil', 
+                '1', 
+                '2', 
+                '5', 
+                'Proyector pequeño', 
                 NULL, 
                 '1', 
-                '2019-08-03',
-                 NULL, 
-                 'laptop marca hp para uso de instructores');
-
--- insertando en tbl_categorias_x_articulo
-INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, 
-                                        `id_articulos`) 
-          VALUES ('2', '3');
-
-INSERT INTO `tbl_categorias_x_articulo` (`id_categoria_articulos`, 
-                                        `id_articulos`) 
-          VALUES('1', '4');
-
+                '2019-08-10', 
+                NULL, 
+                'Proyector pequeño, disponible para prestamo');
