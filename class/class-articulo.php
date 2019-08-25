@@ -4,27 +4,21 @@
     private $idArticulos;
     private $idEstadoArticulo;
     private $idPersonaUsuarioRegistra;
-<<<<<<< HEAD
     private $idUbicacionArticulo;
-=======
->>>>>>> origin/master
     private $idCategoriaArticulos;
     private $nombreArticulo;
     private $descripcion;
     private $precioArticulo;
     private $cantidad;
-    private $fechaRegistro;
-    private $fechaSalida;
+    private $fechaRegistroArt;
+    private $fechaSalidaArt;
        
     public function __construct(
       $idArticulos = null,
       $idEstadoArticulo = null,
       $idPersonaUsuarioRegistra = null,
       $idCategoriaArticulos = null,
-<<<<<<< HEAD
       $idUbicacionArticulo = null,
-=======
->>>>>>> origin/master
       $nombreArticulo = null,
       $descripcion = null,
       $precioArticulo = null,
@@ -37,10 +31,7 @@
         $this->idEstadoArticulo = $idEstadoArticulo;
         $this->idPersonaUsuarioRegistra = $idPersonaUsuarioRegistra;
         $this->idCategoriaArticulos = $idCategoriaArticulos;
-<<<<<<< HEAD
         $this->idUbicacionArticulo = $idUbicacionArticulo;
-=======
->>>>>>> origin/master
         $this->nombreArticulo = $nombreArticulo;
         $this->descripcion = $descripcion;
         $this->precioArticulo = $precioArticulo;
@@ -56,10 +47,7 @@
       ."idEstadoArticulo: ".$this->idEstadoArticulo." , "
       ."idPersonaUsuarioRegistra: ".$this->idPersonaUsuarioRegistra." , "
       ."idCategoriaArticulos:".$this->idCategoriaArticulos." , "
-<<<<<<< HEAD
-      ."$idUbicacionArticulo:".$this->idUbicacionArticulo.","
-=======
->>>>>>> origin/master
+      ."idUbicacionArticulo:".$this->idUbicacionArticulo.","
       ."nombreArticulo: ".$this->nombreArticulo." , "
       ."descripcion: ".$this->descripcion.","
       ."precioArticulo: ".$this->precioArticulo." , "
@@ -96,7 +84,6 @@
       $this->idCategoriaArticulo = $idCategoriaArticulo;
     }
 
-<<<<<<< HEAD
     public function getIdUbicacioArticulo(){
       $this->idUbicacionArticulo;
     }
@@ -104,8 +91,6 @@
       $this->idUbicacionArticulo = $idUbicacionArticulo;
     }
 
-=======
->>>>>>> origin/master
     public function getNombreArticulo(){
       return $this->nombreArticulo;
     }
@@ -167,6 +152,7 @@
       return $rows;
     }
 
+    //LEER estado articulo
     public static function leerEstadoArticulo($conexion){
       $sql = 
       ' SELECT *
@@ -193,7 +179,6 @@
       return $rows;
     }
 
-<<<<<<< HEAD
     //leer ubicacion de los articulos
      public static function leerUbicacionArticulos($conexion){
       $sql=
@@ -203,8 +188,6 @@
       return $rows;
     }
 
-=======
->>>>>>> origin/master
     //MUESTRA SOLO LOS ARTICULOS QUE ESTAN DISPONIBLES PARA PRESTAMO
     public function leerMenorCantidad($conexion){
       $sql = 
@@ -257,27 +240,18 @@
     }
 
     //funcion para crear o insertar un articulo nuevo, esta manda llamar un procedimiento almacenado para realizar la accion 
-<<<<<<< HEAD
+
     public function crear($conexion){
       $sql = "
         CALL SP_Insertar_Articulo(
           '%d','%d','%d','%d',%s','%s','%s',DATE('%s'),'%s'
-=======
-    /*public function crear($conexion){
-      $sql = "
-        CALL SP_Insertar_Articulo(
-          '%d','%d','%d','%s','%s','%s','%s',DATE('%s'),DATE('%s'), @mensaje, @error
->>>>>>> origin/master
         );
       ";
       $valores = [
         $this->getIdEstadoArticulo(),
         $this->getIdPersonaUsuarioRegistra(),
         $this->getIdCategoriaArticulos(),
-<<<<<<< HEAD
         $this->getIdUbicacioArticulo(),
-=======
->>>>>>> origin/master
         $this->getNombreArticulo(),
         $this->getPrecioArticulo(),
         $this->getCantidad(),     
@@ -286,59 +260,8 @@
       ];
       $rows = $conexion->query($sql, $valores);
       return $rows[0];
-    }*/
-//funcion para insertar o crear un nuevo articulo
-    public function crear($conexion){
-      $sql=sprintf("INSERT INTO TBL_ARTICULOS (ID_ESTADO_ARTICULO, 
-                            ID_PERSONA_USUARIO,
-                            ID_CATEGORIA_ARTICULOS, 
-                            NOMBRE_ARTICULO, 
-                            DESCRIPCION,
-                            PRECIO_ARTICULO,
-                            CANTIDAD,
-                            FECHA_REGISTRO_ART
+    }
 
-    VALUES('%d','%d''%d','%s''%s','%s','%s','%s')",
-    $conexion->getLink()->real_escape_string(stripslashes($this->getIdEstadoArticulo())),
-    $conexion->getLink()->real_escape_string(stripslashes($this->getIdPersonaUsuarioRegistra())),
-    $conexion->getLink()->real_escape_string(stripslashes($this->getIdCategoriaArticulos())),
-    $conexion->getLink()->real_escape_string(stripslashes($this->getNombreArticulo())),
-    $conexion->getLink()->real_escape_string(stripslashes($this->getDescripcion())),
-    $conexion->getLink()->real_escape_string(stripslashes($this->getPrecioArticulo())),
-    $conexion->getLink()->real_escape_string(stripslashes($this->getCantidad())),
-    $conexion->getLink()->real_escape_string(stripslashes($this->getFechaRegistroArt()))
-
-  );
-  $resultadoInsert = $conexion->ejecutarInstrucciones($sql);
-  if($resultadoInsert === TRUE){
-    $resultado=1;
-    $resultado["mensaje"] = "se ha insertado correctamente";
-
-<<<<<<< HEAD
-=======
-  }
-  else{
-    $resultado["codigo"]=0;
-    $resultado["mensaje"]=" ha ocurrido un error";
-
-  }
-  echo json_encode($resultado);
-  $conexion->cerrarConexion();
-     /*$conexion                   
-     VALUES ($thiscgetIdEstadoArticulo(),
-         $this-getIdPersonaUsuarioRegistra(),
-         $this->getIdCategoriaArticulos(),
-         $this->getNombreArticulo(),
-         $this->getDescripcion(),
-         $this->getPrecioArticulo(),
-         $this->getCantidad(),     
-         $this->getFechaRegistroArt())';*/    
-      $rows = $conexion->query($sql);
-    
-     }
-
-
->>>>>>> origin/master
     //funcion para cuando se realicen los prestamos, aun no esta completa...
     public function disminuir($conexion){
       $sql = "CALL SP_Disminuir_Articulo('%d','%d', @mensaje, @error);";
@@ -355,22 +278,15 @@
     public function actualizar($conexion){
       $sql = "
         CALL SP_Actualizar_Articulo(
-<<<<<<< HEAD
           '%d','%d','%d','%d','%d','%s','%s','%s','%s',DATE('%s'),DATE('%s'), @mensaje, @error
-=======
-          '%d','%d','%d','%d','%s','%s','%s','%s',DATE('%s'),DATE('%s'), @mensaje, @error
->>>>>>> origin/master
-        );
+
       ";
       $valores = [
         $this->getIdArticulos(),
         $this->getIdEstadoArticulo(),
         $this->getIdPersonaUsuarioRegistra(),
         $this->getIdCategoriaArticulo(),
-<<<<<<< HEAD
         $this->getIdUbicacioArticulo(),
-=======
->>>>>>> origin/master
         $this->getNombreArticulo(),
         $this->getDescripcion(),
         $this->getPrecioArticulo(),

@@ -60,7 +60,6 @@ include("class/class-conexion.php");
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
-<<<<<<< HEAD
 	 <?php   
       if ($_SESSION['tipo_usuario'] == 1){
         echo '<li class="nav-item active">
@@ -70,9 +69,9 @@ include("class/class-conexion.php");
       </li>';
       }
       ?>
-=======
+
 <!-- Nav Item - Dashboard -->
->>>>>>> origin/master
+
 
 
 

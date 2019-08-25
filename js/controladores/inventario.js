@@ -161,10 +161,7 @@ function validarArticulo(parametros) {
                 "nombre_articulo": /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*/,
                 "id_estado_articulo": /^[1-9][0-9]*$/,
                 "id_categoria_articulo":/^[1-9][0-9]*$/,
-<<<<<<< HEAD
                 "id_ubicacion_articulo":/^[1-9][0-9]*$/,
-=======
->>>>>>> origin/master
                 "cantidad": /[0-9]+$/,
                 "precio_articulo": /^([0-9]+)\.[0-9]+$/,
                 "descripcion": /((^[A-Za-záéíóúñ0-9]+)((\s)(^[A-Z]+[A-Za-záéíóúñ0-9]+)))*$/,
@@ -231,7 +228,6 @@ $("#guardar-articulo").on("click", function(){
   parametros = {                
                 "id_estado_articulo": 'slc-estado-articulo',
                 "id_categoria_articulo": 'slc-categoria-articulo',
-<<<<<<< HEAD
                 "id_ubicacion_articulo": 'slc-ubicacion-articulo',
                 "nombre": 'nombre-articulo',
                 "cantidad": 'cantidad-articulo',
@@ -239,14 +235,7 @@ $("#guardar-articulo").on("click", function(){
                 "id_persona_usuario_registra": 'persona-registra',
                 "fecha_registro_art": 'fecha-registro-art',
                 "descripcion": 'descripcion-articulo'
-=======
-                "cantidad": 'cantidad-articulo',
-                "precio": 'precio',
-                "descripcion": 'descripcion-articulo',
-                "id_persona_usuario_registra": 'slc-persona-registra',
-                "fecha_registro_art": 'fecha-registro-art'
                 //"fecha_salida_art": 'fecha-salida-art'
->>>>>>> origin/master
               };
 
   validacion = validarArticulo(parametros);
@@ -265,20 +254,14 @@ $("#guardar-articulo").on("click", function(){
         "id_estado_articulo": $('#slc-estado-articulo').val(),
         "id_persona_usuario_registra": $('#slc-persona-registra').val(),
         "id_categoria_articulo":$('#slc-categoria-articulo'),
-<<<<<<< HEAD
         "id_ubicacion_articulo":$('#slc-ubicacion-articulo'),
         "nombre": $('#nombre-articulo').val(),
         "cantidad": $('#cantidad-articulo').val(),
         "precio": $('#precio-articulo').val(),       
         "fecha_registro_art": $('#fecha-registro-art').val(),
         "descripcion": $('#descripcion-articulo').val()
-=======
-        "cantidad": $('#cantidad-articulo').val(),
-        "precio": $('#precio-articulo').val(),
-        "descripcion": $('#descripcion-articulo').val(),
-        "fecha_registro_art": $('#fecha-registro-art').val()
         //"fecha_salida_art": $('#fecha-salida-art').val()
->>>>>>> origin/master
+
       }
     }
   
