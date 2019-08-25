@@ -161,13 +161,16 @@ function validarArticulo(parametros) {
                 "nombre_articulo": /((^[A-Z]+[A-Za-záéíóúñ]+)((\s)(^[A-Z]+[A-Za-záéíóúñ]+)))*/,
                 "id_estado_articulo": /^[1-9][0-9]*$/,
                 "id_categoria_articulo":/^[1-9][0-9]*$/,
+<<<<<<< HEAD
                 "id_ubicacion_articulo":/^[1-9][0-9]*$/,
+=======
+>>>>>>> origin/master
                 "cantidad": /[0-9]+$/,
                 "precio_articulo": /^([0-9]+)\.[0-9]+$/,
                 "descripcion": /((^[A-Za-záéíóúñ0-9]+)((\s)(^[A-Z]+[A-Za-záéíóúñ0-9]+)))*$/,
                 "id_persona_usuario_registra": /^[1-9][0-9]*$/,
-                "fecha_registro_art": /^(19[6-9][0-9]|20[0-1][0-9])\-(0[0-9]|1[0-2])\-([0-2][0-9]|3[0-1])$/,
-                "fecha_salida_art": /^([0-9]{4})\-(0[0-9]|1[0-2])\-([0-2][0-9]|3[0-1])$/
+                "fecha_registro_art": /^(19[6-9][0-9]|20[0-1][0-9])\-(0[0-9]|1[0-2])\-([0-2][0-9]|3[0-1])$/
+                //"fecha_salida_art": /^([0-9]{4})\-(0[0-9]|1[0-2])\-([0-2][0-9]|3[0-1])$/
               };
   
   for(let i in parametros){
@@ -206,7 +209,7 @@ function verArticulo(idArticulos) {
     $(`#spn-descripcion-articulo`).text(datosArticulo.DESCRIPCION);
     $(`#spn-slc-persona-usuario`).text(datosArticulo.PERSONA_USUARIO_REGISTRA);
     $(`#spn-fecha-registro-art`).text(datosArticulo.FECHA_REGISTRO_ART);
-    $(`#spn-fecha-salida-art`).text(datosArticulo.FECHA_SALIDA_ART);
+    //$(`#spn-fecha-salida-art`).text(datosArticulo.FECHA_SALIDA_ART);
     
     $(`#nombre-articulo-actualizar`).val(datosArticulo.NOMBRE_ARTICULO);
     $(`#slc-estado-articulo-actualizar option[value="${datosArticulo.ID_ESTADO_ARTICULO}"]`).attr("selected",true);
@@ -215,7 +218,7 @@ function verArticulo(idArticulos) {
     $(`#descripcion-articulo-actualizar`).val(datosArticulo.DESCRIPCION);
     $(`#slc-persona-registra-actualizar option[value="${datosArticulo.ID_PERSONA_USUARIO_REGISTRA}"]`).attr("selected",true);
     $(`#spn-fecha-registro-art-actualizar`).val(datosArticulo.FECHA_REGISTRO_ART);
-    $(`#spn-fecha-salida-art-actualizar`).val(datosArticulo.FECHA_SALIDA_ART);
+    //$(`#spn-fecha-salida-art-actualizar`).val(datosArticulo.FECHA_SALIDA_ART);
 
     $("#spn-nombre-articulo-disminuir").text(datosArticulo.NOMBRE_ARTICULO);
     $("#spn-cantidad-articulo-disminuir").text(datosArticulo.CANTIDAD);
@@ -228,6 +231,7 @@ $("#guardar-articulo").on("click", function(){
   parametros = {                
                 "id_estado_articulo": 'slc-estado-articulo',
                 "id_categoria_articulo": 'slc-categoria-articulo',
+<<<<<<< HEAD
                 "id_ubicacion_articulo": 'slc-ubicacion-articulo',
                 "nombre": 'nombre-articulo',
                 "cantidad": 'cantidad-articulo',
@@ -235,6 +239,14 @@ $("#guardar-articulo").on("click", function(){
                 "id_persona_usuario_registra": 'persona-registra',
                 "fecha_registro_art": 'fecha-registro-art',
                 "descripcion": 'descripcion-articulo'
+=======
+                "cantidad": 'cantidad-articulo',
+                "precio": 'precio',
+                "descripcion": 'descripcion-articulo',
+                "id_persona_usuario_registra": 'slc-persona-registra',
+                "fecha_registro_art": 'fecha-registro-art'
+                //"fecha_salida_art": 'fecha-salida-art'
+>>>>>>> origin/master
               };
 
   validacion = validarArticulo(parametros);
@@ -253,12 +265,20 @@ $("#guardar-articulo").on("click", function(){
         "id_estado_articulo": $('#slc-estado-articulo').val(),
         "id_persona_usuario_registra": $('#slc-persona-registra').val(),
         "id_categoria_articulo":$('#slc-categoria-articulo'),
+<<<<<<< HEAD
         "id_ubicacion_articulo":$('#slc-ubicacion-articulo'),
         "nombre": $('#nombre-articulo').val(),
         "cantidad": $('#cantidad-articulo').val(),
         "precio": $('#precio-articulo').val(),       
         "fecha_registro_art": $('#fecha-registro-art').val(),
         "descripcion": $('#descripcion-articulo').val()
+=======
+        "cantidad": $('#cantidad-articulo').val(),
+        "precio": $('#precio-articulo').val(),
+        "descripcion": $('#descripcion-articulo').val(),
+        "fecha_registro_art": $('#fecha-registro-art').val()
+        //"fecha_salida_art": $('#fecha-salida-art').val()
+>>>>>>> origin/master
       }
     }
   
@@ -322,8 +342,8 @@ $("#actualizar-articulo").click(function(){
                 "precio": 'precio',
                 "descripcion": 'descripcion-articulo-actualizar',
                 "id_persona_usuario_registra": 'slc-persona-articulo-actualizar',
-                "fecha_registro_art": 'fecha-registro-art-actualizar',
-                "fecha_salida_art": 'fecha-salida-art-actualizar'
+                "fecha_registro_art": 'fecha-registro-art-actualizar'
+                //"fecha_salida_art": 'fecha-salida-art-actualizar'
               };
 
   validacion = validarArticulo(parametros);
@@ -348,8 +368,8 @@ $("#actualizar-articulo").click(function(){
         "precio": $('#precio').val(),
         "descripcion": $('#descripcion-articulo-actualizar').val(),
         "id_persona_usuario_registra": $('#slc-persona-registra-articulo-actualizar').val(),
-        "fecha_registro_art": $('#fecha-ingreso-art-actualizar').val(),
-        "fecha_salida_art": $('#fecha-salida-art-actualizar').val()
+        "fecha_registro_art": $('#fecha-ingreso-art-actualizar').val()
+       // "fecha_salida_art": $('#fecha-salida-art-actualizar').val()
       }
     }
 

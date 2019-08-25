@@ -1,10 +1,10 @@
 <?php
-include ('class/class-conexion.php');
+include ('../../class/class-conexion.php');
 
  session_start();
  if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
       session_destroy();
-     header("Location: login.php");
+     header("Location: ../../login.php");
  }
 
  
@@ -20,21 +20,7 @@ include ('class/class-conexion.php');
       //Convertivos el $tipo a Integer
       $tipo = (int)$tipo;
 
-      echo   
-      $titulo . '<br>'.
-      $idpersona . '<br>'.
-      $tipo . '<br>'.
-      $estado . '<br>'.
-      $reporte . '<br>'.
-      $fecha . '<br>';
-
-      echo gettype($titulo) . '<br>'; 
-      echo gettype($idpersona) . '<br>'; 
-      echo gettype($tipo) . '<br>'; 
-      echo gettype($estado) . '<br>'; 
-      echo gettype($reporte) . '<br>'; 
-      echo gettype($fecha) . '<br>'; 
-
+      
       
       $conec = new Conexion();
       
@@ -63,7 +49,12 @@ include ('class/class-conexion.php');
 //     echo $titulo;
 // }
 
+
+
+
+
 header("Status: 301 Moved Permanently");
-header("Location: admin.php");
+header("Location: ../../administrador.php");
 
 ?>
+

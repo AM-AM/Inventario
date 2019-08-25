@@ -70,10 +70,10 @@
     }
 
     public function getIdLugarResidencia(){
-      return $this->id_lugar_Residencia;
+      return $this->id_lugar_residencia;
     }
-    public function setIdLugarResidencia($id_lugar_Residencia){
-      $this->id_lugar_Residencia = $id_lugar_Residencia;
+    public function setIdLugarResidencia($LR){
+      $this->id_lugar_residencia = $LR;
     }
     public function getIdGenero(){
       return $this->id_genero;
@@ -145,37 +145,51 @@
     public function setFechaNacimiento($fechaNacimiento){
       $this->fechaNacimiento = $fechaNacimiento;
     }
+    
+    //obtiene el id del ultimo ingresado
+    public static function obtenerID($conexion){
 
+
+			$rs = "SELECT MAX(id_persona)+1 AS id FROM tbl_personas";
+			$resultado=$conexion->ejecutarConsulta($rs);
+			$row=$conexion->obtenerFila($resultado);
+
+
+			
+			return $row[0];
+    }
+    
     #Crear cuentas de usuario
     public function crearUsuario($conexion){
-			#consulta
+    
+      $sql1="SELECT NUMERO_CUENTA
+      FROM TBL_PERSONAS 
+      WHERE NUMERO_CUENTA='$this->NumeroCuenta'";
 
-			$sql="SELECT A.ID_PERSONA_USUARIO,A.ID_TIPO_USUARIO,A.N,
-						CONCAT(B.PRIMER_NOMBRE,' ',B.PRIMER_APELLIDO) AS NOMBRE
-						FROM TBL_USUARIOS A
-						INNER JOIN TBL_PERSONAS B
-						ON A.ID_PERSONA_USUARIO=B.ID_PERSONA
-						WHERE B.NUMERO_CUENTA='='$this->$NumeroCuenta'";
-			
+     
 
+#resultado de la consulta				
+      $res=$conexion->ejecutarConsulta($sql1);
+      
+      $cantidadRegistros=$conexion->cantidadRegistros($res);
+      
+      if ($cantidadRegistros!=0)  {
+        
+        echo '<script language="javascript">alert("El usuario ya existe");</script>'; 
+        header('location: ../administrador.php');
 
-			#resultado de la consulta				
-			$resultado=$conexion->ejecutarConsulta($sql);
-			$cantidadRegistros=$conexion->cantidadRegistros($resultado);
-			
-          if ($cantidadRegistros!=0)  {
-          
-            $respuesta["mensaje"]="El usuario ya Existe";
-            
-          }
-          else {
-            $sql ="INSERT INTO 'tbl_personas'
-             VALUES (null,'$this->$idLugarNacimiento','$this->$idLugarResidencia','$this->$idGenero','$this->$PrimerNombre','$this->$SegundoNombre','$this->$PrimerApellido','$this->$SegundoApellido','$this->$numeroIdentidad','$this->$telefono','$this->$email','$this->$fechaNacimiento','$this->$NumeroCuenta')";
-            
-            $resultado=$conexion->ejecutarConsulta($sql);
-            $respuesta["mensaje"]="Ingresado Correctamente";
-            }	  
-			echo json_encode($respuesta);
+      }else{
+        
+        $sql ="INSERT INTO TBL_PERSONAS 
+        VALUES (null,'$this->id_lugar_nacimiento','$this->id_lugar_residencia','$this->id_genero','$this->PrimerNombre','$this->SegundoNombre','$this->PrimerApellido','$this->SegundoApellido','$this->numeroIdentidad','$this->telefono','$this->email','$this->fechaNacimiento','$this->NumeroCuenta')";
+        
+
+        $r=$conexion->ejecutarConsulta($sql);
+        
+        return $r;
+        }
+      
+        
      }
      
 

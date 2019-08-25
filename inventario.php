@@ -74,10 +74,17 @@ include("class/class-conexion.php");
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="slc-estado-articulo-actualizar">Categoria de articulo</label>
 															<select id="slc-categoria-articulo-actualizar" class="form-control" data-style="btn-primary" style="margin-left: 4%;margin-top: 10px;">
+<<<<<<< HEAD
 																<option value="">--Seleccione una categoria--</option>
 																<option value="1">Computadoras</option>
 																<option value="2">Proyectores</option>
 																<option value="3">Cables</option>
+=======
+																<option>--Seleccione una categoria--</option>
+																<option>1</option>
+																<option>2</option>
+																<option>3</option>
+>>>>>>> origin/master
 															</select>
 														</div>
 													</div>
@@ -107,6 +114,7 @@ include("class/class-conexion.php");
 														<label for="slc-estado-articulo">Estado del Articulo</label>
 														<select id="slc-estado-articulo-actualizar" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
 														<option>--Seleccione un Estado--</option>
+<<<<<<< HEAD
 															<option value="1">Diponible</option>
 															<option value="2">No disponible</option>
 															
@@ -123,6 +131,17 @@ include("class/class-conexion.php");
 															<option value="3">Laboratorio 3</option>
 															<option value="4">Laboratorio 4</option>
 															<option value="5">Laboratorio de Investigación</option>
+=======
+															<option>1 Diponible</option>
+															<option>2 No disponible</option>
+															
+														</select>	
+
+														<label for="slc-persona-registra">Persona que registra</label>
+														<select id="slc-persona-registra-articulo-actualizar" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
+															<option>--Seleccione--</option>
+															<option>1</option>
+>>>>>>> origin/master
 														</select>
 
 													</div>

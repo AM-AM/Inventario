@@ -1,11 +1,22 @@
 USE INVENTARIO;
+<<<<<<< HEAD
 -- Procedimiento para Insertar ARTICULO
+=======
+<<<<<<< HEAD
+-- Procedimiento para Insertar ARTICULO
+=======
+#Procedimiento para Insertar Insumo
+>>>>>>> 0855d236848eecd74520508de6c285d59574f5ed
+>>>>>>> origin/master
 DROP PROCEDURE IF EXISTS `SP_INSERTAR_ARTICULO`;
 CREATE PROCEDURE `SP_INSERTAR_ARTICULO`(
   IN P_ID_ESTADO_ARTICULO INT(11),
   IN P_ID_PERSONA_USUARIO_REGISTRA INT(11),
   IN P_ID_CATEGORIA_ARTICULOS INT(11),
+<<<<<<< HEAD
   IN P_ID_UBICACION_ARTICULO INT(11),
+=======
+>>>>>>> origin/master
   IN P_NOMBRE_ARTICULO VARCHAR(50),
   IN P_DESCRIPCION VARCHAR(300),
   IN P_PRECIO_ARTICULO FLOAT(20),
@@ -35,7 +46,7 @@ BEGIN
     SET mensaje=CONCAT(mensaje, 'Identificador del usuario vacío, ');
   ELSE
     SELECT COUNT(*) INTO contador FROM TBL_USUARIOS
-    WHERE P_ID_PERSONA_USUARIO_REGISTRA = TBL_USUARIOS.P_ID_PERSONA_USUARIO;
+    WHERE P_ID_PERSONA_USUARIO_REGISTRA = TBL_USUARIOS.ID_PERSONA_USUARIO;
 
     IF contador=0 THEN
       SET mensaje = CONCAT(mensaje, 'El USUARIO no existe, ');
@@ -46,10 +57,13 @@ BEGIN
     SET mensaje=CONCAT(mensaje, 'CATEGORIA vacío, ');
   END IF;
 
+<<<<<<< HEAD
   IF P_ID_UBICACION_ARTICULO='' OR P_ID_UBICACION_ARTICULO NULL THEN 
     SET mensaje=CONCAT(mensaje, 'UBICACION vacía, ');
   END IF;
 
+=======
+>>>>>>> origin/master
   IF P_DESCRIPCION='' OR P_DESCRIPCION IS NULL THEN 
     SET mensaje=CONCAT(mensaje, 'Descripcion vacía, ');
   END IF;
@@ -83,9 +97,18 @@ BEGIN
   END IF;
 
   INSERT INTO TBL_ARTICULOS (ID_ESTADO_ARTICULO, 
+<<<<<<< HEAD
                            ID_PERSONA_USUARIO,
                            ID_CATEGORIA_ARTICULOS,
                            P_ID_UBICACION_ARTICULO,
+=======
+<<<<<<< HEAD
+                           ID_PERSONA_USUARIO,
+                           ID_CATEGORIA_ARTICULOS, 
+=======
+                           ID_PERSONA_USUARIO, 
+>>>>>>> 0855d236848eecd74520508de6c285d59574f5ed
+>>>>>>> origin/master
                            NOMBRE_ARTICULO, 
                            DESCRIPCION,
                            PRECIO_ARTICULO,
@@ -94,8 +117,12 @@ BEGIN
                           
     VALUES (P_ID_ESTADO_ARTICULO,
             P_ID_PERSONA_USUARIO_REGISTRA, 
+<<<<<<< HEAD
             P_ID_CATEGORIA_ARTICULOS,
             P_ID_UBICACION_ARTICULO,
+=======
+            P_ID_CATEGORIA_ARTICULOS
+>>>>>>> origin/master
             P_NOMBRE_ARTICULO,
             P_DESCRIPCION,
             P_PRECIO_ARTICULO,

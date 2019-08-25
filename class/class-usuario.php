@@ -8,11 +8,11 @@
 		private $clave_usuario;
 		private $fecha_registro;
 
-		public function __construct($id_persona_usuario,
-					$id_tipo_usuario,
-					$nombre_usuario,
-					$clave_usuario, 
-					$fecha_registro){
+		public function __construct($id_persona_usuario=null,
+					$id_tipo_usuario=null,
+					$nombre_usuario=null,
+					$clave_usuario=null, 
+					$fecha_registro=null){
 			$this->id_persona_usuario = $id_persona_usuario;
 			$this->id_tipo_usuario = $id_tipo_usuario;
 			$this->nombre_usuario = $nombre_usuario;
@@ -57,18 +57,7 @@
 				" Fecha_registro: " . $this->fecha_registro;
 		}
 
-		public static function obtenerID($conexion){
-
-
-			$rs = "SELECT MAX(id_persona)+1  AS id FROM tbl_personas";
-			$resultado=$conexion->ejecutarConsulta($rs);
-			$row=$conexion->obtenerFila($resultado);
-
-
-			
-			$respuesta["mensaje"]=$row[0];
-			echo json_encode($respuesta);
-		}
+		
 
 
 		public static function verificarUsuario($conexion,$nombre_usuario,$password){
@@ -112,32 +101,14 @@
 
 
 
-		 public static function crear($conexion,$numero_cuenta){
+		 public function crear($conexion){
 			#consulta
-
-			$sql="SELECT A.ID_PERSONA_USUARIO,A.ID_TIPO_USUARIO,A.N,
-						CONCAT(B.PRIMER_NOMBRE,' ',B.PRIMER_APELLIDO) AS NOMBRE
-						FROM TBL_USUARIOS A
-						INNER JOIN TBL_PERSONAS B
-						ON A.ID_PERSONA_USUARIO=B.ID_PERSONA
-						WHERE B.NUMERO_CUENTA='='$numero_cuenta'";
+			$sql = "INSERT INTO TBL_USUARIOS 
+			VALUES ('$this->id_persona_usuario','$this->id_tipo_usuario','$this->nombre_usuario','$this->clave_usuario',null,'$this->fecha_registro')";
 			
-
-
-			#resultado de la consulta				
-			$resultado=$conexion->ejecutarConsulta($sql);
-			$cantidadRegistros=$conexion->cantidadRegistros($resultado);
+			$r2 = $conexion->ejecutarConsulta($sql);
+		  return $r2;
 			
-			if ($cantidadRegistros!=0)  {
-				
-				$respuesta["mensaje"]="El usuario ya Existe";
-				
-			}
-			else {
-				
-				$respuesta["mensaje"]="";
-				}	  
-			echo json_encode($respuesta);
 		 }
 	}
 ?>

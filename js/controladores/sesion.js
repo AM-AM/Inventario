@@ -21,7 +21,7 @@ function iniciarSesion(){
           window.location="administrador.php";
         }
         else if (respuesta.tipo_usuario==2) {
-          window.location="instructor.php";
+          window.location="administrador.php";
         }  
       }
     },

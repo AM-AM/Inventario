@@ -5,6 +5,8 @@ include("class/class-conexion.php");
       session_destroy();
      header("Location: login.php");
  }
+
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,9 +22,11 @@ include("class/class-conexion.php");
   <title>Sistema de inventario</title>
 
   <!-- Custom fonts for this template-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+  
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -46,15 +50,17 @@ include("class/class-conexion.php");
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
+ <!-- Divider -->
+ <hr class="sidebar-divider">
 
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="admin.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Crear Reportes</span></a>
-      </li>
-	
+<!-- Heading -->
+<div class="sidebar-heading">
+  Interfaz
+</div>
+<!-- Divider -->
+<hr class="sidebar-divider my-0">
 
+<<<<<<< HEAD
 	 <?php   
       if ($_SESSION['tipo_usuario'] == 1){
         echo '<li class="nav-item active">
@@ -64,17 +70,49 @@ include("class/class-conexion.php");
       </li>';
       }
       ?>
+=======
+<!-- Nav Item - Dashboard -->
+>>>>>>> origin/master
 
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interfaz
-      </div>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrwo" aria-expanded="true" aria-controls="collapseTrwo">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Reportes</span>
+        </a>
+        <div id="collapseTrwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            <?php   
+                if ($_SESSION['tipo_usuario'] == 1){
+                  echo '
+                
+                  <a class="collapse-item" href="adminReporte.php" >Ver Reportes</a>';
+                }
+            ?>
+            <a class="collapse-item" id="crear_reporte" ><i class="fas fa-plus"></i>Crear Reportes</a>
+            
+     
 
+     
+           
+            
+          </div>
+        </div>
+      </li>
+
+       
+
+     
       <!-- Nav Item - Usuarios Collapse Menu -->
+      
+<?php   
+      if ($_SESSION['tipo_usuario'] == 1){
+        echo '
+       
+       
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-users"></i>
@@ -82,16 +120,17 @@ include("class/class-conexion.php");
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            <h6 class="collapse-header">Usuarios:</h6>
             <a class="collapse-item" id="administradores">Administradores</a>
-            <a class="collapse-item" id="estudiantes">Estudiantes</a>
-            <a class="collapse-item" id="instructores">Instructores</a>
+            <a class="collapse-item" id="Instructores"></a>
             <a class="collapse-item" id="registro"><i class="fas fa-plus"></i>Nuevo usuario</a>
             
           </div>
         </div>
       </li>
 
+      ';
+    } ?>
       <!-- Nav Item - Inventario Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInv" aria-expanded="true" aria-controls="collapseInv">
@@ -100,7 +139,7 @@ include("class/class-conexion.php");
         </a>
         <div id="collapseInv" class="collapse" aria-labelledby="headingInv" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Artículos:</h6>
+            <h6 class="collapse-header">Equipos:</h6>
             
             <a class="collapse-item" id="equiposDisponibles" >Equipos Disponibles</a>
             <a class="collapse-item" id="añadirEquipos" ><i class="fas fa-plus"></i> Añadir Equipos</a>           
@@ -205,7 +244,9 @@ include("class/class-conexion.php");
                 </form>
               </div>
             </li>
-
+<?php   
+      if ($_SESSION['tipo_usuario'] == 1){
+        echo '
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -213,6 +254,7 @@ include("class/class-conexion.php");
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">2</span>
               </a>
+
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
@@ -226,7 +268,7 @@ include("class/class-conexion.php");
                   </div>
                   <div>
                     <div class="small text-gray-500">Diciembre 12, 2019</div>
-                    <span class="font-weight-bold">aaa</span>
+                    <span class="font-weight-bold" >aaa</span>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -241,25 +283,28 @@ include("class/class-conexion.php");
                   </div>
                 </a>
                 
-                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas las notificaciones</a>
+                <a class="dropdown-item text-center small text-gray-500" href="adminReporte.php">Mostrar todas las notificaciones</a>
               </div>
             </li>
 
-            
-
             <div class="topbar-divider d-none d-sm-block"></div>
+            ';
+            }
+?>
+            
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nombre Apellido</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombre']; ?></span>
                 <i class="fas fa-user fa-sm fa-fw mr-2 fa-1x text-gray-500"></i>
                 
               </a>
               <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" >
+                <a class="dropdown-item" class="modal-dialog modal-lg"  data-target="#logoutModal2" data-toggle="modal">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  
                   Perfil
                 </a>
                 <a class="dropdown-item" href="#">
@@ -495,6 +540,24 @@ include("class/class-conexion.php");
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+<div class="modal fade" id="logoutModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  <!-- cambiar id a la ventana modal-->
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Perfil</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+     <?php
+include('modalperfil.php');
+?>
+        
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

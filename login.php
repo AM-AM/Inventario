@@ -19,7 +19,8 @@
         <button class="btn btn-primary" id="btn-iniciar-sesion" onclick="iniciarSesion();">Iniciar Sesion</button>
         <div id="status"></div>
         <br><br>
-        <a href="forgot-password.html" style="color: #F0F8FF;">Olvidé mi contraseña</a>
+        <a href="forgot-password.html" style="color: #F0F8FF;">Olvidé mi contraseña</a> <br>
+        <a href="index.html" style="color: #F0F8FF;">Pagina Principal</a>
         <br>
        
     </div>

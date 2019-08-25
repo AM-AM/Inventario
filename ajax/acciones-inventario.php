@@ -45,8 +45,11 @@
         $idEstadoArticulo = ValidarPost::int('id_estado_articulo');
         $idPersonaUsuarioRegistra = ValidarPost::int('id_persona_usuario_registra');
         $idCategoriaArticulos = ValidarPost::int('id_categoria_articulos');
+<<<<<<< HEAD
         $idUbicacionArticulo = ValidarPost::int('id_ubicacion_articulo');
         $nombre = ValidarPost::varchar('nombre');
+=======
+>>>>>>> origin/master
         $cantidad = ValidarPost::int('cantidad');
         $precioArticulo = ValidarPost::float('precio_articulo');        
         $fechaRegistroArt = ValidarPost::date('fecha_registro_art');
@@ -56,8 +59,13 @@
         $articulo->setIdEstadoArticulo($idEstadoArticulo);
         $articulo->setIdPersonaUsuarioRegistra($idPersonaUsuarioRegistra);
         $articulo->setIdCategoriaArticulos($idCategoriaArticulos);
+<<<<<<< HEAD
         $articulo->setIdUbicacionArticulo($idUbicacionArticulo);
         $articulo->setNombreArticulo($nombre);       
+=======
+        $articulo->setNombreArticulo($nombre);
+        $articulo->setDescripcion($descripcion);
+>>>>>>> origin/master
         $articulo->setPrecioArticulo($precioArticulo);
         $articulo->setCantidad($cantidad);
         $articulo->setFechaRegistroArt($fechaRegistroArt);

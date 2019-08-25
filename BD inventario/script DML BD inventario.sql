@@ -131,6 +131,53 @@ INSERT INTO `tbl_categoria_articulos` (`id_categoria_articulos`,
              VALUES (   NULL, 
                         'Cables');
 
+<<<<<<< HEAD
+=======
+-- insertando en tbl_articulos
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`, 
+                            `id_categoria_articulos`,
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+            VALUES (NULL, 
+                    '2', 
+                    '1', 
+                    '1',
+                    'Computadora de Escritorio', 
+                    NULL, 
+                    '2', 
+                    '2019-08-05', 
+                    NULL, 
+                    'Computadora de escritorio marca DELL para uso exclusivo de laboratorios');
+    
+
+INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`,
+                            `id_categoria_articulos`, 
+                            `nombre_articulo`, 
+                            `precio_articulo`, 
+                            `cantidad`, 
+                            `fecha_registro_art`, 
+                            `fecha_salida_art`, 
+                            `descripcion_articulo`) 
+            VALUES(NULL, 
+                  '1', 
+                  '1',
+                  '2', 
+                  'Proyector', 
+                  NULL, 
+                  '2', 
+                  '2019-08-05', 
+                  NULL, 
+                  'proyector grande con todos sus componentes incluidos'); 
+
+
+>>>>>>> origin/master
 -- insertando en tbl_estado_reporte
 INSERT INTO `tbl_estado_reporte` (`id_estado_reporte`, 
                                   `estado_reporte`) 
@@ -154,6 +201,7 @@ INSERT INTO `tbl_tipo_reportes` (`id_tipo_reporte`,
           VALUES (NULL, 'Solicitudes de Equipo');
 
 -- ---------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 -- ACTUALIZACION SCRIPT DML
 -- insertando en tbl_ubicacion_articulos
 INSERT INTO `tbl_ubicacion_articulos` (`id_ubicacion_articulo`, `ubicacion_articulo`, `Abreviatura`) 
@@ -223,15 +271,29 @@ INSERT INTO `tbl_articulos` (`id_articulos`,
                             `id_persona_usuario_registra`, 
                             `id_categoria_articulos`, 
                             `id_ubicacion_articulo`, 
+=======
+-- ACTUALIZACION 2 DE SCRIPT DML
+-- insertando en tbl_articulos
+
+
+
+
+        INSERT INTO `tbl_articulos` (`id_articulos`, 
+                            `id_estado_articulo`, 
+                            `id_persona_usuario_registra`,
+                            `id_categoria_articulos`, 
+>>>>>>> origin/master
                             `nombre_articulo`, 
                             `precio_articulo`, 
                             `cantidad`, 
                             `fecha_registro_art`, 
                             `fecha_salida_art`, 
                             `descripcion_articulo`) 
-          VALUES (NULL, 
+            VALUES(NULL, 
+                  '2', 
+                  '1',
                   '1', 
-                  '1', 
+<<<<<<< HEAD
                   '2', 
                   '5', 
                   'Proyector Grande', 
@@ -240,18 +302,33 @@ INSERT INTO `tbl_articulos` (`id_articulos`,
                   '2019-08-15', 
                   NULL, 
                   'proyector disponible para prestamo');
+=======
+                  'computadora portatil', 
+                  NULL, 
+                  '2', 
+                  '2019-08-05', 
+                  NULL, 
+                  'laptop marca hp para uso de los instructores');
+>>>>>>> origin/master
 
-INSERT INTO `tbl_articulos` (`id_articulos`, 
+
+           INSERT INTO `tbl_articulos` (`id_articulos`, 
                             `id_estado_articulo`, 
+<<<<<<< HEAD
                             `id_persona_usuario_registra`, 
                             `id_categoria_articulos`, 
                             `id_ubicacion_articulo`, 
+=======
+                            `id_persona_usuario_registra`,
+                            `id_categoria_articulos`, 
+>>>>>>> origin/master
                             `nombre_articulo`, 
                             `precio_articulo`, 
                             `cantidad`, 
                             `fecha_registro_art`, 
                             `fecha_salida_art`, 
                             `descripcion_articulo`) 
+<<<<<<< HEAD
           VALUES (NULL, 
                   '1', 
                   '1', 
@@ -355,3 +432,15 @@ INSERT INTO `tbl_articulos` (`id_articulos`,
                 '2019-08-10', 
                 NULL, 
                 'Proyector pequeño, disponible para prestamo');
+=======
+            VALUES(NULL, 
+                  '1', 
+                  '1',
+                  '2', 
+                  'pantalla para proyectar', 
+                  NULL, 
+                  '2', 
+                  '2019-08-05', 
+                  NULL, 
+                  'pantalla para proyeccion con todos sus accesorios, disponible para el prestamo');
+>>>>>>> origin/master
