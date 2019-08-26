@@ -141,7 +141,9 @@ include("class/class-conexion.php");
             <h6 class="collapse-header">Equipos:</h6>
             
             <a class="collapse-item" id="equiposDisponibles" >Equipos Disponibles</a>
-            <a class="collapse-item" id="añadirEquipos" ><i class="fas fa-plus"></i> Añadir Equipos</a>           
+            <a class="collapse-item" id="historialMovimientos" >Historial de Movimientos</a>
+            <a class="collapse-item" id="añadirEquipos" ><i class="fas fa-plus"></i> Añadir Equipos</a>
+
           </div>
         </div>        
       </li>

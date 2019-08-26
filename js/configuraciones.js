@@ -35,6 +35,9 @@ $(document).ready(function(){
     $("#añadirEquipos").click(function(event){
         $("#contenido").load('inventario.php');
     });
+    $("#historialMovimientos").click(function(event){
+        $("#contenido").load('tablas/historialMovimientos.php');
+    });
 });
 
 
