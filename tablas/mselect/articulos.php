@@ -10,37 +10,27 @@ include ('../../class/class-conexion.php');
  
 
 
+      $titulo = $_POST['titulo'];
       $tipo = $_POST['tipo'];
       $reporte = $_POST['reporte'];
       $fecha= $_POST['fecha'];
-      $articulos= $_POST['articulos'];
       $idpersona = $_SESSION['id_persona_usuario'];
       $estado = 1;
-      $mensaje = '';
       
       //Convertivos el $tipo a Integer
       $tipo = (int)$tipo;
-     
-      $mensaje = 'Los articulos seleccionados son: <br>';
-      foreach($articulos as $articulo){
-      $mensaje =  $mensaje . ' ' . $articulo . ', ' ;
 
-      }
-
-     
-    
-     $reporte = $mensaje . '<br>' . $reporte;
-
-     echo $reporte;
-        
-      $conec = new Conexion();      
+      
+      
+      $conec = new Conexion();
+      
     $sql = "INSERT INTO tbl_reportes values
                              (null,'$idpersona','$tipo','$estado','$fecha','$reporte')";
     //$sql = 'INSERT INTO prueba values(null,"Adios")';
         // $sql = 'SELECT * FROM tbl_usuarios';
   
     $resultado = $conec->ejecutarConsulta($sql);
-    // print_r($resultado);
+    print_r($resultado);
     // $cantidadRegistros = $conec->cantidadRegistros($resultado);
 
     // foreach($resultado as $articulo){
@@ -63,8 +53,8 @@ include ('../../class/class-conexion.php');
 
 
 
- header("Status: 301 Moved Permanently");
- header("Location: ../../administrador.php");
+header("Status: 301 Moved Permanently");
+header("Location: ../../administrador.php");
 
 ?>
 

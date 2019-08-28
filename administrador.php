@@ -4,6 +4,8 @@ include("class/class-conexion.php");
  if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
       session_destroy();
      header("Location: login.php");
+
+     
  }
 
  
@@ -18,6 +20,7 @@ include("class/class-conexion.php");
   <meta name="description" content="">
   <meta name="author" content="">
 
+
   
   <title>Sistema de inventario</title>
 
@@ -30,6 +33,11 @@ include("class/class-conexion.php");
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+
+  <link href="tablas/mselect/chosen.min.css" rel="stylesheet">
+  <script type="text/javascript" src="tablas/mselect/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="tablas/mselect/chosen.jquery.min.js"></script>
+  <script src="js/push.min.js"></script>
 </head>
 
 <body id="page-top" style="overflow-y:visible">
@@ -48,10 +56,9 @@ include("class/class-conexion.php");
         <div class="sidebar-brand-text mx-3">Inventario IS</div>
       </a>
 
+
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
- <!-- Divider -->
- <hr class="sidebar-divider">
 
 <!-- Heading -->
 <div class="sidebar-heading">
@@ -60,15 +67,6 @@ include("class/class-conexion.php");
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
-	 <?php   
-      if ($_SESSION['tipo_usuario'] == 1){
-        echo '<li class="nav-item active">
-        <a class="nav-link" href="admin.php">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Reportes</span></a>
-      </li>';
-      }
-      ?>
 
 <!-- Nav Item - Dashboard -->
 
@@ -121,7 +119,7 @@ include("class/class-conexion.php");
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Usuarios:</h6>
             <a class="collapse-item" id="administradores">Administradores</a>
-            <a class="collapse-item" id="Instructores"></a>
+            <a class="collapse-item" id="Instructores">Instructores</a>
             <a class="collapse-item" id="registro"><i class="fas fa-plus"></i>Nuevo usuario</a>
             
           </div>
@@ -247,31 +245,47 @@ include("class/class-conexion.php");
             </li>
 <?php   
       if ($_SESSION['tipo_usuario'] == 1){
+        $conec = new Conexion();
+      
+        $sql = "SELECT COUNT(id_reportes)as reportes FROM `tbl_reportes` WHERE id_estado_reporte=1 ";
+
+        $resultado = $conec->ejecutarConsulta($sql);
+
+        foreach($resultado as $res){
+          $reportes = $res['reportes'];
+        
         echo '
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">2</span>
+                <span class="badge badge-danger badge-counter">';
+                
+                echo (int)$reportes . '</span>
               </a>
 
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Notificaciones
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                </h6>';
+
+                if ($reportes>=1){
+                echo '
+                <a class="dropdown-item d-flex align-items-center" href="adminReporte.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">Diciembre 12, 2019</div>
-                    <span class="font-weight-bold" >aaa</span>
+                    <div class="small text-gray-500">Agosto 28, 2019</div>
+                    <span class="font-weight-bold" >Tienes Reportes sin Revisar</span>
                   </div>
-                </a>
+                </a>';}
+
+                echo '
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-success">
@@ -291,6 +305,7 @@ include("class/class-conexion.php");
             <div class="topbar-divider d-none d-sm-block"></div>
             ';
             }
+          }
 ?>
             
 
@@ -543,7 +558,12 @@ include("class/class-conexion.php");
   </a>
 
 <div class="modal fade" id="logoutModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  <!-- cambiar id a la ventana modal-->
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
+    <style type="text/css">
+ .modal-lg {
+    max-width: 70%;
+}
+  </style>
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Perfil</h5>
@@ -598,6 +618,7 @@ include('modalperfil.php');
 
   <script src="js/configuraciones.js"></script>
 
+ 
 
 </body>
 

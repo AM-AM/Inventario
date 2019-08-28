@@ -38,6 +38,10 @@ $(document).ready(function(){
     $("#historialMovimientos").click(function(event){
         $("#contenido").load('tablas/historialMovimientos.php');
     });
+
+        
+
+    
 });
 
 

@@ -3,5 +3,7 @@ $(document).ready(function(){
         $("#contenido").load('inventario.php');
 
 });
+   
 
 });
+
