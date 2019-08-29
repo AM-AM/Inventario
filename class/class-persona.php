@@ -180,10 +180,9 @@
 
       }else{
         
-        $sql ="INSERT INTO TBL_PERSONAS 
-        VALUES (null,'$this->id_lugar_nacimiento','$this->id_lugar_residencia','$this->id_genero','$this->PrimerNombre','$this->SegundoNombre','$this->PrimerApellido','$this->SegundoApellido','$this->numeroIdentidad','$this->telefono','$this->email','$this->fechaNacimiento','$this->NumeroCuenta')";
+       $sql ="INSERT INTO TBL_PERSONAS 
+        VALUES (null,'$this->id_lugar_nacimiento','$this->id_lugar_residencia','$this->id_genero','$this->PrimerNombre','$this->SegundoNombre','$this->PrimerApellido','$this->SegundoApellido','$this->numeroIdentidad','$this->telefono','$this->email','$this->fechaNacimiento','$this->NumeroCuenta', '')";
         
-
         $r=$conexion->ejecutarConsulta($sql);
         
         return $r;
