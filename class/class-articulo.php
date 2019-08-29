@@ -223,12 +223,16 @@
                A.FECHA_REGISTRO_ART,
                A.FECHA_SALIDA_ART,
                D.ID_PERSONA_USUARIO,
-               D.NOMBRE_USUARIO            
+               D.NOMBRE_USUARIO,
+               E.ID_UBICACION_ARTICULO,
+               E.UBICACION_ARTICULO           
         FROM TBL_ARTICULOS A
         INNER JOIN TBL_ESTADO_ARTICULOS B
         ON (A.ID_ESTADO_ARTICULO = B.ID_ESTADO_ARTICULO)
         INNER JOIN TBL_CATEGORIA_ARTICULOS C
         ON(A.ID_CATEGORIA_ARTICULOS = C.ID_CATEGORIA_ARTICULOS)
+        INNER JOIN TBL_UBICACION_ARTICULOS E
+        ON(A.ID_UBICACION_ARTICULO=E.ID_UBICACION_ARTICULO)
         INNER JOIN TBL_USUARIOS D
         ON (A.ID_PERSONA_USUARIO_REGISTRA = D.ID_PERSONA_USUARIO)
         WHERE ID_ARTICULOS = %s';
@@ -244,14 +248,14 @@
     public function crear($conexion){
       $sql = "
         CALL SP_Insertar_Articulo(
-          '%d','%d','%d','%d',%s','%s','%s',DATE('%s'),'%s'
+          '%d','%d','%d','%d','%s','%s','%s',DATE('%s'),'%s'
         );
       ";
       $valores = [
         $this->getIdEstadoArticulo(),
         $this->getIdPersonaUsuarioRegistra(),
         $this->getIdCategoriaArticulos(),
-        $this->getIdUbicacioArticulo(),
+        $this->getIdUbicacionArticulo(),
         $this->getNombreArticulo(),
         $this->getPrecioArticulo(),
         $this->getCantidad(),     
@@ -278,21 +282,18 @@
     public function actualizar($conexion){
       $sql = "
         CALL SP_Actualizar_Articulo(
-          '%d','%d','%d','%d','%d','%s','%s','%s','%s',DATE('%s'),DATE('%s'), @mensaje, @error
+          '%d','%d','%d','%d','%s','%s','%s','%s'
 
       ";
       $valores = [
         $this->getIdArticulos(),
         $this->getIdEstadoArticulo(),
-        $this->getIdPersonaUsuarioRegistra(),
         $this->getIdCategoriaArticulo(),
         $this->getIdUbicacioArticulo(),
         $this->getNombreArticulo(),
         $this->getDescripcion(),
         $this->getPrecioArticulo(),
-        $this->getCantidad(),     
-        $this->getFechaRegistroArt(),
-        $this->getFechaSalidaArt()
+        $this->getCantidad()   
         
       ];
       $rows = $conexion->query($sql, $valores);

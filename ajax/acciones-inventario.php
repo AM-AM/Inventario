@@ -5,7 +5,7 @@
   
   if(isset($_POST['accion'])){
     $conexion = new Conexion();
-    switch ($_POST['accion']) {
+    switch ($_POST['accion']){
       //Acciones con los articulos
       case 'leer-articulos':
         $res['data'] = Articulo::leer($conexion);
@@ -41,31 +41,33 @@
         $res['data'] = Articulo::leerUbicacionArticulos($conexion);
         echo json_encode($res);
       break;
-      case 'insertar-articulo':        
-        $idEstadoArticulo = ValidarPost::int('id_estado_articulo');
+      case 'insertar-articulo': 
+
+         /*  
+        $idEstadoArticulo = ValidarPost::unsigned('id_estado_articulo');
         $idPersonaUsuarioRegistra = ValidarPost::int('id_persona_usuario_registra');
-        $idCategoriaArticulos = ValidarPost::int('id_categoria_articulos');
+        $idCategoriaArticulos = ValidarPost::int('id_categoria_articulo');
         $idUbicacionArticulo = ValidarPost::int('id_ubicacion_articulo');
         $nombre = ValidarPost::varchar('nombre');
         $cantidad = ValidarPost::int('cantidad');
-        $precioArticulo = ValidarPost::float('precio_articulo');        
+        $precioArticulo = ValidarPost::float('precio');        
         $fechaRegistroArt = ValidarPost::date('fecha_registro_art');
-        $descripcion = ValidarPost::varchar('descripcion');
-
+        $descripcion = ValidarPost::varchar('descripcion');*/
+       
         $articulo = new Articulo();
-        $articulo->setIdEstadoArticulo($idEstadoArticulo);
-        $articulo->setIdPersonaUsuarioRegistra($idPersonaUsuarioRegistra);
-        $articulo->setIdCategoriaArticulos($idCategoriaArticulos);
-        $articulo->setIdUbicacionArticulo($idUbicacionArticulo);
-        $articulo->setNombreArticulo($nombre);       
-        $articulo->setPrecioArticulo($precioArticulo);
-        $articulo->setCantidad($cantidad);
-        $articulo->setFechaRegistroArt($fechaRegistroArt);
-        $articulo->setDescripcion($descripcion);
+        $articulo->setIdEstadoArticulo('id_estado_articulo');
+        $articulo->setIdPersonaUsuarioRegistra('id_persona_usuario_registra');
+        $articulo->setIdCategoriaArticulos('id_categoria_articulo');
+        $articulo->setIdUbicacionArticulo('id_ubicacion_articulo');
+        $articulo->setNombreArticulo('nombre');
+        $articulo->setPrecioArticulo('precio'); 
+        $articulo->setCantidad('cantidad');     
+        $articulo->setFechaRegistroArt('fecha_registro_art');
+        $articulo->setDescripcion('descripcion');
         $res['data'] = $articulo->crear($conexion);
         echo json_encode($res);
       break;
-      case 'disminuir-articulos':
+      /*case 'disminuir-articulos':
         $idArticulos = ValidarPost::unsigned('id_articulos');
         $cantidad = ValidarPost::int('cantidad');
         $articulo = new Articulo();
@@ -73,30 +75,26 @@
         $articulo->setCantidad($cantidad);
         $res['data'] = $articulo->disminuir($conexion);
         echo json_encode($res);
-      break;
+      break;*/
       case 'actualizar-articulos':
         $idArticulos = ValidarPost::unsigned('id_articulos');
         $nombre = ValidarPost::varchar('nombre');
         $idEstadoArticulo = ValidarPost::int('id_estado_articulo');
-        $idPersonaUsuarioRegistra = ValidarPost::int('id_persona_usuario_registra');
+        $idUbicacionArticulo = ValidarPost::int('id_ubicacion_articulo');
         $idCategoriaArticulos = ValidarPost::int('id_categoria_articulos');
-        $cantidad = ValidarPost::int('cantidad');
+        $cantidad = ValidarPost::int('cantidad-articulo');
         $precio = ValidarPost::float('precio_articulo');
-        $descripcion = ValidarPost::varchar('descripcion');
-        $fechaRegistroArt = ValidarPost::date('fecha_registro_art');
-        $fechaSalidaArt = ValidarPost::date('fecha_salida_art');
-        
+        $descripcion = ValidarPost::varchar('descripcion-articulo');
+      
         $articulo = new Articulo();
         $articulo->setIdArticulos($idArticulos);
         $articulo->setIdEstadoArticulo($idEstadoArticulo);
-        $articulo->setIdPersonaUsuarioRegistra($idPersonaUsuarioRegistra);
         $articulo->setIdCategoriaArticulos($idCategoriaArticulos);
+        $articulo->setIdUbicacionArticulo($idUbicacionArticulo);
         $articulo->setNombreArticulo($nombre);
         $articulo->setDescripcion($descripcion);
         $articulo->setPrecioArticulo($precioArticulo);
         $articulo->setCantidad($cantidad);
-        $articulo->setFechaRegistroArt($fechaRegistroArt);
-        $articulo->setFechaSalidaArt($fechaSalidaArt);
         $res['data'] = $articulo->actualizar($conexion);
         echo json_encode($res);
       break;
@@ -110,11 +108,11 @@
     }
     $conexion->cerrar();
     $conexion = null;
-  } else {
-    $res['data']['mensaje']='Accion no especificada';
-    $res['data']['resultado']=false;
-    $res['data']['accion']=$_POST;
-    echo json_encode($res);
+   } else{
+      $res['data']['mensaje']='Accion no especificada';
+      $res['data']['resultado']=false;
+      $res['data']['accion']=$_POST;
+      echo json_encode($res);
   }
   
 ?>
