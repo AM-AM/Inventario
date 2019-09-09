@@ -39,6 +39,7 @@ include("function.php");
   <script type="text/javascript" src="tablas/mselect/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="tablas/mselect/chosen.jquery.min.js"></script>
   <script src="js/push.min.js"></script>
+  
 </head>
 
 <body id="page-top" style="overflow-y:visible">
@@ -76,9 +77,36 @@ include("function.php");
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrwo" aria-expanded="true" aria-controls="collapseTrwo">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrwo" aria-expanded="true" aria-controls="collapseTrwo">
           <i class="fas fa-fw fa-tachometer-alt"></i>
+          
           <span>Reportes</span>
+         
+          
+              <?php
+              
+                $conec = new Conexion();
+                
+                $sql = "SELECT COUNT(id_reportes)as reportes FROM `tbl_reportes` WHERE id_estado_reporte=1 ";
+
+                $resultado = $conec->ejecutarConsulta($sql);
+
+                foreach($resultado as $res){
+                   $reportes = $res['reportes'];
+                
+                    echo '
+                        
+                    <!-- Counter - Alerts -->
+                    <span class="badge badge-danger badge-counter">';
+                    
+                    echo (int)$reportes . '</span>
+                      
+
+
+                    ';
+                 }
+              ?>
+            
         </a>
         <div id="collapseTrwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -308,6 +336,58 @@ include("function.php");
             ';
             }
           }
+?>
+<?php  
+  
+  $conec = new Conexion();
+      
+  $id_recive = $_SESSION['id_persona_usuario'];
+
+  $sql = "SELECT b.nombre_usuario as nombre, a.id_persona_usuario_envia as id_envia, a.contenido_mensaje as mensaje, a.asunto_mensaje as asunto, a.fecha_mensaje as fecha
+  FROM tbl_mensajes a ,tbl_usuarios b 
+  WHERE a.id_persona_usuario_envia = b.id_persona_usuario
+  and a.id_estado_mensaje = 2
+  and a.id_persona_usuario_recibe = $id_recive";
+
+  $sql1 = "SELECT count(a.contenido_mensaje) as c_mensajes
+  FROM tbl_mensajes a ,tbl_usuarios b 
+  WHERE a.id_persona_usuario_envia = b.id_persona_usuario
+  and a.id_estado_mensaje = 2
+  and a.id_persona_usuario_recibe = $id_recive";
+
+$resultado = $conec->ejecutarConsulta($sql);
+$resultado1 = $conec->ejecutarConsulta($sql1);
+
+foreach($resultado1 as $res1){
+       echo' <!-- Nav Item - Alerts -->
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-envelope"></i>
+            <!-- Counter - Alerts -->
+            <span class="badge badge-danger badge-counter">'.(int)$res1['c_mensajes'].'</span>
+          </a>
+          
+          <!-- Dropdown - Alerts -->
+          <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">
+              Mensajes
+            </h6>';
+        }
+        foreach($resultado as $res){
+          echo '
+          <form class="form" action="tablas/chat.php" method="post">
+            <a class="dropdown-item d-flex align-items-center" >
+              <div>
+              
+              <input type="submit" id="id_envia" name ="id_envia" value="'.$res['id_envia'].'">
+                <div class="small text-gray-500">'.$res['nombre']."  /  ".$res['fecha'].'</div>
+                <span class="font-weight-bold" >'.$res['mensaje'].'</span>
+              </div>
+            </a>
+        </form>';
+        }
+                    
+
 ?>
             
 

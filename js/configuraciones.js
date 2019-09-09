@@ -38,8 +38,11 @@ $(document).ready(function(){
     $("#historialMovimientos").click(function(event){
         $("#contenido").load('tablas/historialMovimientos.php');
     });
-
-        
+    // Chat
+    $("#id_envia").click(function(event){
+        header("Status: 301 Moved Permanently");
+        header("Location: tablas/chat.php");
+    });
 
     
 });

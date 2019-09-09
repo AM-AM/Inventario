@@ -31,6 +31,8 @@
                 <th scope="col-lg-1"><i class="material-icons">
                 delete_forever
                 </i> </th>
+                <th scope="col">Ver Chat</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>';
@@ -38,9 +40,8 @@
             foreach ($resultado as $res) { 
             
              
-             
 
-echo '
+            echo '
                 <tr>
                 <form class="form" action="function.php" method="post">
                   <th scope="row"> <input type="text"  readonly  size="2" name="idd" value="'.$res['id_persona_usuario'].'"></th>
@@ -49,6 +50,10 @@ echo '
                   <td> '. $res['numero_cuenta']. '</td>
                   <td> <input type="submit" class="btn btn-primary mb-2" value="Actualizar" name="actualizar"></td>
                   <td> <input type="submit" class="btn btn-danger mb-2" value="Borrar" name="borrar"> </td>
+                  <td> <input type="submit" class="btn btn-primary mb-2" value="Ver Chat" name="chat"></td>
+                  
+                  
+                 
                    </tr>
               </form>
                 </tr>';
