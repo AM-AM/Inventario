@@ -1,12 +1,14 @@
 <?php
 include("class/class-conexion.php");
- session_start();
+session_start();
  if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
-      session_destroy();
+  
+  session_destroy();
      header("Location: login.php");
 
      
  }
+ 
 
  
 ?>
@@ -74,33 +76,66 @@ include("class/class-conexion.php");
 
 
       <li class="nav-item">
+     
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrwo" aria-expanded="true" aria-controls="collapseTrwo">
           <i class="fas fa-fw fa-tachometer-alt"></i>
+          
           <span>Reportes</span>
+         
+          
+              <?php
+              if ($_SESSION['tipo_usuario'] == 1){
+                $conec = new Conexion();
+                
+                $sql = "SELECT COUNT(id_reportes)as reportes FROM `tbl_reportes` WHERE id_estado_reporte=1 ";
+
+                $resultado = $conec->ejecutarConsulta($sql);
+
+                foreach($resultado as $res){
+                   $reportes = $res['reportes'];
+                
+                    echo '
+                        
+                    <!-- Counter - Alerts -->
+                    <span class="badge badge-danger badge-counter">';
+                    
+                    echo (int)$reportes . '</span>
+                      
+
+
+                    ';
+                 }
+                }
+              ?>
+            
         </a>
+        
         <div id="collapseTrwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          
+         
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            
             <?php   
+
                 if ($_SESSION['tipo_usuario'] == 1){
                   echo '
                 
                   <a class="collapse-item" href="adminReporte.php" >Ver Reportes</a>';
                 }
+
             ?>
+            
+            
             <a class="collapse-item" id="crear_reporte" ><i class="fas fa-plus"></i>Crear Reportes</a>
             
-     
-
-     
-           
             
-          </div>
+             </div>
+          
         </div>
       </li>
 
        
-
      
       <!-- Nav Item - Usuarios Collapse Menu -->
       
@@ -140,6 +175,7 @@ include("class/class-conexion.php");
             
             <a class="collapse-item" id="equiposDisponibles">Equipos Disponibles</a>
             <a class="collapse-item" id="historialMovimientos" >Historial de Movimientos</a>
+            <a class="collapse-item" id="estadoArticulo" >Estado de Artículo</a>
             <a class="collapse-item" id="añadirEquipos" ><i class="fas fa-plus"></i> Añadir Equipos</a>
 
           </div>
@@ -246,7 +282,10 @@ include("class/class-conexion.php");
                 </form>
               </div>
             </li>
-<?php   
+
+
+
+            <?php   
       if ($_SESSION['tipo_usuario'] == 1){
         $conec = new Conexion();
       
@@ -309,6 +348,66 @@ include("class/class-conexion.php");
             ';
             }
           }
+?>
+            
+ <?php   
+
+
+  $conec = new Conexion();
+      
+  $id_recive = $_SESSION['id_persona_usuario'];
+
+  $sql = "SELECT b.nombre_usuario as nombre, a.id_persona_usuario_envia as id_envia, a.contenido_mensaje as mensaje, a.asunto_mensaje as asunto, a.fecha_mensaje as fecha
+  FROM tbl_mensajes a ,tbl_usuarios b 
+  WHERE a.id_persona_usuario_envia = b.id_persona_usuario
+  and a.id_estado_mensaje = 2
+  and a.id_persona_usuario_recibe = $id_recive
+  ";
+
+  $sql1 = "SELECT count(a.contenido_mensaje) as c_mensajes
+  FROM tbl_mensajes a ,tbl_usuarios b 
+  WHERE a.id_persona_usuario_envia = b.id_persona_usuario
+  and a.id_estado_mensaje = 2
+  and a.id_persona_usuario_recibe = $id_recive";
+
+$resultado = $conec->ejecutarConsulta($sql);
+$resultado1 = $conec->ejecutarConsulta($sql1);
+
+foreach($resultado1 as $res1){
+       echo' <!-- Nav Item - Alerts -->
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
+            <i class="fa fa-envelope"></i>
+            <!-- Counter - Alerts -->
+            <span class="badge badge-danger badge-counter">'.(int)$res1['c_mensajes'].'</span>
+          </a>
+          
+          <!-- Dropdown - Alerts -->
+          <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">
+              Mensajes
+            </h6>';
+        }
+        foreach($resultado as $res){
+          echo '
+            <a class="dropdown-item d-flex align-items-center" href="tablas/chat.php?id='.$res['id_envia'].'" >
+              <div>
+                <div class="small text-gray-500">'.$res['nombre']."  /  ".$res['fecha'].'</div>
+                <span class="font-weight-bold" >'.$res['mensaje'].'</span>
+              </div>
+            </a>
+        ';
+        }
+         if ($_SESSION['tipo_usuario'] == 2){
+
+        
+           echo '
+           <a class="dropdown-item text-center small text-gray-500" href="tablas/chat.php?id=1">Escribir Mensaje</a>
+           ';         
+        }
+                    
+
 ?>
             
 
@@ -602,7 +701,7 @@ include('modalperfil.php');
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.php">Cerrar sesión</a>
+          <a class="btn btn-primary"  href="ajax/acciones-sesion.php?accion=cerrar-sesion">Cerrar sesión</a>
         </div>
       </div>
     </div>

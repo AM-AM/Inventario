@@ -66,8 +66,8 @@ if ($_POST){
 }
 
 }
-
-
+header("Status: 301 Moved Permanently");
+             header("Location: administrador.php");
 // $sql = "UPDATE tbl_reportes SET id_estado_reporte = $tipo
 // WHERE id_reportes = $id";
 

@@ -8,6 +8,10 @@ $(document).ready(function(){
     $("#crear_reporte").click(function(){
     	$("#contenido").load('tablas/crear_reporte.php');
     });
+
+    $("#estadoArticulo").click(function(){
+        $("#contenido").load('ajax/estadoArticulo/editarEstadoArticulo.html');
+    });
   
     $("#registro").click(function(event){
     	$("#contenido").load('register.html');
@@ -39,11 +43,19 @@ $(document).ready(function(){
         $("#contenido").load('tablas/historialMovimientos.php');
     });
 
+
      $("#verSolicitudes").click(function(event){
         $("#contenido").load('solicitudesPres.php');
     });
 
         
+
+    // Chat
+    $("#id_envia").click(function(event){
+        header("Status: 301 Moved Permanently");
+        header("Location: tablas/chat.php");
+    });
+
 
     
 });

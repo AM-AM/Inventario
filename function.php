@@ -30,8 +30,24 @@ if ($_POST){
       header("Location: adminReporte.php");
     }
 
+    if($_POST['guardar_mensaje']){
+      $id = $_POST['id_recibe'];
+      $id_recibe = (int)$_POST['id_envia'];
+      $mensaje = $_POST['mensaje'];
+      $fecha = date('Y').'-'.date('m').'-'.date('d');
+      
+   $sql = "INSERT INTO tbl_mensajes (id_mensaje, id_estado_mensaje, id_persona_usuario_envia, id_persona_usuario_recibe, contenido_mensaje, asunto_mensaje, fecha_mensaje ) 
+           VALUES (null,2,$id,$id_recibe,'$mensaje', '', '$fecha')";
+      
+ 
+  $resultado = $conec->ejecutarConsulta($sql);
+
+      // PONER LA DIRECCION REAL, QUITARL EL INVENTARIO 02 A SOLO INVENTARIO 
+
+      header("Status: 301 Moved Permanently");
+      header("Location: tablas/chat.php?id=$id_recibe");
+  }
     
-   
 }
 
 
