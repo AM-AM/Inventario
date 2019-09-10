@@ -14,6 +14,11 @@
         
     }
     $id = (int)$_GET['id'];
+
+    $conec = new Conexion();
+
+    $sql ="UPDATE tbl_mensajes a SET id_estado_mensaje =1 WHERE a.id_persona_usuario_envia = $id";
+    $resultado = $conec->ejecutarConsulta($sql);
 ?>
 </head>
  
@@ -30,7 +35,7 @@
      
     <div id="chatbox">
             <?php 
-                $conec = new Conexion();
+                
 
                 
                 $id_recive = (int)$_SESSION['id_persona_usuario'];
