@@ -1,12 +1,14 @@
 <?php
 include("class/class-conexion.php");
- session_start();
+session_start();
  if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
-      session_destroy();
+  
+  session_destroy();
      header("Location: login.php");
 
      
  }
+ 
 
  
 ?>
@@ -681,7 +683,7 @@ include('modalperfil.php');
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="login.php">Cerrar sesión</a>
+          <a class="btn btn-primary"  href="ajax/acciones-sesion.php?accion=cerrar-sesion">Cerrar sesión</a>
         </div>
       </div>
     </div>

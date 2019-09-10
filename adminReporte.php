@@ -1,15 +1,15 @@
 <?php
 include("class/class-conexion.php");
 include("function.php");
-
- session_start();
- 
-
- if($_SESSION['tipo_usuario']==2 ) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
-      session_destroy();
+session_start();
+ if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
+  
+  session_destroy();
      header("Location: login.php");
- }
 
+     
+ }
+ 
  
  ?>
 
@@ -375,16 +375,13 @@ foreach($resultado1 as $res1){
         }
         foreach($resultado as $res){
           echo '
-          <form class="form" action="tablas/chat.php" method="post">
-            <a class="dropdown-item d-flex align-items-center" >
+            <a class="dropdown-item d-flex align-items-center" href="tablas/chat.php?id='.$res['id_envia'].'" >
               <div>
-              
-              <input type="submit" id="id_envia" name ="id_envia" value="'.$res['id_envia'].'">
                 <div class="small text-gray-500">'.$res['nombre']."  /  ".$res['fecha'].'</div>
                 <span class="font-weight-bold" >'.$res['mensaje'].'</span>
               </div>
             </a>
-        </form>';
+        ';
         }
                     
 

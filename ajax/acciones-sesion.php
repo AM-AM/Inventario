@@ -27,7 +27,35 @@
 				break;
 		}
     $conexion->cerrar();
-    $conexion = null;
+	$conexion = null;
+	
+
+
+
+
+
+
+  }elseif(isset($_GET['accion'])=='cerrar-sesion'){
+
+	session_start();
+	$_SESSION['status']=false;
+	header("location: ../login.php");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
   } else {
     $res['data']['mensaje']='Accion no especificada';
     $res['data']['resultado']=false;
@@ -35,5 +63,6 @@
     echo json_encode($res);
   }
   
+
 
 ?>
