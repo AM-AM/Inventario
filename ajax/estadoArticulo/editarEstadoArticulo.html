@@ -1,0 +1,133 @@
+
+
+<div>
+        <h1>Editar estado de articulo</h1>
+        <form method="post">
+	        <div class="selector-ubicacion">
+	            Ubicación:<br>
+	            <select class="form-control"></select>
+	            <script type="text/javascript">
+	                $(document).ready(function() {
+	                    $.ajax({
+	                            type: "POST",
+	                            url: "ajax/estadoArticulo/getUbicacion.php",
+	                            success: function(response)
+	                            {
+	                                $('.selector-ubicacion select').html(response).fadeIn();
+	                            }
+	                    });
+
+	                });
+	            </script>
+	        </div>
+	        <br>
+	        <div class="selector-articulo">
+	            
+	            Artículo:<br>
+	            <select class="form-control" id="selector_articulo">
+	            	<option value="0">--Seleccione un artículo--</option>
+	            </select>
+	            <script type="text/javascript">
+	                $(document).ready(function() {
+	                    $(".selector-ubicacion select").change(function() {
+	                        var form_data = {
+	                                is_ajax: 1,
+	                                ubicacion: +$(".selector-ubicacion select").val()
+	                        };
+	                        $.ajax({
+	                                type: "POST",
+	                                url: "ajax/estadoArticulo/getArticulo.php",
+	                                data: form_data,
+	                                success: function(response)
+	                                {
+	                                    $('.selector-articulo select').html(response).fadeIn();
+	                                }
+	                        });
+	                    });
+
+	                });
+	            </script>
+	        </div>
+	        <br>
+	        <div class="selector-estado" >
+	        	Estado:<br>
+	            <select class="form-control" id="selector_estado"></select>
+	            <script type="text/javascript">
+	                $(document).ready(function() {
+	                    $.ajax({
+	                            type: "POST",
+	                            url: "ajax/estadoArticulo/getEstado.php",
+	                            success: function(response)
+	                            {
+	                                $('.selector-estado select').html(response).fadeIn();
+	                            }
+	                    });
+
+	                });
+	            </script>
+	        </div>
+
+	        <br>
+	        <button type="button" class="btn btn-primary" id="guardar">Guardar</button>
+	    </form>
+
+	    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#guardar").click(function(){
+                var articulo=$("#selector_articulo").val();
+                var estado=$('#selector_estado').val();
+                
+                $.ajax({
+                    url:'ajax/estadoArticulo/insertEstado.php',
+                    type:'POST',
+                    data:{
+                        articulo:articulo,
+                        estado:estado
+                    },
+                   success:function(response){
+                       alert(response);
+
+                       
+                   }
+                });
+            });
+        });
+
+
+
+    </script>
+
+	    <hr>
+	    	<div class="tabla-articulos table table-bordered">
+	        	Artículo:
+	
+	            <script type="text/javascript">
+	                $(document).ready(function() {
+	                    $.ajax({
+	                            type: "POST",
+	                            url: "ajax/estadoArticulo/getMostrarArticulos.php",
+	                            success: function(response)
+	                            {
+	                                $('.tabla-articulos').html(response).fadeIn();
+	                            }
+	                    });
+
+	                });
+
+	        $(document).ready(function(){
+            $("#guardar").click(function(){
+                $.ajax({
+                        type: "POST",
+                        url: "ajax/estadoArticulo/getMostrarArticulos.php",
+                        success: function(response)
+                        {
+                            
+                            setTimeout($('.tabla-articulos').html(response).fadeIn(),1000);
+                        }
+                });
+            });
+        });
+	            </script>
+	        </div>
+        
+</div>
