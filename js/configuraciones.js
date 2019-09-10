@@ -39,6 +39,10 @@ $(document).ready(function(){
         $("#contenido").load('tablas/historialMovimientos.php');
     });
 
+     $("#verSolicitudes").click(function(event){
+        $("#contenido").load('solicitudesPres.php');
+    });
+
         
 
     

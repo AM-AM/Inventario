@@ -42,8 +42,7 @@
         echo json_encode($res);
       break;
       case 'insertar-articulo': 
-
-         /*  
+        
         $idEstadoArticulo = ValidarPost::unsigned('id_estado_articulo');
         $idPersonaUsuarioRegistra = ValidarPost::int('id_persona_usuario_registra');
         $idCategoriaArticulos = ValidarPost::int('id_categoria_articulo');
@@ -52,18 +51,20 @@
         $cantidad = ValidarPost::int('cantidad');
         $precioArticulo = ValidarPost::float('precio');        
         $fechaRegistroArt = ValidarPost::date('fecha_registro_art');
-        $descripcion = ValidarPost::varchar('descripcion');*/
+        $descripcion = ValidarPost::varchar('descripcion');
        
         $articulo = new Articulo();
-        $articulo->setIdEstadoArticulo('id_estado_articulo');
-        $articulo->setIdPersonaUsuarioRegistra('id_persona_usuario_registra');
-        $articulo->setIdCategoriaArticulos('id_categoria_articulo');
-        $articulo->setIdUbicacionArticulo('id_ubicacion_articulo');
-        $articulo->setNombreArticulo('nombre');
-        $articulo->setPrecioArticulo('precio'); 
-        $articulo->setCantidad('cantidad');     
-        $articulo->setFechaRegistroArt('fecha_registro_art');
-        $articulo->setDescripcion('descripcion');
+        $articulo->setIdEstadoArticulo($idEstadoArticulo);
+        $articulo->setIdPersonaUsuarioRegistra($idPersonaUsuarioRegistra);
+        $articulo->setIdCategoriaArticulos($idCategoriaArticulos);
+        $articulo->setIdUbicacionArticulo($idUbicacionArticulo);
+        $articulo->setNombreArticulo($nombre);
+        $articulo->setPrecioArticulo($precioArticulo); 
+        $articulo->setCantidad($cantidad);     
+        $articulo->setFechaRegistroArt($fechaRegistroArt);
+        $articulo->setFechaSalidaArt('NULL');
+        $articulo->setDescripcion($descripcion);
+        $articulo->setObservacion('NULL');
         $res['data'] = $articulo->crear($conexion);
         echo json_encode($res);
       break;

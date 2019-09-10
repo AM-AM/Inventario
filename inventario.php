@@ -9,13 +9,15 @@ include("class/class-conexion.php");
 
 	<head>	
 		<link rel="stylesheet" type="text/css" href="css/pestañas.css">
-		<link rel="stylesheet" type="text/css" href="css/styleBarra.css">
+		
 		<link rel="stylesheet" type="text/css" href="css/inventario.css">
 
 		<!--Extension-->
 		<link rel="stylesheet" type="text/css" href="extensiones/datatables.min.css">
 	</head>
-
+	<!--Contenedor-->
+		<div class="container-fluid">
+			<div class="row">	
 				<!--Contenido Del Inventario-->
 				<div class="col-xl-10 col-lg-10 col-md-6 col-sm-6 well" style="border: black 1px solid">
 					<nav>
@@ -87,6 +89,7 @@ include("class/class-conexion.php");
 																<option value="1">Computadoras</option>
 																<option value="2">Proyectores</option>
 																<option value="3">Cables</option>
+																<option value="4">Mobiliario y Equipo</option>
 
 															</select>
 														</div>
@@ -210,6 +213,7 @@ include("class/class-conexion.php");
 									<option value="1">Computadoras</option>
 									<option value="2">Proyectores</option>
 									<option value="3">Cables</option>
+									<option value="4">Mobiliario y Equipo</option>
 								</select>
 
 
@@ -252,6 +256,8 @@ include("class/class-conexion.php");
 						</div>
 					</div>
 				</div>
+			</div>
+			</div>
 
 
 

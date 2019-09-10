@@ -12,6 +12,7 @@
     private $cantidad;
     private $fechaRegistroArt;
     private $fechaSalidaArt;
+    private $observacion;
        
     public function __construct(
       $idArticulos = null,
@@ -24,7 +25,8 @@
       $precioArticulo = null,
       $cantidad = null,
       $fechaRegistroArt = null,
-      $fechaSalidaArt = null
+      $fechaSalidaArt = null,
+      $observacion = null
          
       ){
         $this->idArticulos = $idArticulos;
@@ -38,6 +40,7 @@
         $this->cantidad = $cantidad;
         $this->fechaRegistroArt = $fechaRegistroArt;
         $this->fechaSalidaArt = $fechaSalidaArt;
+        $this->observacion= $observacion;
         
       
     }
@@ -53,7 +56,8 @@
       ."precioArticulo: ".$this->precioArticulo." , "
       ."cantidad: ".$this->cantidad." , "
       ."fechaRegistroArt: ".$this->fechaRegistroArt." , "
-      ."fechaSalidaArt: ".$this->fechaSalidaArt;         
+      ."fechaSalidaArt: ".$this->fechaSalidaArt." , "
+      ."observacion: ".$this->observacion;         
       return $var."}";
     }
     public function getIdArticulos(){
@@ -84,7 +88,7 @@
       $this->idCategoriaArticulo = $idCategoriaArticulo;
     }
 
-    public function getIdUbicacioArticulo(){
+    public function getIdUbicacionArticulo(){
       $this->idUbicacionArticulo;
     }
     public function setIdUbicacionArticulo($idUbicacionArticulo){
@@ -132,6 +136,14 @@
     public function setDescripcion($descripcion){
       $this->descripcion = $descripcion;
     }
+
+    public function getObservacion(){
+      return $this->descripcion;
+    }
+    public function setObservacion($observacion){
+      $this->observacion = $observacion;
+    }
+  
   
 
     public static function leer($conexion){
@@ -248,7 +260,7 @@
     public function crear($conexion){
       $sql = "
         CALL SP_Insertar_Articulo(
-          '%d','%d','%d','%d','%s','%s','%s',DATE('%s'),'%s'
+          '%d','%d','%d','%d','%s','%s','%s',DATE('%s'),DATE('%s'),'%s','%s'
         );
       ";
       $valores = [
@@ -260,7 +272,9 @@
         $this->getPrecioArticulo(),
         $this->getCantidad(),     
         $this->getFechaRegistroArt(),
-        $this->getDescripcion()
+        $this->getFechaSalidaArt(),
+        $this->getDescripcion(),
+        $this->getObservacion()
       ];
       $rows = $conexion->query($sql, $valores);
       return $rows[0];
@@ -289,7 +303,7 @@
         $this->getIdArticulos(),
         $this->getIdEstadoArticulo(),
         $this->getIdCategoriaArticulo(),
-        $this->getIdUbicacioArticulo(),
+        $this->getIdUbicacionArticulo(),
         $this->getNombreArticulo(),
         $this->getDescripcion(),
         $this->getPrecioArticulo(),

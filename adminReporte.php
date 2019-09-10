@@ -178,7 +178,9 @@ include("function.php");
             <h6 class="collapse-header">Articulos:</h6>
             
             <a class="collapse-item" id="prestar">Prestar artículo</a>
+            <a class="collapse-item" id="verSolicitudes">Ver Solicitudes</a>
             <a class="collapse-item" id="devolver">Devolver artículo</a>
+
             
           </div>
         </div>
@@ -351,7 +353,15 @@ include("function.php");
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Panel de Control</h1>
+              <?php   
+              if ($_SESSION['tipo_usuario'] == 1){
+                $conec = new Conexion();
+                echo '<h1 class="h3 mb-0 text-gray-800">Panel de Control Administradores</h1>';
+              }
+              else{
+                echo'<h1 class="h3 mb-0 text-gray-800">Panel de Control Instructores</h1>';
+              }
+            ?>
             
           </div>
 

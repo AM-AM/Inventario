@@ -1,15 +1,18 @@
 <?php
 include("class/class-conexion.php");
+include("function.php");
+
  session_start();
- if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
+ 
+
+ if($_SESSION['tipo_usuario']==2 ) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
       session_destroy();
      header("Location: login.php");
-
-     
  }
 
  
-?>
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,16 +23,14 @@ include("class/class-conexion.php");
   <meta name="description" content="">
   <meta name="author" content="">
 
-
   
   <title>Sistema de inventario</title>
 
   <!-- Custom fonts for this template-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  
+
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -55,10 +56,11 @@ include("class/class-conexion.php");
         </div>
         <div class="sidebar-brand-text mx-3">Inventario IS</div>
       </a>
-
-
+ <br>
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+      <!-- Divider -->
+     <!-- Divider -->
+     <hr class="sidebar-divider my-0">
 
 <!-- Heading -->
 <div class="sidebar-heading">
@@ -138,7 +140,7 @@ include("class/class-conexion.php");
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Equipos:</h6>
             
-            <a class="collapse-item" id="equiposDisponibles">Equipos Disponibles</a>
+            <a class="collapse-item" id="equiposDisponibles" >Equipos Disponibles</a>
             <a class="collapse-item" id="historialMovimientos" >Historial de Movimientos</a>
             <a class="collapse-item" id="añadirEquipos" ><i class="fas fa-plus"></i> Añadir Equipos</a>
 
@@ -176,10 +178,8 @@ include("class/class-conexion.php");
             <h6 class="collapse-header">Articulos:</h6>
             
             <a class="collapse-item" id="prestar">Prestar artículo</a>
-            <a class="collapse-item" id="verSolicitudes">Ver Solicitudes</a>
             <a class="collapse-item" id="devolver">Devolver artículo</a>
-
-
+            
             
           </div>
         </div>
@@ -352,7 +352,7 @@ include("class/class-conexion.php");
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <?php   
+              <?php   
               if ($_SESSION['tipo_usuario'] == 1){
                 $conec = new Conexion();
                 echo '<h1 class="h3 mb-0 text-gray-800">Panel de Control Administradores</h1>';
@@ -361,6 +361,7 @@ include("class/class-conexion.php");
                 echo'<h1 class="h3 mb-0 text-gray-800">Panel de Control Instructores</h1>';
               }
             ?>
+            
           </div>
 
           <!-- Content Row -->
@@ -447,93 +448,56 @@ include("class/class-conexion.php");
 
           <!-- Content Row -->
 
-          <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Gráfica de prestamos</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Opciones:</div>
-                      <a class="dropdown-item" href="#">Acción1</a>
-                      <a class="dropdown-item" href="#">Opcion2</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Otra</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Disponibilidad de artículos</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Opciones:</div>
-                      <a class="dropdown-item" href="#">Acción1</a>
-                      <a class="dropdown-item" href="#">Opcion2</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Otra</a>
-                    </div>
-                  </div>
-                </div>
+            
                 <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Prestados
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Disponibles
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> No disponibles
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
           <!-- Content Row -->
           <div class="row">
 
     
 
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-12 mb-4">
 
              
 
               <!-- Approach -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Información</h6>
+                  <h2 class="m-0 font-weight-bold text-primary">Solicitudes de Prestamos</h2>
+<!-- 
+                  <form class="form" action="function.php" method="post">
+                    <select class="form-control col-lg-4" name="tipo">
+                      <option value="1"> En revision </option>  
+                      <option value="2"> Aceptados </option>    
+                      <option value="3"> Rechazados </option>          
+                    </select>
+                    <input type="submit" class="btn btn-primary mb-2" value="submit">   
+                  </form> -->
                 </div>
                 <div class="card-body">
-                  <p>En esta sección podras encontrar toda la informacion sobre los equipos con los que cuenta la carrera de ingenieria en sitemas; como administrador podras gestionar el ingreso o salida de los articulos aqui inventariados.</p>
-                  <p class="mb-0">Tu decides quienes pueden gestionar acciones en este portal asi como definir privilegios para cada cuenta creada.</p>
+
+               <!--Aqui vamos a poner todos los reportes ----------------------------
+               -----------------------------------------------------------
+               ------------------------------------------------------------
+               -------------------------------------------------
+               -------------------------------------------------------
+               -----------------------------------------------------
+               ---------------------------------------------------->
+
+              <?php
+                $conec = new Conexion();
+                global $post_por_pagina;
+                $post_por_pagina = 3;
+                obtener_post($post_por_pagina, $conec);
+    
+
+                require('paginacion.php');
+              ?>
+
+
                 </div>
               </div>
 
@@ -567,6 +531,7 @@ include("class/class-conexion.php");
     <i class="fas fa-angle-up"></i>
   </a>
 
+  
 <div class="modal fade" id="logoutModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  <!-- cambiar id a la ventana modal-->
     <div class="modal-dialog modal-lg" role="document">
     <style type="text/css">
@@ -629,7 +594,6 @@ include('modalperfil.php');
   <script src="js/configuraciones.js"></script>
 
  
-
 </body>
 
 </html>
