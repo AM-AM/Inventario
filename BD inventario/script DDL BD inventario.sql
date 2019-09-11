@@ -236,7 +236,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `inventario`.`tbl_solicitudes` (
   `id_solicitud` INT NOT NULL AUTO_INCREMENT,
-  `id_persona_usuario` INT NOT NULL,
+  `id_persona_usuario` INT NULL,
   `id_estado_solicitud` INT NOT NULL,
   `id_tipo_solicitud` INT NOT NULL,
   `id_articulo_solicitado` INT NOT NULL,
@@ -442,3 +442,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 ALTER TABLE TBL_PERSONAS
 ADD CONOCIMIENTOS VARCHAR(500) NULL;
+
+ALTER TABLE TBL_ARTICULOS
+ADD OBSERVACION VARCHAR(500) NULL;
+
+ALTER TABLE TBL_SOLICITUDES
+ADD NUMERO_CUENTA NUMERIC(11) NULL;

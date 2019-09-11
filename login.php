@@ -20,7 +20,7 @@
         <div id="status"></div>
         <br><br>
         <a href="forgot-password.html" style="color: #F0F8FF;">Olvidé mi contraseña</a> <br>
-        <a href="index.html" style="color: #F0F8FF;">Pagina Principal</a>
+        <a href="index.php" style="color: #F0F8FF;">Pagina Principal</a>
         <br>
        
     </div>

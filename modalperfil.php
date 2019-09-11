@@ -42,7 +42,7 @@ ON t2.id_persona_usuario = t1.id_persona
 
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
-            <input type="text" require class="form-control form-control-user" id="NombreUsuario" name="NombreUsuario" value="<?php  echo $res['nombre_usuario']; ?>">
+            <input type="text" required class="form-control form-control-user" id="NombreUsuario" name="NombreUsuario" value="<?php  echo $res['nombre_usuario']; ?>">
         
         </div>
           <div class="col-sm-6">
@@ -57,7 +57,7 @@ ON t2.id_persona_usuario = t1.id_persona
             <input type="number" class="form-control form-control-user" id="NumeroCuenta" disabled name="NumeroCuenta" value="<?php  echo $res['numero_cuenta']; ?>">
         </div>
         <div class="form-group">
-            <input type="email" class="form-control form-control-user" id="Email" name="Email" value="<?php  echo $res['email']; ?>">
+            <input required type="email" class="form-control form-control-user" id="Email" name="Email" value="<?php  echo $res['email']; ?>">
         </div>
         <?php 
        if ($_SESSION['tipo_usuario'] == 2){
@@ -68,13 +68,13 @@ ON t2.id_persona_usuario = t1.id_persona
         ?>
         <div class="form-group row">
             <div class="col-sm-4 mb-2 mb-sm-0">
-              <input type="number" require class="form-control form-control-user" id="Telefono" name="Telefono" value="<?php  echo $res['telefono']; ?>">
+              <input type="number" required class="form-control form-control-user" id="Telefono" name="Telefono" value="<?php  echo $res['telefono']; ?>">
             </div>
             <div class="col-sm-4">
               <input type="date" class="form-control form-control-user" disabled id="FechaNacimiento" name="FechaNacimiento" value="<?php  echo $res['fecha_nacimiento']; ?>">
             </div>
             <div class="col-sm-4">
-                <select  name="LugarResidencia" id="LugarResidencia" class="form-control form-control-user" size="1">
+                <select  required name="LugarResidencia" id="LugarResidencia" class="form-control form-control-user" size="1">
                     <option value="" >Lugar de Residencia</option>
                     <option value="1" <?php if( $res['id_lugar_residencia'] == 1) echo 'selected'; ?>>Tegucigalpa</option>
                     <option value="2" <?php if( $res['id_lugar_residencia'] == 2) echo 'selected'; ?>>Choluteca</option>
@@ -92,7 +92,7 @@ ON t2.id_persona_usuario = t1.id_persona
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
           <?php  $clave = $res['clave_usuario']; ?>
-            <input require type="password" class="form-control form-control-user" id="Contrasenia0" name="Contrasenia0" placeholder="Escribir contraseña actual">
+            <input required type="password" class="form-control form-control-user" id="Contrasenia0" name="Contrasenia0" placeholder="Escribir contraseña actual">
           </div>
           <div class="col-sm-6">
             <input type="password" class="form-control form-control-user" id="Contrasenia02"name="Contrasenia02" placeholder="Nueva Contraseña">
@@ -106,13 +106,21 @@ ON t2.id_persona_usuario = t1.id_persona
 
 
         <script type="text/javascript">
+        
             var gettData = function(){
+              var NombreUsuario = document.getElementById("NombreUsuario").value;
+              var LugarResidencia = document.getElementById("LugarResidencia").value;
+              var Telefono = document.getElementById("Telefono").value; 
+              var Email = document.getElementById("Email").value; 
             
              var Contrasenia0 = document.getElementById("Contrasenia0").value;
              var Contrasenia02 = document.getElementById("Contrasenia02").value;
              var Clave = '<?php  echo $clave; ?>';
             
-  
+             if(NombreUsuario == "" ||LugarResidencia == "" ||Telefono == "" || 
+             Email == ""|| Contrasenia0 == ""){
+               return alert ('Hay Campos Vacios');
+             }
               if (Contrasenia0 !== Clave) {
                alert ('Lo sentimos, la contraseña no coincide. Intentelo otra vez');
              }else{

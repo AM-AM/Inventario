@@ -30,8 +30,8 @@
 				<input id="tab-nav" type="checkbox" class="tab-nav" name="tabs">
 				<label for="tab-nav" class="tab-nav-label">Menu</label>
 				<ul class="tab-content">
-				  <li><a href="index.html"><i class="fa fa-home"></i> Inicio</a></li>
-				  <li><a href=""><i class="fa fa-user"></i> Estudiante</a></li>
+				  <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
+				  <li><a href="estudiante.php"><i class="fa fa-user"></i> Estudiante</a></li> 
 				  <li><a href="login.php"><i class="fa fa-user"></i> Instructor</a></li>
 				  <li><a href="login.php"><i class="fa fa-user"></i> Administrador</a></li>
 				</ul>
@@ -128,14 +128,15 @@
 		</div>
 
 		<div class="main-2">
-			<h1> Prestamos de Proyectores</h1>
+			<h1> Prestamos de Proyectores y otros</h1>
 			<p>
-				Este servicio es administrado por los instructores que la carrera. 
-				Utiliza nuestro servicio para reservar Proyectores pra tu respectivas clases de la carrera.
+				Este servicio es administrado por los instructores de la carrera. 
+				Utiliza nuestro servicio para reservar Proyectores, regletas, cables y cualquier herramienta multimieda que esté en nuestras manos.
+				Haz tu reservación de equipo para tu respectivas clases de la carrera.
 			</p>
 			
 			<div class="ft-2">  <img src="images/proyector.png"height="300px" > </div>
-			<button class="btn btn-info">Solicitar Prestamo</button>
+			 <button class="btn btn-info" href='index.php' onclick = " location.href='reservar.php' ">Ir a préstamos </button>
 		</div>
 
 
