@@ -64,7 +64,7 @@
                   
                   <option value="" selected>Tipo de Usuario</option>
                   <option value="2">Instructor</option>
-                  <option value="3" >Estudiante</option>
+                  <option value="1" >Administrador</option>
                 </select>
             </div>
           </div>
@@ -104,8 +104,8 @@
               <div class="col-sm-4">
                   <select name="Genero" required id="Genero" class="form-control form-control-user" size="0">
                     <option value="" selected>Genero</option>
-                    <option value="1" >Masculino</option>
-                    <option value="2">Femenino</option>
+                    <option value="2" >Masculino</option>
+                    <option value="1">Femenino</option>
                     
                   </select>
               </div>
@@ -133,13 +133,21 @@
              var PrimerApellido = document.getElementById("PrimerApellido").value;
              var NumeroCuenta = document.getElementById("NumeroCuenta").value;
              var NombreUsuario = document.getElementById("NombreUsuario").value;
+             var Genero = document.getElementById("Genero").value;
+             var LugarResidencia = document.getElementById("LugarResidencia").value;
+             var LugarNacimiento = document.getElementById("LugarNacimiento").value; 
+             var Telefono = document.getElementById("Telefono").value; 
+             var TipoUsuario = document.getElementById("TipoUsuario").value; 
+             var Email = document.getElementById("Email").value; 
+             var NumeroIdentidad = document.getElementById("NumeroIdentidad").value; 
+             
   
              var Contrasenia = document.getElementById("Contrasenia").value;
              var Contrasenia2 = document.getElementById("Contrasenia2").value;
   
   
              if(TipoUsuario == "" ||PrimerNombre == "" ||PrimerApellido == "" || 
-             NumeroCuenta == ""||NombreUsuario == "" || Contrasenia == ""||Contrasenia2 == ""){
+             NumeroCuenta == ""||NombreUsuario == "" || Contrasenia == ""||Genero == ""||LugarResidencia == ""||LugarNacimiento == ""||Telefono == ""||TipoUsuario == ""||Email == ""||NumeroIdentidad == ""){
                return alert ('Hay Campos Vacios');
              } else if (Contrasenia !== Contrasenia2) {
               return alert ('Contraseñas No coinciden');
