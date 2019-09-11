@@ -40,7 +40,7 @@
                 
                 $id_recive = (int)$_SESSION['id_persona_usuario'];
 
-                    $sql = "SELECT t1.id_mensaje,concat_ws(t2.primer_nombre, ' ' ,t2.primer_apellido ) as envia,(Select concat_ws(t2.primer_nombre , ' ' ,t2.primer_apellido) as nombre from tbl_personas as t2 
+                    $sql = "SELECT t1.id_persona_usuario_envia as id_envia,t1.id_persona_usuario_recibe as id_recibe, t1.id_mensaje,concat_ws(t2.primer_nombre, ' ' ,t2.primer_apellido ) as envia,(Select concat_ws(t2.primer_nombre , ' ' ,t2.primer_apellido) as nombre from tbl_personas as t2 
                     INNER JOIN tbl_mensajes as t1
                     on t1.id_persona_usuario_recibe = t2.id_persona
                     WHERE t1.id_persona_usuario_recibe = $id_recive
@@ -55,10 +55,18 @@
 
                     foreach($resultado1 as $res1){
                     echo '
-                        <span class="dropdown-item d-flex align-items-center" href="tablas/chat.php">
+                        <span class="dropdown-item d-flex align-items-center" >
                                 <div class="small text-gray-500">'.$res1['envia']." el ".$res1['fecha'].'</div>
                                 <span class="font-weight-bold" >'.$res1['mensaje'].'</span><br><br>
-                                <a class="btn btn-primary"  href="../function.php?accion=eliminar&idM='.$res1['id_mensaje'].'&id='.$id.'">Eliminar</a>
+                    '; 
+                    if ($res1['id_envia']==$id_recive){
+                    echo '
+                            
+                        <a class="btn btn-primary" id="eliminar_mensaje"  href="../ajax/acciones-mensajes.php?accion=eliminar&idM='.$res1['id_mensaje'].'&id='.$id.'">Eliminar</a>';
+                    
+                    }
+                    
+                    echo '           
                         </span>
                     ';
                     }
@@ -68,7 +76,7 @@
     
     </div>
      
-    <form name="message" action="../function.php" method = "POST">
+    <form name="message" action="../ajax/acciones-mensajes.php" method = "POST">
         <input name="mensaje" type="text" id="mensaje" size="63" />
         <input name="guardar_mensaje" type="submit"  id="guardar_mensaje" value="Send" />
         <input type="hidden" name="id_envia" id="id_envia" value="<?php echo $id; ?>">
@@ -82,9 +90,10 @@ $(document).ready(function(){
 	//If user wants to end session
 	$("#exit").click(function(){
 		var exit = confirm("Estas seguro de querer salir");
-		if(exit==true){window.location = '../administrador.php?logout=true';}		
+		if(exit==true){window.location = '../administrador.php';}		
 	});
 });
+
 </script>
 
 <script src="../js/configuraciones.js"></script>
