@@ -47,7 +47,20 @@ if ($_POST){
       header("Status: 301 Moved Permanently");
       header("Location: tablas/chat.php?id=$id_recibe");
   }
+  
+    if($_GET['accion']=='eliminar'){
+
+    $id_mensaje = $_GET['idM'];
+    $id_usuario_envia = $_GET['id'];
     
+
+    $sql1 = "DELETE FROM tbl_mensajes WHERE id_mensaje = $id_mensaje";
+    $resultado = $conec->ejecutarConsulta($sql1);
+
+    header("Status: 301 Moved Permanently");
+    header("Location: tablas/chat.php?id=$id_usuario_envia");
+
+  }
 }
 
 

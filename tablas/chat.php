@@ -58,6 +58,7 @@
                         <span class="dropdown-item d-flex align-items-center" href="tablas/chat.php">
                                 <div class="small text-gray-500">'.$res1['envia']." el ".$res1['fecha'].'</div>
                                 <span class="font-weight-bold" >'.$res1['mensaje'].'</span><br><br>
+                                <a class="btn btn-primary"  href="../function.php?accion=eliminar&idM='.$res1['id_mensaje'].'&id='.$id.'">Eliminar</a>
                         </span>
                     ';
                     }
@@ -86,7 +87,9 @@ $(document).ready(function(){
 });
 </script>
 
-<script src="js/configuraciones.js"></script>
+<script src="../js/configuraciones.js"></script>
 
+<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
