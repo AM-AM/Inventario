@@ -20,8 +20,30 @@
     $sql ="UPDATE tbl_mensajes a SET id_estado_mensaje =1 WHERE a.id_persona_usuario_envia = $id";
     $resultado = $conec->ejecutarConsulta($sql);
 ?>
+
+<style>
+
+.eliminar{
+    background: linear-gradient(#FFDA63, #FFB940);
+    background-image: -webkit-linear-gradient(top, #FFDA63, #FFB940);
+    background-image: -moz-linear-gradient(top, #FFDA63, #FFB940);
+    background-image: -ms-linear-gradient(top, #FFDA63, #FFB940);
+    background-image: -o-linear-gradient(top, #FFDA63, #FFB940);
+    background-image: linear-gradient(to bottom, #FFDA63, #FFB940);
+    -webkit-border-radius: 28;
+    font-family: Arial;
+    color: brown;
+    text-decoration: none;
+    font-size: 20px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+
+</style>
 </head>
  
+
 
  <body>
      
@@ -52,25 +74,34 @@
                     WHERE (id_persona_usuario_envia = $id && id_persona_usuario_recibe =$id_recive) || (id_persona_usuario_envia=$id_recive && id_persona_usuario_recibe=$id)";
 
                     $resultado1 = $conec->ejecutarConsulta($sql);
-
+echo ' <table>';
                     foreach($resultado1 as $res1){
+                        
                     echo '
+                        <tr>
+                        <td>
                         <span class="dropdown-item d-flex align-items-center" >
+                        
                                 <div class="small text-gray-500">'.$res1['envia']." el ".$res1['fecha'].'</div>
                                 <span class="font-weight-bold" >'.$res1['mensaje'].'</span><br><br>
+                        </td>
+
                     '; 
-                    if ($res1['id_envia']==$id_recive){
-                    echo '
-                            
-                        <a class="btn btn-primary" id="eliminar_mensaje"  href="../ajax/acciones-mensajes.php?accion=eliminar&idM='.$res1['id_mensaje'].'&id='.$id.'">Eliminar</a>';
-                    
-                    }
-                    
-                    echo '           
+                            if ($res1['id_envia']==$id_recive){
+                            echo '
+                                <td> 
+                                <a  class="eliminar" id="eliminar_mensaje"  href="../ajax/acciones-mensajes.php?accion=eliminar&idM='.$res1['id_mensaje'].'&id='.$id.'">x</a>
+                           
+                            </td>';
+                            }
+                
+                    echo '  
+                         
                         </span>
+                       </tr>
                     ';
                     }
-
+ echo ' </table>';
             ?>
     
     
