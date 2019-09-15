@@ -5,6 +5,7 @@ include("class/class-conexion.php");
       session_destroy();
      header("Location: login.php");
  }
+
 ?>
 
 	<head>	

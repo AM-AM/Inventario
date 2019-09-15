@@ -20,8 +20,30 @@
     $sql ="UPDATE tbl_mensajes a SET id_estado_mensaje =1 WHERE a.id_persona_usuario_envia = $id";
     $resultado = $conec->ejecutarConsulta($sql);
 ?>
+
+<style>
+
+.eliminar{
+    background: linear-gradient(#FFDA63, #FFB940);
+    background-image: -webkit-linear-gradient(top, #FFDA63, #FFB940);
+    background-image: -moz-linear-gradient(top, #FFDA63, #FFB940);
+    background-image: -ms-linear-gradient(top, #FFDA63, #FFB940);
+    background-image: -o-linear-gradient(top, #FFDA63, #FFB940);
+    background-image: linear-gradient(to bottom, #FFDA63, #FFB940);
+    -webkit-border-radius: 28;
+    font-family: Arial;
+    color: brown;
+    text-decoration: none;
+    font-size: 20px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+
+</style>
 </head>
  
+
 
  <body>
      
@@ -40,7 +62,7 @@
                 
                 $id_recive = (int)$_SESSION['id_persona_usuario'];
 
-                    $sql = "SELECT t1.id_mensaje,concat_ws(t2.primer_nombre, ' ' ,t2.primer_apellido ) as envia,(Select concat_ws(t2.primer_nombre , ' ' ,t2.primer_apellido) as nombre from tbl_personas as t2 
+                    $sql = "SELECT t1.id_persona_usuario_envia as id_envia,t1.id_persona_usuario_recibe as id_recibe, t1.id_mensaje,concat_ws(t2.primer_nombre, ' ' ,t2.primer_apellido ) as envia,(Select concat_ws(t2.primer_nombre , ' ' ,t2.primer_apellido) as nombre from tbl_personas as t2 
                     INNER JOIN tbl_mensajes as t1
                     on t1.id_persona_usuario_recibe = t2.id_persona
                     WHERE t1.id_persona_usuario_recibe = $id_recive
@@ -52,22 +74,40 @@
                     WHERE (id_persona_usuario_envia = $id && id_persona_usuario_recibe =$id_recive) || (id_persona_usuario_envia=$id_recive && id_persona_usuario_recibe=$id)";
 
                     $resultado1 = $conec->ejecutarConsulta($sql);
-
+echo ' <table>';
                     foreach($resultado1 as $res1){
+                        
                     echo '
-                        <span class="dropdown-item d-flex align-items-center" href="tablas/chat.php">
+                        <tr>
+                        <td>
+                        <span class="dropdown-item d-flex align-items-center" >
+                        
                                 <div class="small text-gray-500">'.$res1['envia']." el ".$res1['fecha'].'</div>
                                 <span class="font-weight-bold" >'.$res1['mensaje'].'</span><br><br>
+                        </td>
+
+                    '; 
+                            if ($res1['id_envia']==$id_recive){
+                            echo '
+                                <td> 
+                                <a  class="eliminar" id="eliminar_mensaje"  href="../ajax/acciones-mensajes.php?accion=eliminar&idM='.$res1['id_mensaje'].'&id='.$id.'">x</a>
+                           
+                            </td>';
+                            }
+                
+                    echo '  
+                         
                         </span>
+                       </tr>
                     ';
                     }
-
+ echo ' </table>';
             ?>
     
     
     </div>
      
-    <form name="message" action="../function.php" method = "POST">
+    <form name="message" action="../ajax/acciones-mensajes.php" method = "POST">
         <input name="mensaje" type="text" id="mensaje" size="63" />
         <input name="guardar_mensaje" type="submit"  id="guardar_mensaje" value="Send" />
         <input type="hidden" name="id_envia" id="id_envia" value="<?php echo $id; ?>">
@@ -81,12 +121,15 @@ $(document).ready(function(){
 	//If user wants to end session
 	$("#exit").click(function(){
 		var exit = confirm("Estas seguro de querer salir");
-		if(exit==true){window.location = '../administrador.php?logout=true';}		
+		if(exit==true){window.location = '../administrador.php';}		
 	});
 });
+
 </script>
 
-<script src="js/configuraciones.js"></script>
+<script src="../js/configuraciones.js"></script>
 
+<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
