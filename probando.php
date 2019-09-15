@@ -1,15 +1,15 @@
 <?php
 include("class/class-conexion.php");
-include("function.php");
-
- session_start();
- 
-
- if($_SESSION['tipo_usuario']==2 ) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
-      session_destroy();
+//include("solicitudesPres.php");
+session_start();
+ if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
+  
+  session_destroy();
      header("Location: login.php");
- }
 
+     
+ }
+ 
  
  ?>
 
@@ -39,6 +39,7 @@ include("function.php");
   <script type="text/javascript" src="tablas/mselect/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="tablas/mselect/chosen.jquery.min.js"></script>
   <script src="js/push.min.js"></script>
+  
 </head>
 
 <body id="page-top" style="overflow-y:visible">
@@ -76,9 +77,36 @@ include("function.php");
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrwo" aria-expanded="true" aria-controls="collapseTrwo">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrwo" aria-expanded="true" aria-controls="collapseTrwo">
           <i class="fas fa-fw fa-tachometer-alt"></i>
+          
           <span>Reportes</span>
+         
+          
+              <?php
+              
+                $conec = new Conexion();
+                
+                $sql = "SELECT COUNT(id_reportes)as reportes FROM `tbl_reportes` WHERE id_estado_reporte=1 ";
+
+                $resultado = $conec->ejecutarConsulta($sql);
+
+                foreach($resultado as $res){
+                   $reportes = $res['reportes'];
+                
+                    echo '
+                        
+                    <!-- Counter - Alerts -->
+                    <span class="badge badge-danger badge-counter">';
+                    
+                    echo (int)$reportes . '</span>
+                      
+
+
+                    ';
+                 }
+              ?>
+            
         </a>
         <div id="collapseTrwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
@@ -178,7 +206,9 @@ include("function.php");
             <h6 class="collapse-header">Articulos:</h6>
             
             <a class="collapse-item" id="prestar">Prestar artículo</a>
+            <a class="collapse-item" id="verSolicitudes" href="probando.php">Ver Solicitudes</a>
             <a class="collapse-item" id="devolver">Devolver artículo</a>
+
             
           </div>
         </div>
@@ -309,6 +339,136 @@ include("function.php");
             }
           }
 ?>
+
+
+
+
+
+
+
+
+<?php   
+      //mostrar notificaciones de solicitudes
+      if ($_SESSION['tipo_usuario'] == 2){
+        $conec = new Conexion();
+      
+        $sql = "SELECT COUNT(id_solicitud)as solicitudes FROM `tbl_solicitudes` WHERE id_estado_solicitud=2 ";
+
+        $resultado = $conec->ejecutarConsulta($sql);
+
+        foreach($resultado as $res){
+          $solicitudes = $res['solicitudes'];
+        
+        echo '
+            <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">';
+                
+                echo (int)$solicitudes . '</span>
+              </a>
+
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Notificaciones
+                </h6>';
+
+                if ($solicitudes>=1){
+                echo '
+                <a class="dropdown-item d-flex align-items-center" href="administrador.php">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">Agosto 28, 2019</div>
+                    <span class="font-weight-bold" >Tienes Solicitudes de Prestamos sin Revisar</span>
+                  </div>
+                </a>';}
+
+                echo '
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">Junio 7, 2019</div>
+                    Computadora 5 reparada.
+                  </div>
+                </a>
+                
+                <a class="dropdown-item text-center small text-gray-500" href="adminReporte.php">Mostrar todas las notificaciones</a>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            ';
+            }
+          }
+?>
+
+
+
+
+
+
+
+
+<?php  
+  
+  $conec = new Conexion();
+      
+  $id_recive = $_SESSION['id_persona_usuario'];
+
+  $sql = "SELECT b.nombre_usuario as nombre, a.id_persona_usuario_envia as id_envia, a.contenido_mensaje as mensaje, a.asunto_mensaje as asunto, a.fecha_mensaje as fecha
+  FROM tbl_mensajes a ,tbl_usuarios b 
+  WHERE a.id_persona_usuario_envia = b.id_persona_usuario
+  and a.id_estado_mensaje = 2
+  and a.id_persona_usuario_recibe = $id_recive";
+
+  $sql1 = "SELECT count(a.contenido_mensaje) as c_mensajes
+  FROM tbl_mensajes a ,tbl_usuarios b 
+  WHERE a.id_persona_usuario_envia = b.id_persona_usuario
+  and a.id_estado_mensaje = 2
+  and a.id_persona_usuario_recibe = $id_recive";
+
+$resultado = $conec->ejecutarConsulta($sql);
+$resultado1 = $conec->ejecutarConsulta($sql1);
+
+foreach($resultado1 as $res1){
+       echo' <!-- Nav Item - Alerts -->
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-envelope"></i>
+            <!-- Counter - Alerts -->
+            <span class="badge badge-danger badge-counter">'.(int)$res1['c_mensajes'].'</span>
+          </a>
+          
+          <!-- Dropdown - Alerts -->
+          <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">
+              Mensajes
+            </h6>';
+        }
+        foreach($resultado as $res){
+          echo '
+            <a class="dropdown-item d-flex align-items-center" href="tablas/chat.php?id='.$res['id_envia'].'" >
+              <div>
+                <div class="small text-gray-500">'.$res['nombre']."  /  ".$res['fecha'].'</div>
+                <span class="font-weight-bold" >'.$res['mensaje'].'</span>
+              </div>
+            </a>
+        ';
+        }
+                    
+
+?>
             
 
             <!-- Nav Item - User Information -->
@@ -351,7 +511,15 @@ include("function.php");
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Panel de Control</h1>
+              <?php   
+              if ($_SESSION['tipo_usuario'] == 1){
+                $conec = new Conexion();
+                echo '<h1 class="h3 mb-0 text-gray-800">Panel de Control Administradores</h1>';
+              }
+              else{
+                echo'<h1 class="h3 mb-0 text-gray-800">Panel de Control Instructores</h1>';
+              }
+            ?>
             
           </div>
 
@@ -457,7 +625,7 @@ include("function.php");
               <!-- Approach -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h2 class="m-0 font-weight-bold text-primary">Reportes</h2>
+                  <h2 class="m-0 font-weight-bold text-primary">Solicitudes de Prestamos</h2>
 <!-- 
                   <form class="form" action="function.php" method="post">
                     <select class="form-control col-lg-4" name="tipo">
@@ -479,12 +647,13 @@ include("function.php");
                ---------------------------------------------------->
 
               <?php
+
                 $conec = new Conexion();
                 global $post_por_pagina;
                 $post_por_pagina = 3;
                 obtener_post($post_por_pagina, $conec);
     
-
+        
                 require('paginacion.php');
               ?>
 

@@ -328,7 +328,7 @@ session_start();
                 </a>';}
 
                 echo '
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <a class="dropdown-item d-flex align-items-center" href="adminReporte.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-success">
                       <i class="fas fa-donate text-white"></i>
@@ -349,7 +349,68 @@ session_start();
             }
           }
 ?>
-            
+  
+
+
+<?php   
+      //mostrar notificaciones de solicitudes
+      if ($_SESSION['tipo_usuario'] == 2){
+        $conec = new Conexion();
+      
+        $sql = "SELECT COUNT(id_solicitud)as solicitudes FROM `tbl_solicitudes` WHERE id_estado_solicitud=2 ";
+
+        $resultado = $conec->ejecutarConsulta($sql);
+
+        foreach($resultado as $res){
+          $solicitudes = $res['solicitudes'];
+        
+        echo '
+            <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">';
+                
+                echo (int)$solicitudes . '</span>
+              </a>
+
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Notificaciones
+                </h6>';
+
+                if ($solicitudes>=1){
+                echo '
+                <a class="dropdown-item d-flex align-items-center" id="notiSolicitud">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">2019</div>
+                    <span class="font-weight-bold" >Tienes Solicitudes de Prestamos sin Revisar</span>
+                  </div>
+                </a>';}
+
+                echo '
+                
+                
+                <a class="dropdown-item text-center small text-gray-500" href="administrador.php">Mostrar todas las notificaciones</a>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            ';
+            }
+          }
+?>
+
+
+
+
  <?php   
 
 

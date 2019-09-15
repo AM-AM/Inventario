@@ -4,6 +4,7 @@
   <script type="text/javascript" src="mselect/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="mselect/chosen.jquery.min.js"></script>
   <script src="js/push.min.js"></script>
+  <script src="js/controladores/popup.js"></script>
 
 </head>
              
@@ -51,7 +52,7 @@
                         
                        <div class="form-group">
                         <label for="solicitud">Acción: </label>
-                        <select class="form-control" name="tipo"> 
+                        <select class="form-control" name="tipo" id="tipo"> 
                              <option value="" disabled="disabled"> Seleccione el tipo de solicitud</option>
                              <option value="1">Solicitud de Prestamo Articulo</option>
                              
@@ -61,15 +62,15 @@
                         <div class="form-group">
                             <label for="solicitud">Numero de Cuenta de Solicitante: </label>
                             <div>
-                              <input type="text" name="cuentaSolicitud" id='cuentaSolicitud' style="width: 500px"> 
+                              <input type="text" name="cuentaSolicitud" id='cuentaSolicitud' placeholder="Numero de Cuenta" style="width: 500px"> 
                             </div>
                             
                        </div>
 
                        <div class="form-group">
-                            <label for="reporte">Observación:</label>
+                            <label for="reporte">Datos Solicitud:</label>
                             <div>
-                              <input type="text" name="solicitud" id='solicitud' value="Este articulo ha sido solicitado para Prestamo" disabled="disabled" style="width: 500px"> 
+                              <input type="text" name="solicitud" id='solicitud' placeholder="Asignatura-Catedratico-hora de Uso" value=""  style="width: 500px"> 
                             </div>
                        </div>
                         
@@ -77,32 +78,10 @@
                        <input type="text" id='fecha' name="fecha" value=" <?php 
                              echo date('Y').'-'.date('m').'-'.date('d'); ?>">
 
-              
-                    <script>
-                      var getData = function(){
-                       var reporte = document.getElementById("solicitud").value;
-                       
-                       if(solicitud == ""){
-                         return alert ('Campo vacio de Solicitud');
-                       } else {
-                        Push.create("Validacion Exitosa",{
-                            body: "La solicitud se ha agregado Correctamente",
-                            icon: "img/aprobado.png",
-                            timeout: 4000,
-                            onClick: function () {
-                              this.close();
-                            }
-                          });
-                       }
-                     }
-
-                    </script>
-
-
 
                       <div class="form-group">
                         <br>
-                            <input type="submit" class="btn btn-primary mb-2" value="Enviar Solicitud" onclick  = "getData()">
+                            <input type="submit" class="btn btn-primary mb-2" value="Enviar Solicitud" onclick  = "probando()">
                        </div>
 
 
@@ -117,3 +96,25 @@
                       $('#mselect').chosen();
                     });
                 </script>
+
+                <script>
+                  let popUp = new Popup();
+                  
+                  function probando(){
+                    //var solicitud = document.getElementById("cuentaSolicitud").value;
+                    if(document.getElementById("cuentaSolicitud").value == ""){
+                      popUp.setTextoAlerta("Campos vacios o Datos incorrectos, Intente de Nuevo");
+                      popUp.incorrecto();
+                      popUp.mostrarAlerta();
+                    }
+                    else{
+                      popUp.setTextoAlerta("La solicitud ha sido ingresada corectamente");
+                      popUp.correcto();
+                      popUp.mostrarAlerta();
+                    }
+                  }
+                </script>
+
+                
+
+

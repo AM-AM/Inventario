@@ -43,11 +43,15 @@ $(document).ready(function(){
         $("#contenido").load('tablas/historialMovimientos.php');
     });
 
-
-     $("#verSolicitudes").click(function(event){
+    
+    $("#verSolicitudes").click(function(event){
         $("#contenido").load('solicitudesPres.php');
     });
 
+     $("#notiSolicitud").click(function(event){
+        $("#contenido").load('solicitudesPres.php');
+    });
+     
         
 
     // Chat

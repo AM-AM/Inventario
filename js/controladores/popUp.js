@@ -31,7 +31,7 @@ class Popup {
   mostrarAlerta() {
     $("#alerta").css("display", "block");
     setTimeout(function() {
-      $("#alerta").fadeOut(1000);
+      $("#alerta").fadeOut(2000);
     }, 3000);
   }
 
@@ -42,7 +42,7 @@ class Popup {
   mostrarDecision() {
     $("#decision").css("display", "block");
     setTimeout(function() {
-      $("#decision").fadeOut(1000);
+      $("#decision").fadeOut(2000);
     }, 3000);
   }
 

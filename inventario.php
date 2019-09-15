@@ -1,14 +1,10 @@
 <?php
 include("class/class-conexion.php");
- 
+ session_start();
  if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
-	session_start();
-	session_unset(); 
-	session_destroy();
-	   header("Location: login.php");
-  
-	   
-   }
+      session_destroy();
+     header("Location: login.php");
+ }
 ?>
 
 	<head>	
