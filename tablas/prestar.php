@@ -1,6 +1,6 @@
 
-     <head>
-     <link href="mselect/chosen.min.css" rel="stylesheet">
+<head>
+  <link href="mselect/chosen.min.css" rel="stylesheet">
   <script type="text/javascript" src="mselect/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="mselect/chosen.jquery.min.js"></script>
   <script src="js/push.min.js"></script>

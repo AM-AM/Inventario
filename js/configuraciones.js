@@ -44,13 +44,13 @@ $(document).ready(function(){
     });
 
     
-    $("#verSolicitudes").click(function(event){
+    /*$("#verSolicitudes").click(function(event){
         $("#contenido").load('solicitudesPres.php');
     });
 
      $("#notiSolicitud").click(function(event){
         $("#contenido").load('solicitudesPres.php');
-    });
+    });*/
      
         
 

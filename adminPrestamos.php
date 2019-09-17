@@ -1,5 +1,6 @@
 <?php
 include("class/class-conexion.php");
+include("function1.php");
 session_start();
  if($_SESSION['status']==false) { // CUALQUIER USUARIO REGISTRADO PUEDE VER ESTA PAGINA
   
@@ -9,9 +10,9 @@ session_start();
      
  }
  
-
  
-?>
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,16 +23,14 @@ session_start();
   <meta name="description" content="">
   <meta name="author" content="">
 
-
   
   <title>Sistema de inventario</title>
 
   <!-- Custom fonts for this template-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  
+
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -40,6 +39,7 @@ session_start();
   <script type="text/javascript" src="tablas/mselect/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="tablas/mselect/chosen.jquery.min.js"></script>
   <script src="js/push.min.js"></script>
+  
 </head>
 
 <body id="page-top" style="overflow-y:visible">
@@ -57,10 +57,11 @@ session_start();
         </div>
         <div class="sidebar-brand-text mx-3">Inventario IS</div>
       </a>
-
-
+ <br>
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+      <!-- Divider -->
+     <!-- Divider -->
+     <hr class="sidebar-divider my-0">
 
 <!-- Heading -->
 <div class="sidebar-heading">
@@ -76,15 +77,14 @@ session_start();
 
 
       <li class="nav-item">
-     
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrwo" aria-expanded="true" aria-controls="collapseTrwo">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTrwo" aria-expanded="true" aria-controls="collapseTrwo">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           
           <span>Reportes</span>
          
           
               <?php
-              if ($_SESSION['tipo_usuario'] == 1){
+              
                 $conec = new Conexion();
                 
                 $sql = "SELECT COUNT(id_reportes)as reportes FROM `tbl_reportes` WHERE id_estado_reporte=1 ";
@@ -105,37 +105,32 @@ session_start();
 
                     ';
                  }
-                }
               ?>
             
         </a>
-        
         <div id="collapseTrwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          
-         
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            
             <?php   
-
                 if ($_SESSION['tipo_usuario'] == 1){
                   echo '
                 
                   <a class="collapse-item" href="adminReporte.php" >Ver Reportes</a>';
                 }
-
             ?>
-            
-            
             <a class="collapse-item" id="crear_reporte" ><i class="fas fa-plus"></i>Crear Reportes</a>
             
+     
+
+     
+           
             
-             </div>
-          
+          </div>
         </div>
       </li>
 
        
+
      
       <!-- Nav Item - Usuarios Collapse Menu -->
       
@@ -173,9 +168,8 @@ session_start();
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Equipos:</h6>
             
-            <a class="collapse-item" id="equiposDisponibles">Equipos Disponibles</a>
+            <a class="collapse-item" id="equiposDisponibles" >Equipos Disponibles</a>
             <a class="collapse-item" id="historialMovimientos" >Historial de Movimientos</a>
-            <a class="collapse-item" id="estadoArticulo" >Estado de Artículo</a>
             <a class="collapse-item" id="añadirEquipos" ><i class="fas fa-plus"></i> Añadir Equipos</a>
 
           </div>
@@ -214,7 +208,6 @@ session_start();
             <a class="collapse-item" id="prestar">Prestar artículo</a>
             <a class="collapse-item" id="verSolicitudes" href="adminPrestamos.php">Ver Solicitudes</a>
             <a class="collapse-item" id="devolver">Devolver artículo</a>
-
 
             
           </div>
@@ -282,10 +275,7 @@ session_start();
                 </form>
               </div>
             </li>
-
-
-
-            <?php   
+<?php   
       if ($_SESSION['tipo_usuario'] == 1){
         $conec = new Conexion();
       
@@ -328,7 +318,7 @@ session_start();
                 </a>';}
 
                 echo '
-                <a class="dropdown-item d-flex align-items-center" href="adminReporte.php">
+                <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-success">
                       <i class="fas fa-donate text-white"></i>
@@ -349,7 +339,12 @@ session_start();
             }
           }
 ?>
-  
+
+
+
+
+
+
 
 
 <?php   
@@ -383,20 +378,23 @@ session_start();
 
                 if ($solicitudes>=1){
                 echo '
-                <a class="dropdown-item d-flex align-items-center" id="notiSolicitud" href="adminPrestamos.php">
+                <a class="dropdown-item d-flex align-items-center" href="adminPrestamos.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">2019</div>
+                    <div class="small text-gray-500">Agosto 28, 2019</div>
                     <span class="font-weight-bold" >Tienes Solicitudes de Prestamos sin Revisar</span>
                   </div>
                 </a>';}
 
                 echo '
-                
+                <a class="dropdown-item d-flex align-items-center" href="href="adminPrestamos.php"">
+                  
+                  
+                </a>
                 
                 <a class="dropdown-item text-center small text-gray-500" href="adminPrestamos.php">Mostrar todas las notificaciones</a>
               </div>
@@ -411,9 +409,12 @@ session_start();
 
 
 
- <?php   
 
 
+
+
+<?php  
+  
   $conec = new Conexion();
       
   $id_recive = $_SESSION['id_persona_usuario'];
@@ -422,8 +423,7 @@ session_start();
   FROM tbl_mensajes a ,tbl_usuarios b 
   WHERE a.id_persona_usuario_envia = b.id_persona_usuario
   and a.id_estado_mensaje = 2
-  and a.id_persona_usuario_recibe = $id_recive
-  ";
+  and a.id_persona_usuario_recibe = $id_recive";
 
   $sql1 = "SELECT count(a.contenido_mensaje) as c_mensajes
   FROM tbl_mensajes a ,tbl_usuarios b 
@@ -438,7 +438,6 @@ foreach($resultado1 as $res1){
        echo' <!-- Nav Item - Alerts -->
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            
             <i class="fa fa-envelope"></i>
             <!-- Counter - Alerts -->
             <span class="badge badge-danger badge-counter">'.(int)$res1['c_mensajes'].'</span>
@@ -459,13 +458,6 @@ foreach($resultado1 as $res1){
               </div>
             </a>
         ';
-        }
-         if ($_SESSION['tipo_usuario'] == 2){
-
-        
-           echo '
-           <a class="dropdown-item text-center small text-gray-500" href="tablas/chat.php?id=1">Escribir Mensaje</a>
-           ';         
         }
                     
 
@@ -512,7 +504,7 @@ foreach($resultado1 as $res1){
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <?php   
+              <?php   
               if ($_SESSION['tipo_usuario'] == 1){
                 $conec = new Conexion();
                 echo '<h1 class="h3 mb-0 text-gray-800">Panel de Control Administradores</h1>';
@@ -521,6 +513,7 @@ foreach($resultado1 as $res1){
                 echo'<h1 class="h3 mb-0 text-gray-800">Panel de Control Instructores</h1>';
               }
             ?>
+            
           </div>
 
           <!-- Content Row -->
@@ -607,93 +600,56 @@ foreach($resultado1 as $res1){
 
           <!-- Content Row -->
 
-          <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Gráfica de prestamos</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Opciones:</div>
-                      <a class="dropdown-item" href="#">Acción1</a>
-                      <a class="dropdown-item" href="#">Opcion2</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Otra</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Disponibilidad de artículos</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Opciones:</div>
-                      <a class="dropdown-item" href="#">Acción1</a>
-                      <a class="dropdown-item" href="#">Opcion2</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Otra</a>
-                    </div>
-                  </div>
-                </div>
+            
                 <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Prestados
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Disponibles
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> No disponibles
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
           <!-- Content Row -->
           <div class="row">
 
     
 
-            <div class="col-lg-6 mb-4">
+            <div class="col-lg-12 mb-4">
 
              
 
               <!-- Approach -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Información</h6>
+                  <h2 class="m-0 font-weight-bold text-primary">Solicitudes de Prestamos</h2>
+<!-- 
+                  <form class="form" action="function.php" method="post">
+                    <select class="form-control col-lg-4" name="tipo">
+                      <option value="1"> En revision </option>  
+                      <option value="2"> Aceptados </option>    
+                      <option value="3"> Rechazados </option>          
+                    </select>
+                    <input type="submit" class="btn btn-primary mb-2" value="submit">   
+                  </form> -->
                 </div>
                 <div class="card-body">
-                  <p>En esta sección podras encontrar toda la informacion sobre los equipos con los que cuenta la carrera de ingenieria en sitemas; como administrador podras gestionar el ingreso o salida de los articulos aqui inventariados.</p>
-                  <p class="mb-0">Tu decides quienes pueden gestionar acciones en este portal asi como definir privilegios para cada cuenta creada.</p>
+
+               <!--Aqui vamos a poner todos las solicitudes ----------------------------
+               -----------------------------------------------------------
+               ------------------------------------------------------------
+               -------------------------------------------------
+               -------------------------------------------------------
+               -----------------------------------------------------
+               ---------------------------------------------------->
+
+              <?php
+                $conec = new Conexion();
+                global $post_por_pagina;
+                $post_por_pagina = 3;
+                obtener_post($post_por_pagina, $conec);
+    
+
+                require('paginacion1.php');
+              ?>
+
+
                 </div>
               </div>
 
@@ -727,6 +683,7 @@ foreach($resultado1 as $res1){
     <i class="fas fa-angle-up"></i>
   </a>
 
+  
 <div class="modal fade" id="logoutModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  <!-- cambiar id a la ventana modal-->
     <div class="modal-dialog modal-lg" role="document">
     <style type="text/css">
@@ -762,7 +719,7 @@ include('modalperfil.php');
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary"  href="ajax/acciones-sesion.php?accion=cerrar-sesion">Cerrar sesión</a>
+          <a class="btn btn-primary" href="login.php">Cerrar sesión</a>
         </div>
       </div>
     </div>
@@ -789,7 +746,6 @@ include('modalperfil.php');
   <script src="js/configuraciones.js"></script>
 
  
-
 </body>
 
 </html>

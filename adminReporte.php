@@ -206,7 +206,7 @@ session_start();
             <h6 class="collapse-header">Articulos:</h6>
             
             <a class="collapse-item" id="prestar">Prestar artículo</a>
-            <a class="collapse-item" id="verSolicitudes">Ver Solicitudes</a>
+            <a class="collapse-item" id="verSolicitudes" href="adminPrestamos.php">Ver Solicitudes</a>
             <a class="collapse-item" id="devolver">Devolver artículo</a>
 
             
@@ -378,7 +378,7 @@ session_start();
 
                 if ($solicitudes>=1){
                 echo '
-                <a class="dropdown-item d-flex align-items-center" href="administrador.php">
+                <a class="dropdown-item d-flex align-items-center" href="adminPrestamos.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
@@ -403,7 +403,7 @@ session_start();
                   </div>
                 </a>
                 
-                <a class="dropdown-item text-center small text-gray-500" href="adminReporte.php">Mostrar todas las notificaciones</a>
+                <a class="dropdown-item text-center small text-gray-500" href="adminPrestamos.php">Mostrar todas las notificaciones</a>
               </div>
             </li>
 
