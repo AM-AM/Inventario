@@ -200,13 +200,69 @@ session_start();
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePresta" aria-expanded="true" aria-controls="collapsePresta">
           <i class="fas fa-fw fa-box"></i>
           <span>Préstamos</span>
+
+          <?php
+              if ($_SESSION['tipo_usuario'] == 1){
+                $conec = new Conexion();
+                
+                $sql = "SELECT count(id_solicitud) as reportes FROM tbl_solicitudes WHERE id_estado_solicitud = 2";
+
+                $resultado = $conec->ejecutarConsulta($sql);
+
+                foreach($resultado as $res){
+                   $reportes = $res['reportes'];
+                
+                    echo '
+                        
+                    <!-- Counter - Alerts -->
+                    <span class="badge badge-danger badge-counter">';
+                    
+                    echo (int)$reportes . '</span>
+                      
+
+
+                    ';
+                 }
+                }
+              ?>
+            
         </a>
         <div id="collapsePresta" class="collapse" aria-labelledby="headingPresta" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Articulos:</h6>
             
             <a class="collapse-item" id="prestar">Prestar artículo</a>
-            <a class="collapse-item" id="verSolicitudes" href="adminPrestamos.php">Ver Solicitudes</a>
+            <a class="collapse-item" id="verSolicitudes" href="adminPrestamos.php">Ver Solicitudes
+            
+            <?php
+              if ($_SESSION['tipo_usuario'] == 1){
+                $conec = new Conexion();
+                
+                $sql = "SELECT count(id_solicitud) as reportes FROM tbl_solicitudes WHERE id_estado_solicitud = 2";
+
+                $resultado = $conec->ejecutarConsulta($sql);
+
+                foreach($resultado as $res){
+                   $reportes = $res['reportes'];
+                
+                    echo '
+                        
+                    <!-- Counter - Alerts -->
+                    <span class="badge badge-danger badge-counter">';
+                    
+                    echo (int)$reportes . '</span>
+                      
+
+
+                    ';
+                 }
+                }
+              ?>
+            
+            
+            
+            
+            </a>
             <a class="collapse-item" id="devolver">Devolver artículo</a>
 
             
