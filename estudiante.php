@@ -77,14 +77,15 @@
                    	        <label for="cuenta">Numero de Cuenta</label>
                    	        <input type="number" class="form-control " placeholder="20151000000" required id="cuenta" rows="3" name="cuenta">
 						</div>
-
-
-						<div class="form-group">
-                            <input type="submit" class="btn btn-primary mb-2" value="enviar" name='submit' onclick  = "getData()">
+						<div class="col-sm-1">
+                            <input type="submit" class="btn btn-primary mb-2" value="Ver estado Solicitud" name='submit' onclick  = "getData()">
                        </div>
 
-
+					   <div class="col-sm-3">
+                            <input type="submit" class="btn btn-primary mb-2" value="Ver Historial" name='historial' onclick  = "getData()">
+                       </div>
 					</div>
+					
 				</form>
 
 
@@ -95,7 +96,7 @@
 
 if(isset($_POST['submit'])){
 $cuenta = $_POST['cuenta'];
-echo $cuenta;
+
 
 
 include("class/class-conexion.php");
@@ -108,9 +109,14 @@ include("class/class-conexion.php");
 				inner join tbl_estado_solicitudes as t3
 				on t3.id_estado_solicitud = t1.id_estado_solicitud
 				WHERE `NUMERO_CUENTA` = $cuenta
-				ORDER BY t1.id_solicitud desc";
+				ORDER BY t1.id_solicitud desc limit 1";
+
+	
 
 	$resultado = $conec->ejecutarConsulta($sql);
+	$cantidadRegistros=$conec->cantidadRegistros($resultado);
+			
+if ($cantidadRegistros!=0)  {
 
 	foreach($resultado as $articulo){
 		$color = '';
@@ -129,7 +135,7 @@ include("class/class-conexion.php");
 		}
 
 
-		echo "<div class = '$color'>
+		echo "<br><br><div class = '$color'>
 		<div class = 'panel-heading'>
 			<h3 class = 'panel-title'>Solicitud</h3>
 		</div>
@@ -145,7 +151,67 @@ include("class/class-conexion.php");
 				// echo($articulo['estado_solicitud']);
 	}
 
+	}else{
+		echo 'No tiene solicitudes Realizadas';
+	}
+
 }
+
+if(isset($_POST['historial'])){
+	$cuenta = $_POST['cuenta'];
+
+
+	include("class/class-conexion.php");
+	$conec = new Conexion();
+
+	$sql1 = "SELECT a.nombre_articulo,s.fecha_solicitud, s.detalle, es.estado_solicitud FROM tbl_solicitudes s, tbl_articulos a, tbl_estado_solicitudes es
+	WHERE s.id_articulo_solicitado = a.id_articulos 
+	AND s.id_estado_solicitud = es.id_estado_solicitud
+	and s.numero_cuenta = $cuenta";
+
+$resultado = $conec->ejecutarConsulta($sql1);
+$cantidadRegistros=$conec->cantidadRegistros($resultado);
+			
+if ($cantidadRegistros!=0)  {
+
+echo'<table class="table table-dark">
+	<thead>
+	<tr>
+		<th scope="col-lg-5">Nombre del Articulo</th>
+		<th scope="col-lg-3">Fecha Solicitud</th>
+		<th scope="col-lg-5">Detalle</th>
+		<th scope="col-lg-3">Estado Solicitud </th>
+	</tr>
+	</thead>
+	<tbody>
+	';
+
+foreach($resultado as $res){
+
+	echo  '
+        
+	
+		
+		
+		<tr>
+			<td>'.$res['nombre_articulo'].'</td>
+			<td> '. $res['fecha_solicitud']. '</td>
+			<td> '. $res['detalle']. '</td>
+			<td> '. $res['estado_solicitud']. '</td>
+			<td>  
+		</tr>';
+		
+		
+	
+	}
+	echo '</tbody>
+	</table>';
+}else{
+	echo 'No tiene Solicitudes Realizadas';
+}
+
+}
+
 
 ?>
 
