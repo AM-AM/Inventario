@@ -6,7 +6,7 @@ if (mysqli_connect_errno()) {
 }
 
 
-$query="SELECT ar.nombre_articulo, sl.fecha_solicitud, es.estado_solicitud, us.nombre_usuario, NUMERO_CUENTA
+$query="SELECT sl.id_estado_solicitud ,ar.nombre_articulo, sl.fecha_solicitud, es.estado_solicitud, us.nombre_usuario, NUMERO_CUENTA
         FROM tbl_solicitudes sl 
             INNER JOIN tbl_articulos ar ON sl.id_articulo_solicitado=ar.id_articulos 
             INNER JOIN tbl_usuarios us ON sl.id_persona_usuario=us.id_persona_usuario
@@ -25,14 +25,34 @@ echo "<tr>
            Estado
         </th>
         <th>
-           Usuario
+           Instructor
         </th>
         <th>
-           Numero de Cuenta
+           Numero de Cuenta de Alumno 
         </th>
 	</tr>";
 while ($fila = $result->fetch_array()) {
-    echo '<tr>
+    if ($fila["id_estado_solicitud"]==1) {
+    echo '<tr class="table-warning">
+            <td>
+            '.$fila["nombre_articulo"].'
+            </td>         
+         
+            <td>
+            '.$fila["fecha_solicitud"].'
+            </td>         
+            <td>
+            Prestado
+            </td>
+            <td>
+            '.$fila["nombre_usuario"].'
+            </td>
+            <td>
+            '.$fila["NUMERO_CUENTA"].'
+            </td>         
+          </tr>';
+    }else{
+    echo '<tr class="table-success">
             <td>
             '.$fila["nombre_articulo"].'
             </td>         
@@ -50,6 +70,7 @@ while ($fila = $result->fetch_array()) {
             '.$fila["NUMERO_CUENTA"].'
             </td>         
           </tr>';
+      };
 };
 // Liberar resultados
 $result->close();

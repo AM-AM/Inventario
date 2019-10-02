@@ -11,11 +11,11 @@ $articulo=$_REQUEST['articulo'];
 echo $articulo;
 
 $query="UPDATE tbl_solicitudes
-SET id_estado_solicitud = '5'
-WHERE id_articulo_solicitado='$articulo'";
+SET id_estado_solicitud = 5
+WHERE id_solicitud='$articulo'";
 
 if ($mysqli->query($query) === TRUE) {
-    echo "Registro actualizado";
+    echo "Articulo retornado exitosamente";
 }
 else 
 {
