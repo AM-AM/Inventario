@@ -25,17 +25,8 @@ if ($_POST){
                      WHERE id_solicitud = $id";
         $resultados = $conec->ejecutarConsulta($sqll);*/
 
-        IF($tipo==1){
-          $sql1= "UPDATE tbl_articulos SET id_estado_articulo = 2, observacion='Este articulo actualmente esta solicitado para prestamo'
-                     WHERE id_articulos = $id";
-
-          $resultado1= $conec->ejecutarConsulta($sql1);
-
-        }
-        
-
-            header("Status: 301 Moved Permanently");
-            header("Location: adminPrestamos.php"); 
+        header("Status: 301 Moved Permanently");
+        header("Location: adminReservas.php"); 
 
  
     }
@@ -46,7 +37,7 @@ if ($_POST){
       $resultado = $conec -> ejecutarConsulta($sql);
 
       header("Status: 301 Moved Permanently");
-      header("Location: adminPrestamos.php");
+      header("Location: adminReservas.php");
     }
 
      if ($_POST['entrega']) {
@@ -59,7 +50,7 @@ if ($_POST){
     
 
       header("Status: 301 Moved Permanently");
-      header("Location: adminPrestamos.php");
+      header("Location: adminReservas.php");
     }
 
 
@@ -89,17 +80,17 @@ function obtener_post($post_por_pagina,$conec){
                               A.FECHA_SOLICITUD,
                               A.NUMERO_CUENTA,
                               A.DETALLE,
-                              A.ESTADO_ENTREGA,
                               B.ID_ESTADO_SOLICITUD,
                               B.ESTADO_SOLICITUD,
-                              C.ID_ARTICULOS,
-                              C.NOMBRE_ARTICULO
+                              A.ID_LAB_SOLICITADO,
+                              C.ID_UBICACION_ARTICULO,
+                              C.UBICACION_ARTICULO
                           FROM TBL_SOLICITUDES A
                           INNER JOIN TBL_ESTADO_SOLICITUDES B
                           ON(A.ID_ESTADO_SOLICITUD=B.ID_ESTADO_SOLICITUD)
-                          INNER JOIN TBL_ARTICULOS C
-                          ON(A.ID_ARTICULO_SOLICITADO=C.ID_ARTICULOS)
-                          WHERE A.ID_TIPO_SOLICITUD=1";;
+                          INNER JOIN TBL_UBICACION_ARTICULOS C
+                          ON(A.ID_LAB_SOLICITADO=C.ID_UBICACION_ARTICULO)
+                          WHERE A.ID_TIPO_SOLICITUD=2";
     $resultado = $conec->ejecutarConsulta($sql);
     foreach ($resultado as $res) {
         // echo print_r($res);
@@ -122,14 +113,13 @@ function obtener_post($post_por_pagina,$conec){
             <th scope="col-lg-1">Id_Usuario</th>
             <th scope="col">Fecha Solicitud</th>
             <th scope="col">Cuenta Solicitante</th>
-            <th scope="col">Id_Art</th>
-            <th scope="col">Articulo Solicitado</th>
+            <th scope="col">Id_Lab</th>
+            <th scope="col">Laboratorio Solicitado</th>
             <th scope="col">Detalle</th>
             <th scope="col">Estado Solicitud</th>
 
             <th scope="col">Respuesta Solicitud</th>
-            <th scope="col">Estado Entrega</th>
-
+            
             <th scope="col-lg-1"> <i class="material-icons">
             Acciones
             </i></th>
@@ -139,13 +129,13 @@ function obtener_post($post_por_pagina,$conec){
         </thead>
         <tbody>
           <tr>
-          <form class="form" action="function1.php" method="post">
+          <form class="form" action="function2.php" method="post">
             <th scope="row"> <input type="text"  readonly  size="2" id="idd" name="idd" value="'.$res['ID_SOLICITUD'].'"></th>
             <td> '. $res['ID_PERSONA_USUARIO']. '</td>
             <td> '. $res['FECHA_SOLICITUD']. '</td>
             <td> '. $res['NUMERO_CUENTA']. '</td>
-            <td> '. $res['ID_ARTICULOS'].'</td>
-            <td> '. $res['NOMBRE_ARTICULO']. '</td>
+            <td> '. $res['ID_LAB_SOLICITADO'].'</td>
+            <td> '. $res['UBICACION_ARTICULO']. '</td>
             <td> '. $res['DETALLE']. '</td>
             <td> 
            
@@ -160,8 +150,6 @@ function obtener_post($post_por_pagina,$conec){
                     
             </td>
             <td> <input type="submit" class="btn btn-primary mb-2" value="Actualizar" name="actualizar" onclick  = "probando()"></td>
-            <td> <input type="submit" class="btn btn-primary mb-2"  name="entrega" value='.$res['ESTADO_ENTREGA']. ' onclick  = "probando1()"></td>
-
 
             <td> <input type="submit" class="btn btn-danger mb-2" value="Borrar" name="borrar" onclick  = "probando2()"> </td>
              
@@ -182,17 +170,17 @@ function obtener_post($post_por_pagina,$conec){
                               A.FECHA_SOLICITUD,
                               A.NUMERO_CUENTA,
                               A.DETALLE,
-                              A.ESTADO_ENTREGA,
                               B.ID_ESTADO_SOLICITUD,
                               B.ESTADO_SOLICITUD,
-                              C.ID_ARTICULOS,
-                              C.NOMBRE_ARTICULO
+                              A.ID_LAB_SOLICITADO,
+                              C.ID_UBICACION_ARTICULO,
+                              C.UBICACION_ARTICULO
                           FROM TBL_SOLICITUDES A
                           INNER JOIN TBL_ESTADO_SOLICITUDES B
                           ON(A.ID_ESTADO_SOLICITUD=B.ID_ESTADO_SOLICITUD)
-                          INNER JOIN TBL_ARTICULOS C
-                          ON(A.ID_ARTICULO_SOLICITADO=C.ID_ARTICULOS)
-                          WHERE A.ID_TIPO_SOLICITUD=1";
+                          INNER JOIN TBL_UBICACION_ARTICULOS C
+                          ON(A.ID_LAB_SOLICITADO=C.ID_UBICACION_ARTICULO)
+                          WHERE A.ID_TIPO_SOLICITUD=2";
 
         $resultado = $conec->ejecutarConsulta($sql);
         $totalRegistros = $conec -> cantidadRegistros($resultado);

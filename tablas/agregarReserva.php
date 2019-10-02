@@ -13,7 +13,7 @@ include ('../class/class-conexion.php');
       $tipo = $_POST['tipo'];
       $solicitud = $_POST['solicitud'];
       $fecha= $_POST['fecha'];
-      $articulos= $_POST['articulos'];
+      $laboratorios= $_POST['laboratorios'];
       $idpersona = $_SESSION['id_persona_usuario'];
       $cuenta =$_POST['cuentaSolicitud'];
       $solicitud=$_POST['solicitud'];
@@ -25,13 +25,13 @@ include ('../class/class-conexion.php');
       //$articulos=(int)$articulos;
       if($cuenta != ""){
         $mensaje = 'Los articulos seleccionados son: <br>';
-        foreach($articulos as $articulo){
-          $mensaje =  $mensaje . ' ' . $articulo . ', ' ;
+        foreach($laboratorios as $laboratorio){
+          $mensaje =  $mensaje . ' ' . $laboratorio . ', ' ;
         }
 
         $conec = new Conexion();      
         $sql = "INSERT INTO tbl_solicitudes 
-                values(null,'$idpersona','$estado','$tipo','$articulo',NULL,'$fecha','$cuenta','$solicitud','PENDIENTE')";
+                values(null,'$idpersona','$estado','$tipo',NULL,'$laboratorio','$fecha','$cuenta','$solicitud','PENDIENTE')";
         
         $resultado = $conec->ejecutarConsulta($sql);
         

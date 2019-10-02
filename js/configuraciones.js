@@ -44,6 +44,13 @@ $(document).ready(function(){
     });
 
     
+
+    $("#reservaLab").click(function(event){
+        $("#contenido").load('tablas/reservaLab.php');
+    });
+
+
+    
     /*$("#verSolicitudes").click(function(event){
         $("#contenido").load('solicitudesPres.php');
     });
@@ -55,6 +62,11 @@ $(document).ready(function(){
         
 
     // Chat
+    $("#id_envia").click(function(event){
+        header("Status: 301 Moved Permanently");
+        header("Location: tablas/chat.php");
+    });
+
    
 
     

@@ -451,3 +451,29 @@ ADD NUMERO_CUENTA NUMERIC(11) NULL;
 
 ALTER TABLE TBL_SOLICITUDES
 ADD DETALLE VARCHAR(400) NULL;
+
+
+
+-- actualizacion sprint5 --------------------------------------------------------------------------------------------
+ALTER TABLE `tbl_solicitudes` CHANGE `id_articulo_solicitado` `id_articulo_solicitado` INT(11) NULL;
+
+ALTER TABLE TBL_SOLICITUDES
+ADD ESTADO_ENTREGA VARCHAR(200) NULL;
+
+ALTER TABLE tbl_ubicacion_articulos 
+ADD DISPO_LAB VARCHAR(400) NULL;
+
+
+--- para reservas
+ALTER TABLE `tbl_solicitudes` 
+ADD `id_lab_solicitado` INT NULL AFTER `id_articulo_solicitado`;
+
+ALTER TABLE `tbl_solicitudes` ADD INDEX(`id_lab_solicitado`);
+
+ALTER TABLE tbl_solicitudes
+ADD CONSTRAINT `fk_tbl_solicitud_tbl_ubicacion_articulos1`
+    FOREIGN KEY (`id_lab_solicitado`)
+    REFERENCES `inventario`.`tbl_ubicacion_articulos` (`id_ubicacion_articulo`);
+
+
+

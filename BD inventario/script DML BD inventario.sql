@@ -507,3 +507,22 @@ INSERT INTO `tbl_tipo_solicitudes` (`id_tipo_solicitud`, `nombre_solicitud`)
 
 INSERT INTO `tbl_tipo_solicitudes` (`id_tipo_solicitud`, `nombre_solicitud`) 
         VALUES (NULL, 'Reserva Laboratorio');
+
+
+
+
+-- datos para ultimo sprint
+UPDATE `tbl_ubicacion_articulos` SET `DISPO_LAB` = 'Viernes de 5pm - 8pm' 
+WHERE `tbl_ubicacion_articulos`.`id_ubicacion_articulo` = 1;
+
+UPDATE `tbl_ubicacion_articulos` SET `DISPO_LAB` = 'Viernes de 5pm - 8pm' 
+WHERE `tbl_ubicacion_articulos`.`id_ubicacion_articulo` = 2;
+
+UPDATE `tbl_ubicacion_articulos` SET `DISPO_LAB` = 'Viernes de 8am - 12pm' 
+WHERE `tbl_ubicacion_articulos`.`id_ubicacion_articulo` = 3;
+
+UPDATE `tbl_ubicacion_articulos` SET `DISPO_LAB` = 'Lunes a Viernes 10am - 6pm' 
+WHERE `tbl_ubicacion_articulos`.`id_ubicacion_articulo` = 4;
+
+UPDATE `tbl_ubicacion_articulos` SET `DISPO_LAB` = 'No sisponible para Reserva' 
+WHERE `tbl_ubicacion_articulos`.`id_ubicacion_articulo` = 5;

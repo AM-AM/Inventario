@@ -8,17 +8,15 @@ if ($_POST){
         $cuenta = $_POST['cuenta'];
        $detalle = $_POST['detalle'];
        $articulos = (int)$_POST['articulos'];
+       $fecha=$_POST['fecha'];
        $estado_Solicitud = 2;
-       $tipo = 1;
+       $tipo = 2;
        
         
-       $sql = "INSERT INTO tbl_solicitudes( `id_estado_solicitud`, `id_tipo_solicitud`, `id_articulo_solicitado`, `fecha_solicitud`, `NUMERO_CUENTA`, `DETALLE`,`ESTADO_ENTREGA`)
-        VALUES ('$estado_Solicitud',' $tipo', '$articulos','2019-10-09','$cuenta','$detalle','PENDIENTE')";
-
+       $sql = "INSERT INTO tbl_solicitudes
+          VALUES (null,NULL,'$estado_Solicitud',$tipo, NULL,'$articulos','$fecha','$cuenta','$detalle','PENDIENTE')";
         $resultado = $conec->ejecutarConsulta($sql);
-
-
-
+        
 
 
 

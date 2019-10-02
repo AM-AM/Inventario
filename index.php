@@ -137,6 +137,8 @@
 			
 			<div class="ft-2">  <img src="images/proyector.png"height="300px" > </div>
 			 <button class="btn btn-info" href='index.php' onclick = " location.href='reservar.php' ">Ir a préstamos </button>
+			 <button class="btn btn-info" href='index.php' onclick = " location.href='reservarLabs.php' ">Ir a reservas Laboratorios </button>
+			 <button class="btn btn-info" href='index.php' onclick = " location.href='estadoReserva.php' ">Consultar Estado de Reserva para Laboratorios </button>
 		</div>
 
 

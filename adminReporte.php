@@ -178,18 +178,17 @@ session_start();
 
 
       <!-- Nav Item - Categorias Collapse Menu -->
-      <li class="nav-item">
+     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-list"></i>
-          <span>Categorías</span>
+          <span>Reservas Laboratorios</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Artículos:</h6>
+            <h6 class="collapse-header">Labs:</h6>
             
-            <a class="collapse-item" id="computadoras" >Computadoras</a>
-            <a class="collapse-item" id="proyectores" >Proyectores</a>
-            <a class="collapse-item" id="cables">Cables</a>
+            <a class="collapse-item" id="reservaLab" >Reservar Laboratorio</a>
+            <a class="collapse-item" id="soliReservas" href="adminReservas.php">Ver Solicitudes</a>
             
           </div>
         </div>
@@ -396,25 +395,25 @@ session_start();
           }
 ?>
 
-
-
-
-
-
-
-
 <?php   
       //mostrar notificaciones de solicitudes
       if ($_SESSION['tipo_usuario'] == 2){
         $conec = new Conexion();
       
-        $sql = "SELECT COUNT(id_solicitud)as solicitudes FROM `tbl_solicitudes` WHERE id_estado_solicitud=2 ";
+        $sql = "SELECT COUNT(id_solicitud)as solicitudes FROM `tbl_solicitudes` WHERE id_estado_solicitud=2 and ID_TIPO_SOLICITUD=1";
+        //$sql1="SELECT ID_TIPO_SOLICITUD FROM `tbl_solicitudes`";
+
+         $sql1 = "SELECT COUNT(id_solicitud)as solicitudes1 FROM `tbl_solicitudes` WHERE id_estado_solicitud=2 and ID_TIPO_SOLICITUD=2";
+        
 
         $resultado = $conec->ejecutarConsulta($sql);
+        //$resultado1= $conec->ejecutarConsulta($sql1);
+        $resultado1=$conec->ejecutarConsulta($sql1);
+
 
         foreach($resultado as $res){
           $solicitudes = $res['solicitudes'];
-        
+          
         echo '
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
@@ -429,35 +428,28 @@ session_start();
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Notificaciones
+                  Notificaciones Prestamos
                 </h6>';
 
                 if ($solicitudes>=1){
                 echo '
-                <a class="dropdown-item d-flex align-items-center" href="adminPrestamos.php">
+
+                <a class="dropdown-item d-flex align-items-center" id="notiSolicitud" href="adminPrestamos.php">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
                       <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
                   <div>
-                    <div class="small text-gray-500">Agosto 28, 2019</div>
+                    <div class="small text-gray-500">2019</div>
                     <span class="font-weight-bold" >Tienes Solicitudes de Prestamos sin Revisar</span>
                   </div>
                 </a>';}
 
+
+
                 echo '
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">Junio 7, 2019</div>
-                    Computadora 5 reparada.
-                  </div>
-                </a>
+                
                 
                 <a class="dropdown-item text-center small text-gray-500" href="adminPrestamos.php">Mostrar todas las notificaciones</a>
               </div>
@@ -466,8 +458,60 @@ session_start();
             <div class="topbar-divider d-none d-sm-block"></div>
             ';
             }
+
+
+        foreach($resultado1 as $res1){
+          $solicitudes1 = $res1['solicitudes1'];
+          
+        echo '
+            <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">';
+                
+                echo (int)$solicitudes1 . '</span>
+              </a>
+
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Notificaciones Reservas
+                </h6>';
+
+                if ($solicitudes1>=1){
+                echo '
+                <a class="dropdown-item d-flex align-items-center" id="notiSolicitud" href="adminReservas.php">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">2019</div>
+                    <span class="font-weight-bold" >Tienes Solicitudes de Reservas de Laboratorios sin Revisar</span>
+                  </div>
+                </a>';}
+
+
+
+                echo '
+                
+                
+                <a class="dropdown-item text-center small text-gray-500" href="adminReservas.php">Mostrar todas las notificaciones</a>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            ';
+            }
+
           }
 ?>
+
+
+
 
 
 
