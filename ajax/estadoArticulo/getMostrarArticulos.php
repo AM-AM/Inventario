@@ -13,15 +13,15 @@ FROM tbl_ubicacion_articulos ua
 
 $result = $mysqli->query($query);
 echo "<tr>
-		<td>
+		<th>
            Artículo
-        </td> 
-        <td>
+        </th> 
+        <th>
            Ubicación
-        </td>
-        <td>
+        </th>
+        <th>
            Estado
-        </td>
+        </th>
 	</tr>";
 while ($fila = $result->fetch_array()) {
     echo '<tr>

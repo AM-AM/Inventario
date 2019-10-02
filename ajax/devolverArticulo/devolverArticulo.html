@@ -1,0 +1,87 @@
+<meta charset="UTF-8"/>
+
+<div>
+        <h1>Devolucion de articulos</h1>
+        <form method="post">
+	        <div class="selector-articulo">
+	            Seleccionar Articulo:<br>
+	            <select class="form-control"></select>
+	            <script type="text/javascript">
+	                $(document).ready(function() {
+	                    $.ajax({
+	                            type: "POST",
+	                            url: "ajax/devolverArticulo/getArticulo.php",
+	                            success: function(response)
+	                            {
+	                                $('.selector-articulo select').html(response).fadeIn();
+	                            }
+	                    });
+
+	                });
+	            </script>
+	        </div>
+	        <br>
+	       
+
+	        <br>
+	        <button type="button" class="btn btn-primary" id="guardar">Regresar Articulo</button>
+	    </form>
+
+	    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#guardar").click(function(){
+                var articulo=$("#selector_articulo").val();
+                
+                $.ajax({
+                    url:'ajax/devolverArticulo/insertEstado.php',
+                    type:'POST',
+                    data:{
+                        articulo:articulo
+                    },
+                   success:function(response){
+                       alert(response);
+
+                       
+                   }
+                });
+            });
+        });
+
+
+
+    	</script>
+
+	    <hr>
+    	<table class="tabla-articulos table table-bordered">
+        	Artículo:
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $.ajax({
+                            type: "POST",
+                            url: "ajax/devolverArticulo/getMostrarArticulos.php",
+                            success: function(response)
+                            {
+                                $('.tabla-articulos').html(response).fadeIn();
+                            }
+                    });
+
+                });
+
+		        $(document).ready(function(){
+	            $("#guardar").click(function(){
+	                $.ajax({
+	                        type: "POST",
+	                        url: "ajax/devolverArticulo/getMostrarArticulos.php",
+	                        success: function(response)
+	                        {
+	                            
+	                            setTimeout($('.tabla-articulos').html(response).fadeIn(),3000);
+	                        }
+	                });
+	            });
+	        });
+            </script>
+        </table>
+        
+</div>

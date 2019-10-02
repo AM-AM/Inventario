@@ -20,7 +20,7 @@ $(document).ready(function(){
     	$("#contenido").load('tablas/prestar.php');
 	});
 	$("#devolver").click(function(event){
-    	$("#contenido").load('tablas/devolver.php');
+    	$("#contenido").load('ajax/devolverArticulo/devolverArticulo.html');
 	});
     $("#computadoras").click(function(event){
         $("#contenido").load('tablas/categorias/computadoras.php');
