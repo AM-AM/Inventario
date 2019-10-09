@@ -84,6 +84,7 @@ session_start();
          
           
               <?php
+              if ($_SESSION['tipo_usuario'] == 1){
               
                 $conec = new Conexion();
                 
@@ -105,6 +106,7 @@ session_start();
 
                     ';
                  }
+               }
               ?>
             
         </a>
@@ -170,6 +172,7 @@ session_start();
             
             <a class="collapse-item" id="equiposDisponibles" >Equipos Disponibles</a>
             <a class="collapse-item" id="historialMovimientos" >Historial de Movimientos</a>
+            <a class="collapse-item" id="estadoArticulo" >Estado de Artículo</a>
             <a class="collapse-item" id="añadirEquipos" ><i class="fas fa-plus"></i> Añadir Equipos</a>
 
           </div>

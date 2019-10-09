@@ -37,7 +37,7 @@ $(document).ready(function(){
     });
 
     $("#añadirEquipos").click(function(event){
-        $("#contenido").load('inventario.php');
+        $("#contenido").load('agregarArt.php');
     });
     $("#historialMovimientos").click(function(event){
         $("#contenido").load('tablas/historialMovimientos.php');

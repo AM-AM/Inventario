@@ -15,6 +15,8 @@ include("class/class-conexion.php");
 
 		<!--Extension-->
 		<link rel="stylesheet" type="text/css" href="extensiones/datatables.min.css">
+		
+		
 	</head>
 	<!--Contenedor-->
 		<div class="container-fluid">
@@ -31,9 +33,6 @@ include("class/class-conexion.php");
 									<a class="nav-item nav-link active" id="nav-inv-main-tab" data-toggle="tab" href="#nav-inv-main" role="tab" aria-controls="nav-inv-main" aria-selected="true">Equipo en existencia</a>
 								</li>
 								<!--Pestaña Agregar Equipos-->
-								<li class="nav-item pestaña" id="nav-inv-add-li">
-									<a class="nav-item nav-link active" id="nav-inv-add-tab" data-toggle="tab" href="#nav-inv-add" role="tab" aria-controls="nav-inv-add" aria-selected="true">Agregar Equipos</a>
-								</li>
 
 							</ul>
 						</div>
@@ -47,8 +46,7 @@ include("class/class-conexion.php");
 								<div class="col-lg-12 col-sm-12">
 									<table class="table table-striped table-bordered" id="table-articulos-proximos" style="width: 100%;">
 										<h3>Disponibles Para Prestamo</h3>
-										<label for="txt-limite">Cantidad menor a: </label>
-										<input style="width: 50px" class="form-control" type="text" id="txt-limite" value="5"> 
+										
 									</table>
 								</div>
 							</div>
@@ -67,6 +65,7 @@ include("class/class-conexion.php");
 							<div class="modal fade" id="modalVerArticulo" tabindex="-1" role="dialog" aria-labelledby="modalVerArticuloLabel" aria-hidden="true">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">
+									<form class="form" action="actualizarArt.php" method="post">
 										<div class="modal-header">
 											<h3 class="modal-title" id="modalVerArticuloLabel" style="text-align: center;font-weight: bold;">DATOS DEL ARTICULO</h3>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -80,12 +79,12 @@ include("class/class-conexion.php");
 													<div class="row">	
 														<div class="form-group col-12 col-sm-6 col-md-6" style="padding: 0;">
 															<label class="palido" for="nombre-articulo-actualizar">Nombre del Articulo</label>
-															<input type="text" id="nombre-articulo-actualizar" class="form-control" placeholder="Ingrese un nombre para el articulo" style="width: 190px;">
+															<input type="text" id="nombre-articulo-actualizar" name="nombre" class="form-control" placeholder="Ingrese un nombre para el articulo" style="width: 190px;">
 														</div>
 
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="slc-categoria-articulo-actualizar">Categoria de articulo</label>
-															<select id="slc-categoria-articulo-actualizar" class="form-control" data-style="btn-primary" style="width: 190px;">
+															<select id="slc-categoria-articulo-actualizar" name="categoria" class="form-control" data-style="btn-primary" style="width: 190px;">
 																<option value="">--Seleccione--</option>
 																<option value="1">Computadoras</option>
 																<option value="2">Proyectores</option>
@@ -99,12 +98,12 @@ include("class/class-conexion.php");
 													<div class="row">
 														<div class="form-group col-12 col-sm-6 col-md-6" style="padding: 0;">
 															<label class="palido" for="cantidad-articulo-actualizar">Cantidad</label>
-															<input type="text" id="cantidad-articulo-actualizar" class="form-control" placeholder="Ingrese cantidad" disabled="disabled" style="width: 190px;">	
+															<input type="text" id="cantidad-articulo-actualizar" name="cantidad" class="form-control" placeholder="Ingrese cantidad" disabled="disabled" style="width: 190px;">	
 														</div>
 
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="precio-costo">Precio</label>
-															<input type="text" id="precio" class="form-control" placeholder="Ingrese un precio en el formato 999.99" style="width: 190px;">
+															<input type="text" id="precio" name="precio" class="form-control" placeholder="Ingrese un precio en el formato 999.99" style="width: 190px;">
 														</div>
 													</div>
 
@@ -116,7 +115,7 @@ include("class/class-conexion.php");
 
 														<div class="form-group col-12 col-sm-6 col-md-6">	
 															<label for="slc-estado-articulo">Estado del Articulo</label>
-															<select id="slc-estado-articulo-actualizar" class="form-control" style="width: 190px;">
+															<select id="slc-estado-articulo-actualizar" name="estado" class="form-control" style="width: 190px;">
 																<option>--Seleccione--</option>
 																<option value="1">Diponible</option>
 																<option value="2">No disponible</option>
@@ -127,7 +126,7 @@ include("class/class-conexion.php");
 													<div class="row">
 														<div class="form-group col-12 col-sm-6 col-md-6" style="padding: 0;">	
 															<label for="slc-ubicacion-articulo-actualizar">Ubicación articulo</label>
-															<select id="slc-ubicacion-articulo-actualizar" class="form-control"  style="width: 190px;">
+															<select id="slc-ubicacion-articulo-actualizar" class="form-control" name="ubicacion" style="width: 190px;">
 																<option value="">--Seleccione--</option>
 																<option value="1">Laboratorio 1</option>
 																<option value="2">Laboratorio 2</option>
@@ -141,7 +140,7 @@ include("class/class-conexion.php");
 
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="slc-persona-registra-articulo-actualizar">Persona registro</label>
-															<input type="text" id="slc-persona-registra-articulo-actualizar" class="form-control" disabled="disabled"  style="width: 190px;">	
+															<input type="text" id="slc-persona-registra-articulo-actualizar" class="form-control" disabled="disabled"  style="width: 190px;" name="personaReg">	
 														</div>
 
 
@@ -150,13 +149,13 @@ include("class/class-conexion.php");
 													<div class="row">
 														<div class="form-group col-12 col-sm-6 col-md-6" style="padding: 0;">
 															<label class="palido" for="spn-fecha-registro-art-actualizar">Fecha de Ingreso</label>
-															<input type="date" id="spn-fecha-registro-art-actualizar" class="form-control" style="padding-top: 0;" disabled="disabled" style="width: 190px;">	
+															<input type="date" id="spn-fecha-registro-art-actualizar" class="form-control" style="padding-top: 0;" disabled="disabled" style="width: 190px;" name="fechaIng">	
 
 														</div>
 
 														<div class="form-group col-12 col-sm-6 col-md-6">	
 															<label for="spn-fecha-registro-art">Fecha de Actualización</label>
-                       										<input type="text" id="spn-fecha-registro-art-actualizar" name="fecha" value=" <?php echo date('Y-m-d'); ?>" readonly class="form-control" style="width: 190px;">
+                       										<input type="text" id="spn-fecha-registro-art-actualizar" name="fecha" value=" <?php echo date('Y-m-d'); ?>" readonly class="form-control" style="width: 190px;" name="fechaAct">
 
 														</div>
 
@@ -170,12 +169,12 @@ include("class/class-conexion.php");
 														<div class="form-group col-12 col-sm-6 col-md-6" style="padding: 0;">
 															<label class="palido" for="id-persona-actualiza">Codigo</label>
 															
-															<input type="text" id="persona-actualiza-articulo-actualizar" class="form-control"  value="<?php echo $_SESSION['id_persona_usuario']?>" disabled="disabled" style="width: 190px;">
+															<input type="text" id="persona-actualiza-articulo-actualizar" class="form-control"  value="<?php echo $_SESSION['id_persona_usuario']?>" disabled="disabled" style="width: 190px;" name="id_persona_usuario">
 														</div>
 
 														<div class="form-group col-12 col-sm-6 col-md-6">
 															<label class="palido" for="nombre-persona-actualiza">Nombre</label>
-															<input type="text" id="persona-actualiza-articulo-nombre" class="form-control"  value="<?php echo $_SESSION['nombre']?>" disabled="disabled" style="width: 190px;">	
+															<input type="text" id="persona-actualiza-articulo-nombre" class="form-control"  value="<?php echo $_SESSION['nombre']?>" disabled="disabled" style="width: 190px;" name="Persona">	
 														</div>
 
 													</div>
@@ -189,72 +188,21 @@ include("class/class-conexion.php");
 										</div>
 
 										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary hide" id="atras">Atrás</button>
-											<button type="button" class="btn btn-primary" id="editar-articulo">Editar Articulo</button>
-											
-											<button type="button" class="btn btn-success hide" id="actualizar-articulo">Actualizar Articulo</button>
+										<center>											
+											<button type="button" class="btn btn-success hide" id="actualizarArt" name="actualizarArt" onclick  = "probando()">Actualizar Articulo</button>
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+										</center>
+
 										</div>
+										</form>
 									</div>
 								</div>
 							</div>
 						</div>
 
 						<!--Formulario agregar Equipo-->
-						<div class="tab-pane fade show active" id="nav-inv-add" role="tabpanel" aria-labelledby="nav-inv-add-tab">
-							<!--Registro Articulos-->
-							<label for="formulario-agregar-articulo"><h2>Agregar equipo</h2></label>
-							<div id="fomulario-agregar-articulo" class="row" style="padding: 20px;">
-								<label for="nombre-articulo">Nombre del Articulo</label>
-								<input type="text" id="nombre-articulo" class="form-control" placeholder="Ingrese un nombre para el articulo">
-
-								<label for="slc-categoria-articulo">Categoria del Articulo</label>
-								<select id="slc-categoria-articulo" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
-									<option value="">--Seleccione una Categoria--</option>
-									<option value="1">Computadoras</option>
-									<option value="2">Proyectores</option>
-									<option value="3">Cables</option>
-									<option value="4">Mobiliario y Equipo</option>
-								</select>
-
-
-								<label for="cantidad-articulo">Cantidad de articulos</label>
-								<input type="text" id="cantidad-articulo" class="form-control" placeholder="Ingrese una cantidad">
-								
-								<label for="precio-articulo">Precio del articulo</label>
-								<input type="text" id="precio-articulo" class="form-control" placeholder="Ingrese el precio en el formato 999.99">
-								
-								<label for="descripcion-articulo">Descripcion del Articulo</label>
-								<input type="text" id="descripcion-articulo" class="form-control" placeholder="Ingrese una descripcion">								
-								
-								<label for="fecha-registro-art">Fecha de Ingreso del articulo</label>
-                       			<input type="date" id='fecha-registro-art' name="fecha"  class="form-control">
-
-								<label for="slc-estado-articulo">Estado del Articulo</label>
-								<select id="slc-estado-articulo" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
-									<option value="">--Seleccione un Estado--</option>
-									<option value="1">Disponible</option>
-									<option value="2">No Disponible</option>	
-								</select>	
-
-								<label for="persona-registra">Persona que registra</label>
-								<input type="text" id="persona-registra" class="form-control"  value="<?php echo $_SESSION['id_persona_usuario']?>" disabled="disabled">
-								<br>
-								<input type="text" id="persona-registra-nombre" class="form-control"  value="<?php echo $_SESSION['nombre']?>" disabled="disabled">
-
-								<label for="slc-ubicacion-articulo">Ubicación Articulo</label>
-								<select id="slc-ubicacion-articulo" class="form-control" style="margin-left: 10px;margin-bottom: 10px;">
-									<option value="">--Seleccione una ubicación--</option>
-									<option value="1">Laboratorio 1</option>
-									<option value="2">Laboratorio 2</option>
-									<option value="3">Laboratorio 3</option>
-									<option value="4">Laboratorio 4</option>
-									<option value="5">Laboratorio de Investigación</option>
-								</select>					
-								
-							</div>
-							<button id="guardar-articulo" class="btn btn-primary"><span class="glyphicon glyphicon-plus "></span>Registrar articulo</button>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -274,5 +222,24 @@ include("class/class-conexion.php");
 	<script src="js/controladores/validaciones.js"></script>
 	<script src="js/controladores/popup.js"></script>
 	<script src="js/controladores/inventario.js"></script>
+
+
+<script >
+      let popUp = new Popup();
+    
+    function probando(){
+      //var solicitud = document.getElementById("cuentaSolicitud").value;
+      if(document.getElementById("precio").value == " "){
+        popUp.setTextoAlerta("Campos vacios o Datos incorrectos, Intente de Nuevo");
+        popUp.incorrecto();
+        popUp.mostrarAlerta();
+      }
+      else{
+        popUp.setTextoAlerta("El articulo ha sido registrado corectamente");
+        popUp.correcto();
+        popUp.mostrarAlerta();
+      }
+    }
+</script>
 
 

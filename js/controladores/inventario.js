@@ -16,7 +16,7 @@ $(document).ready(function() {
       "dataType": "json",
       "data": {
         "accion" : "leer-articulos-proximos",
-        "cantidad" : function(){
+        /*"cantidad" : function(){
             regex = /^[0-9]+$/;
             if(regex.exec($("#txt-limite").val())){
               $("#txt-limite").css('color', '');
@@ -30,7 +30,7 @@ $(document).ready(function() {
               $("#txt-limite").css('color', 'red');
               $("#txt-limite").css('border', 'solid 1px red');
             }
-          }
+          }*/
       }
     },
     columns: [
@@ -45,7 +45,7 @@ $(document).ready(function() {
       {data: "NOMBRE_USUARIO", title: "Usuario que Registro"},
       {data: null, title: "Opciones",
       render: function (data, type, row, meta) {
-        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver</button>`;
+        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Editar</button>`;
       }}
     ]
   });
@@ -77,7 +77,7 @@ $(document).ready(function() {
       {data: "NOMBRE_USUARIO", title: "Usuario que Registro"},
       {data: null, title: "Opciones",
       render: function (data, type, row, meta) {
-        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Ver</button>`;
+        return `<button class="form-control" data-toggle="modal" data-target="#modalVerArticulo" onclick="verArticulo(${row.ID_ARTICULOS});">Editar</button>`;
       }}
     ]
   });

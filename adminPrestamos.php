@@ -84,6 +84,7 @@ session_start();
          
           
               <?php
+              if ($_SESSION['tipo_usuario'] == 1){
               
                 $conec = new Conexion();
                 
@@ -105,6 +106,7 @@ session_start();
 
                     ';
                  }
+               }
               ?>
             
         </a>
@@ -170,6 +172,7 @@ session_start();
             
             <a class="collapse-item" id="equiposDisponibles" >Equipos Disponibles</a>
             <a class="collapse-item" id="historialMovimientos" >Historial de Movimientos</a>
+            <a class="collapse-item" id="estadoArticulo" >Estado de Artículo</a>
             <a class="collapse-item" id="añadirEquipos" ><i class="fas fa-plus"></i> Añadir Equipos</a>
 
           </div>
@@ -327,6 +330,9 @@ session_start();
                 </form>
               </div>
             </li>
+
+
+
 <?php   
       if ($_SESSION['tipo_usuario'] == 1){
         $conec = new Conexion();
@@ -389,55 +395,6 @@ session_start();
             <div class="topbar-divider d-none d-sm-block"></div>
             ';
             }
-
-
-        foreach($resultado1 as $res1){
-          $solicitudes1 = $res1['solicitudes1'];
-          
-        echo '
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">';
-                
-                echo (int)$solicitudes1 . '</span>
-              </a>
-
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Notificaciones Reservas
-                </h6>';
-
-                if ($solicitudes1>=1){
-                echo '
-                <a class="dropdown-item d-flex align-items-center" id="notiSolicitud" href="adminReservas.php">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">2019</div>
-                    <span class="font-weight-bold" >Tienes Solicitudes de Reservas de Laboratorios sin Revisar</span>
-                  </div>
-                </a>';}
-
-
-
-                echo '
-                
-                
-                <a class="dropdown-item text-center small text-gray-500" href="adminReservas.php">Mostrar todas las notificaciones</a>
-              </div>
-            </li>
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-            ';
-            }
-
           }
 ?>
 
@@ -510,8 +467,59 @@ session_start();
             <div class="topbar-divider d-none d-sm-block"></div>
             ';
             }
+
+
+        foreach($resultado1 as $res1){
+          $solicitudes1 = $res1['solicitudes1'];
+          
+        echo '
+            <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">';
+                
+                echo (int)$solicitudes1 . '</span>
+              </a>
+
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                <h6 class="dropdown-header">
+                  Notificaciones Reservas
+                </h6>';
+
+                if ($solicitudes1>=1){
+                echo '
+                <a class="dropdown-item d-flex align-items-center" id="notiSolicitud" href="adminReservas.php">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-primary">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">2019</div>
+                    <span class="font-weight-bold" >Tienes Solicitudes de Reservas de Laboratorios sin Revisar</span>
+                  </div>
+                </a>';}
+
+
+
+                echo '
+                
+                
+                <a class="dropdown-item text-center small text-gray-500" href="adminReservas.php">Mostrar todas las notificaciones</a>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            ';
+            }
+
           }
 ?>
+
+
 
 
 

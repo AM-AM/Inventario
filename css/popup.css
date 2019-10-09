@@ -2,7 +2,7 @@
   display: none;
   width: 400px;
   overflow: hidden;
-  background: #42f4b6;
+  background: #1E90FF;
   box-shadow: 0 0 20px black;
   border-radius: 8px;
   z-index: 9999;
@@ -36,13 +36,13 @@
 }
 #decision #icono-decision{
   font-size: 80px;
-  color: #ffc400;
+  color: #000000;
   margin-left: 18%;
   transform: translate(-50%, 0%);
 }
 
 #alerta #text-alerta, #decision #text-decision{
-  color: #333;
+  color: #000000;
 }
 #decision #text-decision{
   margin-top: 0;
@@ -61,13 +61,13 @@
 }
 
 #decision #decision-si{
-  background: #3498db;
+  background: #228B22;
   margin-right: 25%;
   transition: 0.6s;
 }
 
 #decision #decision-si:hover{
-  background: #133246;
+  background: #228B22;
   transition: 0.6s;
 }
 
@@ -77,6 +77,6 @@
 }
 
 #decision #decision-no:hover{
-  background: #5e0000;
+  background: #FF0000;
   transition: 0.6s;
 }
