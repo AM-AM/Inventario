@@ -1,9 +1,8 @@
 <?php
-$mysqli = new mysqli('localhost', 'root', '','inventario');
-if (mysqli_connect_errno()) {
-    printf("Conexión fallida: %s\n", mysqli_connect_error());
-    exit();
-}
+include ('../../class/class-conexion.php');
+
+$mysqli = new Conexion();
+
 
 $articulo=$_REQUEST['articulo'];
 $estado=$_REQUEST['estado'];
@@ -12,7 +11,7 @@ $query="UPDATE tbl_articulos
 SET id_estado_articulo = '$estado'
 WHERE id_articulos='$articulo'";
 
-if ($mysqli->query($query) === TRUE) {
+if ($mysqli->ejecutarConsulta($query) === TRUE) {
     echo "Registro actualizado";
 }
 else 
@@ -24,6 +23,6 @@ else
 
 
 // Cerrar la conexión
-$mysqli->close();
+$mysqli->cerrar();
 
 ?>

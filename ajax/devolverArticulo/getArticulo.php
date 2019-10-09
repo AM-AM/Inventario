@@ -1,10 +1,8 @@
 <meta charset="UTF-8"/>
 <?php
-$mysqli = new mysqli('localhost', 'root', '','inventario');
-if (mysqli_connect_errno()) {
-    printf("Conexión fallida: %s\n", mysqli_connect_error());
-    exit();
-}
+include ('../../class/class-conexion.php');
+
+$mysqli = new Conexion();
 
 $query="SELECT sl.id_solicitud, ar.nombre_articulo, sl.fecha_solicitud, es.estado_solicitud, us.nombre_usuario, NUMERO_CUENTA
 		FROM tbl_solicitudes sl 
@@ -13,17 +11,17 @@ $query="SELECT sl.id_solicitud, ar.nombre_articulo, sl.fecha_solicitud, es.estad
 		    INNER JOIN tbl_estado_solicitudes es ON es.id_estado_solicitud=sl.id_estado_solicitud
 		WHERE id_tipo_solicitud=1 AND (sl.id_estado_solicitud=1)";
 
-$result = $mysqli->query($query);
+$result = $mysqli->ejecutarConsulta($query);
 
 echo '<option value="0">--Seleccione el articulo a devolver--</option>';
 
-while ($fila = $result->fetch_array()) {
+foreach ($result as $fila) {
     echo '<option value="'.$fila["id_solicitud"].'">'.$fila["id_solicitud"].' '.$fila["nombre_articulo"].'</option>';
 };
 // Liberar resultados
-$result->close();
+$result->liberarResultado();
 
 // Cerrar la conexión
-$mysqli->close();
+$mysqli->cerrar();
 
 ?>
